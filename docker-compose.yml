@@ -1,0 +1,27 @@
+version: "3.6"
+services:
+
+  npc-db:
+    image: mariadb:10.5-focal
+    container_name: npc-db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypassword
+    volumes: 
+      - ./data/mariadb:/var/lib/mysql
+
+  npc-web:
+    image: skkunpc/npc-web
+    container_name: npc-web
+    restart: always
+    depends_on:
+      - npc-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=mypassword
+    volumes:
+      - ./data/backend:/data
+    ports:
+      - "0.0.0.0:3000:3000"
+      # Set deploying port later
+      # "0.0.0.0:80:8000"
+      # "0.0.0.0:443:1443"
