@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = () => {
+const Main = () => {
 	return (
 		<div>
 			<h2>메인</h2>
@@ -8,4 +8,4 @@ const Header = () => {
 	);
 };
 
-export default Header;
+export default Main;
