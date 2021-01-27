@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Main from "./components/Main";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	return (
+		<Router>
+			<div className="App">
+				<Header />
+				<Switch>
+					<Route exact path="/" component={Main} />
+					{/* 기타 페이지 */}
+					<Route
+						render={({ location }) => (
+							<div>
+								<h3>존재하지 않는 페이지 {location.pathname}</h3>
+							</div>
+						)}
+					/>
+				</Switch>
+				<Footer />
+			</div>
+		</Router>
+	);
+};
 
 export default App;
