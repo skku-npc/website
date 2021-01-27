@@ -2,7 +2,7 @@ import React from'react';
 import { useEffect, useState } from "react";
 import AOS from 'aos';
 import "aos/dist/aos.css";
-import "./App.css";
+import "./App.css"
 import NPCLogo from "./NPCLogo.png";
 import image38 from './image38.png';
 import cppimage from './C++image.png';
@@ -15,7 +15,6 @@ import image24 from "./image 24.png"
 
 function App(){
     AOS.init();
-    
     const topContainer ={
       backgroundColor: 'silver',
       width:"100%",
