@@ -1,6 +1,8 @@
-import React, { Fragment, useEffect, useRef, useState } from'react';
+import React from'react';
+import { useEffect, useState } from "react";
 import AOS from 'aos';
 import "aos/dist/aos.css";
+import "./App.css";
 import NPCLogo from "./NPCLogo.png";
 import image38 from './image38.png';
 import cppimage from './C++image.png';
@@ -8,10 +10,12 @@ import ICPC2019photo from './ICPC2019photo.png';
 import Asset1 from "./Asset 1.png";  
 import Asset2 from "./Asset 2.png";  
 import Asset3 from "./Asset 3.png";  
-import Sticky from './sticky';
+import RoomPhoto from "./동아리방 사진 (400609).png"
+import image24 from "./image 24.png"
 
 function App(){
     AOS.init();
+    
     const topContainer ={
       backgroundColor: 'silver',
       width:"100%",
@@ -157,6 +161,54 @@ function App(){
       width: "350px",
       height:"auto",
     }
+    const fixedText = "fixed Text"
+    const whenNotFixed = "fixed Text";
+    const [headerText, setHeaderText] = useState(whenNotFixed);
+    useEffect(() => {
+      const header = document.getElementById("myHeader");
+      const sticky = header.offsetTop;
+      const scrollCallBack = window.addEventListener("scroll", () => {
+        if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+          if (headerText !== fixedText) {
+            setHeaderText(fixedText);
+          }
+        } else {
+          header.classList.remove("sticky");
+          if (headerText !== whenNotFixed) {
+            setHeaderText(whenNotFixed);
+          }
+        }
+      });
+      return () => {
+        window.removeEventListener("scroll", scrollCallBack);
+      };
+    }); 
+
+    const headerStyle={
+      width:"100%",
+      height:"auto",
+      zIndex:100,
+      background: "rgba(255, 255, 255, 0.7)",
+      backdropFilter: "blur(16px)",
+    }
+    const headerLogo={
+      display:"inline-block",
+      paddingLeft:"5%",
+      paddingRight:"35%",
+      width:"105px",
+      height:"85px",
+      zIndex:101,
+    }
+    const headerMenu={
+      display:"inline-block",
+      width:"10%",
+      zIndex:101,
+      fontSize:"20px",
+      textAlign:"center",    
+      verticalAlign:"bottom",
+      paddingBottom:"32.5px"
+    }
     return(
       <div className="App">
         <div className="main-wrapper">
@@ -167,8 +219,30 @@ function App(){
           </div>
 
           <div className="main-page contents container">
-            <div className="header">
-              
+            <div>
+              {
+              /*<header className="header" style= {headerStyle}>
+                HHHHHHHHHHHHHHHHH
+              </header>*/
+              } 
+              <header id="myHeader" className="header" style= {headerStyle}>
+                <img className= "HeaderNPCLogo" src={NPCLogo} style={headerLogo} alt="HeaderLogo" />
+                <div className="headerMenu" style={headerMenu}>
+                  기록  
+                </div>
+                <div className="headerMenu" style={headerMenu}>
+                  멤버
+                </div>
+                <div className="headerMenu" style={headerMenu}>
+                  일정
+                </div>
+                <div className="headerMenu" style={headerMenu}>
+                  스터디
+                </div>
+                <div className="headerMenu" style={headerMenu}>
+                  설정
+                </div>
+              </header>
             </div>
             <div className="introduce">
               <img src ={image38} style = {full} alt ='image38' data-aos={"fade-in"}/>
@@ -239,8 +313,9 @@ function App(){
                   <b>&nbsp;&nbsp;&nbsp;동아리방 위치</b><br/>
                   <text style={{fontSize:"30px"}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;자연과학캠퍼스 반도체관 400609호</text>
                 </div>
+                <img src={image24} alt="floorInformation" ></img>
+                <img src={RoomPhoto} alt="roomPhoto" ></img>
               </div>
-              
             </div>
 
             <div className="apply">
