@@ -1,7 +1,7 @@
 import React from'react';
 import AOS from 'aos';
-import Header from "./Header";
 import "aos/dist/aos.css";
+import Header from "./Header";
 import NPCLogo from "./NPCLogo.png";
 import image38 from './image38.png';
 import cppimage from './C++image.png';
@@ -11,10 +11,10 @@ import Asset2 from "./Asset 2.png";
 import Asset3 from "./Asset 3.png";  
 import RoomPhoto from "./400609photo.png";
 import image24 from "./image 24.png";
-const Main = () => {
+function Main(){
     AOS.init();
     const topContainer ={
-      backgroundColor: '#FFFFFE',
+      backgroundColor: 'silver',
       width:"100vw",
       height:"100vh",
     }
@@ -184,10 +184,11 @@ const Main = () => {
               <img src={NPCLogo} style={middleCenter} alt='NPCLogo' data-aos={"fade-in"}/>
             </div>
           </div>
-          <div className="main-page contents container">
-            <Header>
 
-            </Header>
+          <div className="main-page contents container">
+            <div>
+              <Header/>
+            </div>
             <div className="introduce">
               <img src ={image38} style = {full} alt ='image38' data-aos={"fade-in"}/>
               <div className="centerAlignedContainer" style={centerAlignedContainer} >
@@ -260,6 +261,7 @@ const Main = () => {
                 <img src={RoomPhoto} alt="roomPhoto"  data-aos={"flip-down"}></img>
               </div>
             </div>
+
             <div className="apply" >
               <div className="centerAlignedApply" style={centerAlignedApply}>
               <br/><span style={{color:"#F5E435"}}>if </span>
