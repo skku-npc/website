@@ -1,0 +1,6 @@
+build
+data
+node_modules
+.git
+.idea
+.vscode

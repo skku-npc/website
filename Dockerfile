@@ -5,6 +5,6 @@ ENV NODE_ENV=production
 ADD . /app
 WORKDIR /app
 
-RUN rm -rf build client/build && yarn install && cd client && yarn install && yarn run build && mv build .. && cd .. && rm -rf client
+RUN yarn install && yarn run build
 
-CMD ["yarn", "start"]
+CMD ["yarn", "run", "server"]

@@ -129,7 +129,7 @@ thumb
 sketch
 
 ### vscode ###
-.vscode/*
+.vscode/
 
 ### WebStorm ###
 .idea/
