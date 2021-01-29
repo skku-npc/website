@@ -134,3 +134,6 @@ sketch
 
 # Mount docker container
 /data
+
+# Prisma2
+**/migrations
