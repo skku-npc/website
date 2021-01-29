@@ -117,10 +117,7 @@ dist
 **/*.backup.*
 **/*.back.*
 
-node_modules
-
-/build
-/client/build
+build/
 
 *.sublime*
 
