@@ -21,7 +21,7 @@ services:
     volumes:
       - ./data/backend:/data
     ports:
-      - "0.0.0.0:3000:3000"
+      - "0.0.0.0:4000:4000"
       # Set deploying port later
       # "0.0.0.0:80:8000"
       # "0.0.0.0:443:1443"
