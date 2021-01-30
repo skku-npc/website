@@ -136,4 +136,4 @@ sketch
 /data
 
 # Prisma2
-**/migrations
+migrations/
