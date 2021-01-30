@@ -9,4 +9,4 @@ $ cd website
 $ docker-compose up -d
 ```
 
-이후 http://localhost:3000/ 에 접속하면 됩니다.
+이후 http://localhost/ 에 접속하면 됩니다.
