@@ -1,0 +1,32 @@
+version: "3.6"
+services:
+  npc-db:
+    image: mariadb:10.5-focal
+    container_name: npc-db
+    restart: always
+    environment:
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=mypassword
+      - MYSQL_DATABASE=npc
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./init.sql:/data/application/init.sql
+      - ./data/mariadb:/var/lib/mysql
+    ports:
+      - "0.0.0.0:3306:3306"
+
+  npc-web:
+    image: skkunpc/npc-web
+    container_name: npc-web
+    restart: always
+    depends_on:
+      - npc-db
+    environment:
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=mypassword
+      - MYSQL_DATABASE=npc
+    volumes:
+      - ./data/backend:/data
+    ports:
+      - "0.0.0.0:80:4000"
+      - "0.0.0.0:443:4000"

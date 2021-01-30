@@ -1,0 +1,10 @@
+**build
+**node_modules
+data
+.git
+.gitignore
+Dockerfile
+.dockerignore
+**.eslint*
+.idea
+.vscode
