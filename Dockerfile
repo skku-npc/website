@@ -9,4 +9,4 @@ WORKDIR /app
 RUN yarn install --production
 RUN cd /app/temp && yarn install --production && yarn run build && mv build /app && cd /app && rm -rf /app/temp
 
-CMD ["yarn", "start"]
+ENTRYPOINT /app/entrypoint.sh
