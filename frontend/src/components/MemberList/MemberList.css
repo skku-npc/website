@@ -29,6 +29,12 @@
 
 .member-container {
   max-width: 85%;
+  height: 600px;
   margin: 40px auto;
-  justify-content: left;
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, max-content));
+  justify-content: center;
 }

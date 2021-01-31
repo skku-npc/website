@@ -4,7 +4,7 @@ import './Member.css';
 
 const Member = ({name, id, email, baekjoon, codeforces}) => {
   return (
-    <div className="member animate__animated animate__fadeIn animate__faster">
+    <div className="member">
       <div className="row justify-content-between">
         <span className="member_name col-xs-8">{name}</span>
         <ul className="member_button col-xs-4">

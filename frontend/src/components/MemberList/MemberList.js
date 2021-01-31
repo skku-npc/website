@@ -81,12 +81,9 @@ const MemberList = () => {
     setMaxYear(Math.max.apply(null, result.members.map(member=>member.year)));
     setMinYear(Math.min.apply(null, result.members.map(member=>member.year)));
     setFilterYear(2020);
-    console.log(result.members.map(member=>member.year));
-    console.log(Math.max(result.members.map(member=>member.year)));
   }, []);
 
   useEffect(() => {
-    setDisplayData([]);
     setDisplayData(memberData.filter(member=>member.year == filterYear));
   }, [filterYear]);
 
@@ -105,19 +102,22 @@ const MemberList = () => {
             &gt;
         </button>
       </div>
-      <div className="row member-container">
-        {
-          displayData.map((data, index) => (
-            <Fragment key={index}>
-              <Member
-                name={data.name}
-                id={data.id}
-                email={data.email}
-                baekjoon={data.baekjoon}
-                codeforces={data.codeforces}/>
-            </Fragment>
-          ))
-        }
+      <div className="member-container">
+        <div className="member-grid animate__animated animate__fadeIn animate__faster"
+          key={Math.random()}>
+          {
+            displayData.map((data, index) => (
+              <Fragment key={index}>
+                <Member
+                  name={data.name}
+                  id={data.id}
+                  email={data.email}
+                  baekjoon={data.baekjoon}
+                  codeforces={data.codeforces}/>
+              </Fragment>
+            ))
+          }
+        </div>
       </div>
     </Fragment>
   );
