@@ -73,7 +73,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+# .env
 .env.test
 .env*.local
 
@@ -117,10 +117,7 @@ dist
 **/*.backup.*
 **/*.back.*
 
-node_modules
-
-/build
-/client/build
+build/
 
 *.sublime*
 
@@ -137,3 +134,6 @@ sketch
 
 # Mount docker container
 /data
+
+# Prisma2
+migrations/
