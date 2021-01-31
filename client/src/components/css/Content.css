@@ -1,0 +1,19 @@
+/* 동아리 학습 */
+.word{
+position: absolute;
+width: 459px;
+height: 72px;
+left: 77px;
+top: 149px;
+
+font-family: KoreanTITGD3R;
+font-style: normal;
+font-weight: normal;
+font-size: 50px;
+line-height: 30px;
+/* or 60% */
+display: flex;
+align-items: center;
+
+color: #000000;
+}
