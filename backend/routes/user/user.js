@@ -1,4 +1,6 @@
+const { response } = require('express');
 const prisma = require('../../lib/prisma');
+
 
 async function sampleFunction(req, res) {
   const user = await prisma.user.findFirst({
@@ -9,4 +11,19 @@ async function sampleFunction(req, res) {
   res.send(user);
 }
 
-module.exports = { sampleFunction };
+async function signUpUser(req, res) {
+  try {
+    const user = await prisma.user.create({
+      data: {
+        ...req.body,
+      },
+      
+    });
+    res.status(201).send(user);
+  } catch (e) {
+    res.status(401).send(e);
+    console.log(e);
+  }
+}
+
+module.exports = { sampleFunction, signUpUser };
