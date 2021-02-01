@@ -1,32 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
-  const [headerFixed, setHeaderFixed] = useState(false);
-  useEffect(() => {
-    const header = document.getElementById('myHeader');
-    const sticky = header.offsetTop;
-    const scrollCallBack = window.addEventListener('scroll', () => {
-      if (window.pageYOffset > sticky) {
-        header.classList.add('sticky');
-        if (headerFixed !== true) {
-          setHeaderFixed(true);
-        }
-      } else {
-        header.classList.remove('sticky');
-        if (headerFixed !== false) {
-          setHeaderFixed(false);
-        }
+  const header = useRef();
+  const onScroll = () => {
+    if (window.pageYOffset > 0) {
+      if (header.current) {
+        header.current.classList.add('sticky');
       }
-    });
-    return () => {
-      window.removeEventListener('scroll', scrollCallBack);
-    };
+    } else {
+      if (header.current) {
+        header.current.classList.remove('sticky');
+      }
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   });
 
   return (
-    <div className="header" id="myHeader">
+    <div className="header" ref={header}>
       <div className="container-fluid no-pad">
         <div className="row justify-content-between align-items-center horizontal-center">
           <div className="col-2 mr-auto no-pad">

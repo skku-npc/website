@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js ."
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "bootstrap": "^4.6.0",
     "react": "^17.0.1",

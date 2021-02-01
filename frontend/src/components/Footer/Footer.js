@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.css';
 
 const Footer = () => {
-  return(
+  return (
     <div className="footer">
       <div className="container-fluid no-pad">
         <div className="row justify-content-around align-items-center">
