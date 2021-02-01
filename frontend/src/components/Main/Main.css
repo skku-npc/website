@@ -1,0 +1,119 @@
+.background {
+  width: 100%;
+}
+
+.frame {
+  width: 100%;
+  margin-bottom: 15%;
+  padding: 0 5%;
+}
+
+.frame img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.no-pad {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.row,
+.col {
+  margin: 0;
+  padding: 0px;
+}
+
+.title {
+  font-size: 50px;
+  margin-bottom: 5%;
+}
+
+.white {
+  color: white;
+}
+
+.yellow {
+  color: #f5e435;
+}
+
+.green {
+  color: #b2ed70;
+}
+
+.blue {
+  color: #4f7fc7;
+}
+
+.vertical-center {
+  position: absolute;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.horizontal-center {
+  text-align: center;
+}
+
+.class-box {
+  height: 20vw;
+  border-radius: 32px;
+}
+
+#frame_1 .main_text {
+  font-weight: 800;
+}
+
+#frame_1 .sub_text {
+  text-align: right;
+  font-size: 30px;
+}
+
+#frame_1 .img {
+  max-height: 75vh;
+}
+
+#frame_2 .sub_text {
+  font-size: 24px;
+}
+
+#frame_3 .img {
+  position: relative;
+  height: 51.4vw;
+  max-width: 1276px;
+  max-height: 698px;
+}
+
+#frame_3 .background {
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#frame_3 #basic {
+  background: linear-gradient(180deg, #feff83 0%, #f5e12e 100%);
+  box-shadow: 0px 0px 64px 16px rgba(226, 209, 54, 0.5);
+}
+
+#frame_3 #intermediate {
+  background: linear-gradient(180deg, #b6f170 0%, #8fbf56 100%);
+  box-shadow: 0px 0px 64px 16px rgba(143, 191, 86, 0.5);
+}
+
+#frame_3 #advanced {
+  background: linear-gradient(180deg, #79acf9 0%, #4d7dc5 100%);
+  box-shadow: 0px 0px 64px 16px rgba(121, 172, 249, 0.5);
+}
+
+#frame_5 .background {
+  height: auto;
+  font-weight: 650;
+  font-size: 40px;
+  background-color: #24292e;
+}

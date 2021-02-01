@@ -1,5 +1,39 @@
 .sticky {
   position: fixed;
   top: 0;
+}
+
+.no-pad {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.row,
+.col {
+  margin: 0;
+  padding: 0px;
+}
+
+.horizontal-center {
+  text-align: center;
+}
+
+.header {
+  height: 80px;
   width: 100%;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+}
+
+.header img {
+  height: 80px;
+}
+
+.header-link {
+  text-decoration: none;
+  color: black;
 }
