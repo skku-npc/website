@@ -44,21 +44,91 @@ async function login(req, res) {
 async function logout(req, res) {
   try {
     const user = await prisma.user.update({
-      where: { token: req.token },
+      where: { token: req.user.token },
       data: { token: null },
     });
 
     res.status(200).send(user);
   } catch (e) {
     res.status(401).send(e);
-    console.log(e);
+    console.log(e)
   }
 }
 
-async function getProfile(req, res) {
-  res.status(200).send(req.user)
+async function getUserProfile(req, res) {
+  res.status(200).send(req.user);
 }
 
+async function patchUserProfile(req, res) {
+  const updates = Object.keys(req.body);
+  const allowedUpdates = [
+    'password',
+    'handle',
+    'bojHandle',
+    'codeforcesHandle',
+    'githubHandle',
+    'class',
+    'role',
+  ];
 
+  const isValidOperation = updates.every(update =>
+    allowedUpdates.includes(update),
+  );
 
-module.exports = { registerUser, login, logout, getProfile };
+  if (!isValidOperation) {
+    return res.status(400).send({ error: 'Invalid Updates' });
+  }
+
+  try {
+    updates.forEach(update => (req.user[update] = req.body[update]));
+
+    await prisma.user.update({
+      where: { token: req.user.token },
+      data: {
+        ...req.user,
+      },
+    });
+
+    res.status(200).send(req.user);
+  } catch (e) {
+    res.status(400).send(e);
+  }
+}
+
+// async function putProfile(req, res) {
+//   try {
+//     await prisma.user.update({
+//       where: { token: req.user.token },
+//       data: {
+//         ...req.body,
+//       },
+//     });
+//     res.status(200).send(e);
+//   } catch (e) {
+//     res.status(400).send(e);
+//   }
+// }
+
+async function deleteUser(req, res) {
+  try {
+    console.log("deleteuser " + req.user.id);
+    await prisma.user.delete({
+      where: {
+        id: parseInt(req.user.id),
+      },
+    });
+    res.status(204).send();
+  } catch (e) {
+    res.status(404).send(e);
+  }
+}
+
+module.exports = {
+  registerUser,
+  login,
+  logout,
+  getUserProfile,
+  patchUserProfile,
+  // putProfile,
+  deleteUser,
+};

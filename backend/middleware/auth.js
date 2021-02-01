@@ -13,21 +13,18 @@ const auth = async (req, res, next) => {
         token: token,
       },
     });
-    
 
     if (!user) {
       throw new Error('No user');
     }
 
     req.user = user;
-    req.token = token;
     next();
 
   } catch (e) {
     res.status(401).send({
       error: 'Please authenticate',
     });
-    console.log(e);
   }
 };
 
