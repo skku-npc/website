@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('../../lib/prisma');
 
-async function createUser(req, res) {
+async function registerUser(req, res) {
   try {
     const user = await prisma.user.create({
       data: {
@@ -27,33 +27,38 @@ async function login(req, res) {
     const isMatch = await bcrypt.compare(req.body.password, user.password);
 
     if (isMatch) {
-      const token = jwt.sign({email: user.email}, process.env.JWT_SECRET);
+      const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
       const userWithToken = await prisma.user.update({
-        where: {email: req.body.email},
-        data: { token: token}
-      })
+        where: { email: req.body.email },
+        data: { token: token },
+      });
       res.status(200).send(userWithToken);
     } else {
       throw new Error('Unable to login');
     }
-
   } catch (e) {
     res.status(400).send(e);
   }
 }
 
-async function logout(req, res){
-  try{
+async function logout(req, res) {
+  try {
     const user = await prisma.user.update({
-      where:{token: req.token},
-      data: {token: null}
-    })
+      where: { token: req.token },
+      data: { token: null },
+    });
 
     res.status(200).send(user);
-  } catch(e){
+  } catch (e) {
     res.status(401).send(e);
     console.log(e);
   }
 }
 
-module.exports = { createUser, login, logout };
+async function getProfile(req, res) {
+  res.status(200).send(req.user)
+}
+
+
+
+module.exports = { registerUser, login, logout, getProfile };
