@@ -5,8 +5,7 @@ const validator = require('validator');
 
 const emailValidator = (req, res, next) => {
   try {
-    const isEmail = validator.isEmail(req.body.email);
-    if (isEmail) {
+    if (validator.isEmail(req.body.email)) {
       next();
     } else {
       throw new Error('Bad Request');

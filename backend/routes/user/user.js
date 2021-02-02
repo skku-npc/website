@@ -1,10 +1,19 @@
-const { response } = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('../../lib/prisma');
 
 async function registerUser(req, res) {
   try {
+    const isUserExist = await prisma.user.findFirst({
+      where: {
+        email: req.body.email,
+      },
+    });
+
+    if(isUserExist){
+      return res.status(404).send({error: 'The provided email is already taken'})
+    }
+
     const user = await prisma.user.create({
       data: {
         ...req.body,
@@ -18,6 +27,10 @@ async function registerUser(req, res) {
 
 async function login(req, res) {
   try {
+    if (!req.body.email || !req.body.password) {
+      return res.status(400).send();
+    }
+
     const user = await prisma.user.findFirst({
       where: {
         email: req.body.email,
@@ -27,7 +40,9 @@ async function login(req, res) {
     const isMatch = await bcrypt.compare(req.body.password, user.password);
 
     if (isMatch) {
-      const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+      const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
+        expiresIn: '12h',
+      });
       const userWithToken = await prisma.user.update({
         where: { email: req.body.email },
         data: { token: token },
@@ -37,7 +52,7 @@ async function login(req, res) {
       throw new Error('Unable to login');
     }
   } catch (e) {
-    res.status(400).send(e);
+    res.status(401).send(e);
   }
 }
 
@@ -60,6 +75,24 @@ async function getUserProfile(req, res) {
 
 async function patchUserProfile(req, res) {
   const updates = Object.keys(req.body);
+  let isCorrectPassword;
+  try {
+    isCorrectPassword = await bcrypt.compare(
+      req.body.originalPassword,
+      req.user.password,
+    );
+  } catch (e) {
+    return res.status(400).send();
+  }
+  if (!isCorrectPassword) {
+    return res.status(401).send();
+  }
+
+  const index = updates.indexOf('originalPassword');
+  if (index > -1) {
+    updates.splice(index, 1);
+  }
+
   const allowedUpdates = [
     'password',
     'handle',
@@ -81,7 +114,7 @@ async function patchUserProfile(req, res) {
   try {
     updates.forEach(update => (req.user[update] = req.body[update]));
 
-    if(updates.includes('password')){
+    if (updates.includes('password')) {
       req.user['password'] = await bcrypt.hash(req.user['password'], 8);
     }
 
@@ -114,7 +147,6 @@ async function patchUserProfile(req, res) {
 
 async function deleteUser(req, res) {
   try {
-    console.log("deleteuser " + req.user.id);
     await prisma.user.delete({
       where: {
         id: parseInt(req.user.id),
@@ -135,7 +167,3 @@ module.exports = {
   // putProfile,
   deleteUser,
 };
-
-
-// email validator
-// user update 시 비밀번호 암호화
