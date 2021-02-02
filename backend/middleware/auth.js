@@ -1,6 +1,20 @@
 const prisma = require('../lib/prisma');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const validator = require('validator');
+
+const emailValidator = (req, res, next) => {
+  try {
+    const isEmail = validator.isEmail(req.body.email);
+    if (isEmail) {
+      next();
+    } else {
+      throw new Error('Bad Request');
+    }
+  } catch (e) {
+    return res.status(400).send(e);
+  }
+};
 
 const auth = async (req, res, next) => {
   try {
@@ -20,11 +34,8 @@ const auth = async (req, res, next) => {
 
     req.user = user;
     next();
-
   } catch (e) {
-    res.status(401).send({
-      error: 'Please authenticate',
-    });
+    res.status(401).send({ error: 'Please authenticate' });
   }
 };
 
@@ -37,4 +48,4 @@ const hash = async (req, res, next) => {
   next();
 };
 
-module.exports = { auth, hash };
+module.exports = { auth, hash, emailValidator };

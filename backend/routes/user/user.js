@@ -51,7 +51,6 @@ async function logout(req, res) {
     res.status(200).send(user);
   } catch (e) {
     res.status(401).send(e);
-    console.log(e)
   }
 }
 
@@ -81,6 +80,10 @@ async function patchUserProfile(req, res) {
 
   try {
     updates.forEach(update => (req.user[update] = req.body[update]));
+
+    if(updates.includes('password')){
+      req.user['password'] = await bcrypt.hash(req.user['password'], 8);
+    }
 
     await prisma.user.update({
       where: { token: req.user.token },
@@ -132,3 +135,7 @@ module.exports = {
   // putProfile,
   deleteUser,
 };
+
+
+// email validator
+// user update 시 비밀번호 암호화

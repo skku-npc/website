@@ -8,11 +8,11 @@ const {
   patchUserProfile,
   deleteUser,
 } = require('./user');
-const { auth, hash } = require('../../middleware/auth');
+const { auth, hash, emailValidator } = require('../../middleware/auth');
 
 // router.get('/', sampleFunction);
-router.post('/register', hash, registerUser);
-router.post('/login', login);
+router.post('/register', [emailValidator, hash], registerUser);
+router.post('/login', emailValidator, login);
 router.post('/logout', auth, logout);
 router.get('/profile', auth, getUserProfile);
 // router.put('/profile', auth, putProfile);
