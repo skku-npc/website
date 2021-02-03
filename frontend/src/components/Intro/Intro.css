@@ -17,15 +17,17 @@
 .box {
   position: absolute;
   width: 10%;
+  height: 10%;
   left: 50%;
-  top: 85%;
+  top: 90%;
   transform: translate(-50%, -50%);
 }
 
 .arrow {
-  overflow: hidden;
-  border-bottom: 3px solid #535353;
-  border-left: 3px solid #535353;
+  position: relative;
+  left: 25%;
+  border-bottom: 4px solid #535353;
+  border-left: 4px solid #535353;
   width: 5vw;
   height: 5vw;
   transform: rotate(-45deg);

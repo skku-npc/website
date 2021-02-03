@@ -26,7 +26,9 @@ const Intro = () => {
     <div className="intro" ref={intro}>
       <img src="/icons/npc.png" />
       <div className="box" onClick={() => setIsOpened(true)}>
-        <div className="arrow" />
+        <div className="animate__animated animate__bounce animate__slow animate__infinite">
+          <div className="arrow" />
+        </div>
       </div>
     </div>
   );
