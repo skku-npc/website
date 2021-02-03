@@ -1,31 +1,28 @@
-.no-pad {
-  padding: 0;
+.footer {
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  background-color: #f2f2f2;
+  font-size: 1rem;
 }
 
-.no-margin {
-  margin: 0;
+.footer img {
+  height: 1.2rem;
+  transform: translate(0, 20%);
 }
 
-.row {
-  margin: 0;
-  padding: 5px 0px;
+.footer a {
+  color: black;
+}
+
+.footer .row {
+  width: 100%;
 }
 
 .horizontal-center {
   text-align: center;
 }
 
-.footer {
-  height: auto;
-  width: 100%;
-  background-color: #f2f2f2;
-}
-
-.footer img {
-  filter: grayscale(1);
-  height: auto;
-}
-
-.footer a {
-  color: black;
+.text-right {
+  text-align: right;
 }
