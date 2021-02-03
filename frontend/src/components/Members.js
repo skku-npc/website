@@ -11,9 +11,9 @@ const Member = ({ name, id, email, baekjoon, codeforces }) => {
   };
   return (
     <div className="member">
-      <div className="row justify-content-between">
-        <span className="member_name col-8">{name}</span>
-        <ul className="member_button col-4">
+      <div className="row align-items-center">
+        <span className="member_name col-6 m-0">{name}</span>
+        <ul className="member_button col-6 m-0">
           <li className="tooltip">
             <img
               className="button-icon"
@@ -47,8 +47,8 @@ const Member = ({ name, id, email, baekjoon, codeforces }) => {
           </li>
         </ul>
       </div>
-      <div className="row justify-content-start">
-        <span className="member_id col-12">@{id}</span>
+      <div className="row">
+        <span className="member_id col">@{id}</span>
       </div>
     </div>
   );
