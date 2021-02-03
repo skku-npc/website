@@ -1,8 +1,4 @@
-/* Header
-
-Nav Header
-*/
-.nav{
+.Header-nav{
 position: absolute;
 width: 1440px;
 height: 85px;
@@ -15,7 +11,7 @@ backdrop-filter: blur(16px);
 }
 
 /* 스터디 */
-.study{
+.Header-study{
 position: absolute;
 left: 84.31%;
 right: 11.04%;
@@ -36,7 +32,7 @@ color: #4E4E4E;
 }
 
 /* 일정 */
-.calendar{
+.Header-calendar{
 position: absolute;
 left: 76.32%;
 right: 20.56%;
@@ -58,7 +54,7 @@ color: #4E4E4E;
 
 
 /* 멤버 */
-.member{
+.Header-member{
 position: absolute;
 left: 68.33%;
 right: 28.54%;
@@ -80,7 +76,7 @@ color: #4E4E4E;
 
 
 /* Line 1 */
-.line1{
+.Header-line1{
 position: absolute;
 width: 1440px;
 height: 0px;
@@ -90,7 +86,7 @@ top: 85px;
 border: 2px solid #D3D3D3;
 }
 /* NPC 로고 */
-.NPC_logo{
+.Header-NPC_logo{
 position: absolute;
 left: 5.83%;
 right: 86.88%;
@@ -101,17 +97,19 @@ background: url(NPC_logo.png);
 }
 
 /* User */
-.user{
+.Header-user{
 position: absolute;
 width: 39px;
 height: 39px;
 left: 1351px;
 top: 23px;
+
+background: url(User.png);
 }
 
 
 /* Vector */
-.vector{
+.Header-vector{
 position: absolute;
 left: 12.5%;
 right: 12.5%;
