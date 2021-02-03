@@ -1,46 +1,27 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
-  const header = useRef();
-  const onScroll = () => {
-    if (window.pageYOffset > 0) {
-      if (header.current) {
-        header.current.classList.add('sticky');
-      }
-    } else {
-      if (header.current) {
-        header.current.classList.remove('sticky');
-      }
-    }
-  };
-  useEffect(() => {
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  });
-
   return (
-    <div className="header" ref={header}>
-      <div className="container-fluid no-pad">
-        <div className="row justify-content-between align-items-center horizontal-center">
-          <div className="col-2 mr-auto no-pad">
-            <Link to="/">
-              <img className="HeaderNPCLogo" src="/icons/npc.png" alt="HeaderLogo"/>
-            </Link>
-          </div>
-          <div className="col-1 no-pad">
-            <Link className="header-link" to="/members">멤버</Link>
-          </div>
-          <div className="col-1 no-pad">
-            <Link className="header-link" to="/calendar">일정</Link>
-          </div>
-          <div className="col-1 no-pad">
-            <Link className="header-link" to="/study">스터디</Link>
-          </div>
-          <div className="col-1 no-pad">
-            <Link className="header-link" to="/settings">설정</Link>
-          </div>
+    <div className="header container-fluid p-0">
+      <div className="row align-items-center p-0 m-0">
+        <div className="col-12 col-md-2 mr-md-auto p-0">
+          <Link to="/">
+            <img src="/icons/npc.png" alt="logo"/>
+          </Link>
+        </div>
+        <div className="col-3 col-md-1 p-0 my-3 m-md-0">
+          <Link to="/members">멤버</Link>
+        </div>
+        <div className="col-3 col-md-1 p-0 my-3 m-md-0">
+          <Link to="/calendar">일정</Link>
+        </div>
+        <div className="col-3 col-md-1 p-0 my-3 m-md-0">
+          <Link to="/study">스터디</Link>
+        </div>
+        <div className="col-3 col-md-1 p-0 my-3 m-md-0">
+          <Link to="/settings">설정</Link>
         </div>
       </div>
     </div>
