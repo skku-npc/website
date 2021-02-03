@@ -1,38 +1,3 @@
-.background {
-  width: 100%;
-}
-
-.frame {
-  width: 100%;
-  margin-bottom: 15%;
-  padding: 0 5%;
-}
-
-.frame img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.no-pad {
-  padding: 0;
-}
-
-.no-margin {
-  margin: 0;
-}
-
-.row,
-.col {
-  margin: 0;
-  padding: 0px;
-}
-
-.title {
-  font-size: 50px;
-  margin-bottom: 5%;
-}
-
 .white {
   color: white;
 }
@@ -61,59 +26,147 @@
   text-align: center;
 }
 
-.class-box {
-  height: 20vw;
-  border-radius: 32px;
+.main img {
+  width: 100%;
+  object-fit: cover;
 }
 
-#frame_1 .main_text {
-  font-weight: 800;
+.main p {
+  margin: 0;
 }
 
-#frame_1 .sub_text {
+.main .row,
+.main .col {
+  margin: 0;
+  padding: 0;
+}
+
+.main .text-xxs {
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.main .text-xs {
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+}
+
+.main .text-sm {
+  font-size: 3rem;
+  line-height: 4.5rem;
+}
+
+.main .text-md {
+  font-size: 4rem;
+  line-height: 6rem;
+}
+
+.main .text-lg {
+  font-size: 5rem;
+  line-height: 7.5rem;
+}
+
+.main .text-xl {
+  font-size: 6rem;
+  line-height: 9rem;
+}
+
+.main .text-xxl {
+  font-size: 8rem;
+  line-height: 12rem;
+}
+
+.main .text-right {
   text-align: right;
-  font-size: 30px;
 }
 
-#frame_1 .img {
-  max-height: 75vh;
+.frame-01 {
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
 }
 
-#frame_2 .sub_text {
-  font-size: 24px;
+.frame-01 img {
+  height: 70%;
 }
 
-#frame_3 .img {
-  position: relative;
-  height: 51.4vw;
-  max-width: 1276px;
-  max-height: 698px;
+.frame-01 .text-box {
+  height: 30%;
+  padding: 0 5%;
 }
 
-#frame_3 .background {
+.frame-02 {
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  padding: 0 calc(min(100vw, 100%) * 0.05);
+  margin: 20vmin 0 0;
+}
+
+.frame-02 img {
+  height: 40vmin;
+}
+
+.frame-03 {
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  padding: 0 calc(min(100vw, 100%) * 0.05);
+  margin: 20vmin 0 0;
+}
+
+.frame-03 .background {
+  width: 100%;
+  height: 50vmax;
+  margin-bottom: 10rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.frame-03 .text-box {
   height: 100%;
-  z-index: 1;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-#frame_3 #basic {
+.frame-03 .class-boxes {
+  height: 20vmax;
+}
+
+.class-box {
+  width: 100%;
+  height: auto;
+  border-radius: 2rem;
+}
+
+.class-box.basic {
   background: linear-gradient(180deg, #feff83 0%, #f5e12e 100%);
   box-shadow: 0px 0px 64px 16px rgba(226, 209, 54, 0.5);
 }
 
-#frame_3 #intermediate {
+.class-box.intermediate {
   background: linear-gradient(180deg, #b6f170 0%, #8fbf56 100%);
   box-shadow: 0px 0px 64px 16px rgba(143, 191, 86, 0.5);
 }
 
-#frame_3 #advanced {
+.class-box.advanced {
   background: linear-gradient(180deg, #79acf9 0%, #4d7dc5 100%);
   box-shadow: 0px 0px 64px 16px rgba(121, 172, 249, 0.5);
 }
 
-#frame_5 .background {
+.frame-04 {
+  width: 100vw;
+  max-width: 100%;
   height: auto;
-  font-weight: 650;
-  font-size: 40px;
+  padding: 0 calc(min(100vw, 100%) * 0.05);
+  margin: 20vmin 0 0;
+}
+
+.frame-05 {
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  margin: 15vmin 0 0;
   background-color: #24292e;
 }
