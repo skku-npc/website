@@ -42,7 +42,7 @@ const admin = (req, res, next) => {
   if (req.user.role === 'Admin') {
     next();
   } else {
-    res.status(403).send({ error: 'Only Admin can access' });
+    res.status(403).send({ error: 'Only the admin can access here.' });
   }
 };
 
