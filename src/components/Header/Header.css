@@ -1,0 +1,21 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  text-align: center;
+}
+
+.header img {
+  height: 8vh;
+}
+
+.header a {
+  font-size: 2vh;
+  text-decoration: none;
+  color: black;
+}

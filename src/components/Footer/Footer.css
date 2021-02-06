@@ -1,0 +1,28 @@
+.footer {
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  background-color: #f2f2f2;
+  font-size: 1rem;
+}
+
+.footer img {
+  height: 1.2rem;
+  transform: translate(0, 20%);
+}
+
+.footer a {
+  color: black;
+}
+
+.footer .row {
+  width: 100%;
+}
+
+.horizontal-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
