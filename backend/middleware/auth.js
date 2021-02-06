@@ -38,6 +38,14 @@ const auth = async (req, res, next) => {
   }
 };
 
+const admin = (req, res, next) => {
+  if (req.user.role === 'Admin') {
+    next();
+  } else {
+    res.status(403).send({ error: 'Only Admin can access' });
+  }
+};
+
 const hash = async (req, res, next) => {
   try {
     req.body.password = await bcrypt.hash(req.body.password, 8);
@@ -47,4 +55,4 @@ const hash = async (req, res, next) => {
   next();
 };
 
-module.exports = { auth, hash, emailValidator };
+module.exports = { auth, admin, hash, emailValidator };
