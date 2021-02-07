@@ -2,9 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Member.css';
 
-const Member = ({name, id, email, baekjoon, codeforces}) => {
+const Member = ({ setProfileOpen, setProfile, user }) => {
+  const { name, id, email, baekjoon, codeforces } = user;
+
+  const openModal = () => {
+    setProfile(user);
+    setProfileOpen(true);
+  };
+
   return (
-    <div className="member">
+    <div className="member" onClick={openModal}>
       <div className="row align-items-center">
         <span className="member_name col-6 m-0">{name}</span>
         <ul className="member_button col-6 m-0">
@@ -48,11 +55,9 @@ const Member = ({name, id, email, baekjoon, codeforces}) => {
 };
 
 Member.propTypes = {
-  name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  baekjoon: PropTypes.string.isRequired,
-  codeforces: PropTypes.string.isRequired
+  setProfileOpen: PropTypes.func.isRequired,
+  setProfile: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
 };
 
 export default Member;
