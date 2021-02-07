@@ -1,0 +1,56 @@
+.pending {
+  width: 500px;
+  height: auto;
+  padding: 50px;
+  text-align: left;
+}
+
+.pending .title {
+  font-size: 36px;
+}
+
+.pending .name {
+  font-size: 24px;
+}
+
+.pending .details {
+  font-size: 16px;
+}
+
+.pending .col-2 {
+  text-align: center;
+}
+
+.check {
+  display: inline-block;
+  transform: rotate(45deg);
+  height: 24px;
+  width: 12px;
+  border-bottom: 3px solid #33d019;
+  border-right: 3px solid #33d019;
+}
+
+.close {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.close:after {
+  content: "";
+  height: 24px;
+  border-left: 3px solid #e70e0e;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 12px;
+}
+
+.close:before {
+  content: "";
+  height: 24px;
+  border-left: 3px solid #e70e0e;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 12px;
+}
