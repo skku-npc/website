@@ -10,8 +10,10 @@ async function registerUser(req, res) {
       },
     });
 
-    if(isUserExist){
-      return res.status(404).send({error: 'The provided email is already taken'})
+    if (isUserExist) {
+      return res
+        .status(404)
+        .send({ error: 'The provided email is already taken' });
     }
 
     const user = await prisma.user.create({
