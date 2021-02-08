@@ -1,0 +1,103 @@
+.Control-nav{
+    position: absolute;
+    width: 648px;
+    height: 63px;
+    left: 50%;
+    margin-left: -324px;
+    top: 168px;
+    background: #F3F3F2;
+    border-radius: 40px;
+    z-index: 1;
+}
+.Control-mark{
+    position: absolute;
+    width: 167px;
+    height: 49px;
+    top: 6px;
+    border-radius: 15px;
+    transition-property: background-color;
+    transition-duration: 1s;
+    transition: 1s;
+    z-index: 2;
+}
+.Control-button{
+    position: absolute;
+    display: block;
+    width: 167px;
+    height: 49px;
+    top: 6px;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 15px;
+    color: #304A10;
+    text-decoration: none;
+    z-index: 3;
+}
+#beginner{
+    left: 45px;
+    background-color: #C5EB5B;
+}
+#intermediate{
+    left: 239px;
+    background-color: #FCF25C;
+}
+#advanced{
+    left: 457px;
+    background-color: #5E9EFC;
+}
+#beginner_button{
+    left: 45px;
+}
+#intermediate_button{
+    left: 239px;
+}
+#advanced_button{
+    left: 457px;
+}
+#beginner_button:hover ~ .Control-mark{
+    left: 0;
+    transform:translateX(45px);
+    background-color: #C5EB5B;
+}
+#intermediate_button:hover ~ .Control-mark{
+    left: 0;
+    transform:translateX(239px);
+    background-color: #FCF25C;
+}
+#advanced_button:hover ~ .Control-mark{
+    left: 0;
+    transform:translateX(457px);
+    background-color: #5E9EFC;
+}
+#Control-Tri{
+    position: absolute;
+    width: 46px;
+    height: 36px;
+    opacity: 0;
+    transition: all 0.5s;
+    z-index: 5;
+    background-image: url(Tri.png);
+    background-repeat: no-repeat;
+}
+#Control-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: 0;
+    opacity: 0;
+    transition: all 0.5s;
+}
+#Control-list{
+    position:absolute;
+    width: 600px;
+    height: 400px;
+    left: 50%;
+    margin-left: -300px;
+    top: 260px;
+    z-index: 5;
+    opacity: 0;
+    transition: all 0.5s;
+    border-radius: 15px;
+    background: white;
+}

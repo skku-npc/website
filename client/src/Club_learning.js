@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import Header from './components/Header';
-import Content from './components/Content';
+import Menu from './components/Menu';
 import Footer from './components/Footer';
+import Control from './components/Control';
 
 class Club_learning extends Component{
 
   constructor(props){
     super(props);
     this.state = {
-      mode:'default', /* beginner intermediate advanced*/
+      mode:'beginner', /* beginner intermediate advanced*/
       num:-1,
-      default:[{title:'Title', desc:'Description'}],
       content_beginner: [],
       content_intermediate: [],
       content_advanced: []
@@ -54,15 +54,14 @@ class Club_learning extends Component{
     }
     return (
       <div>
-        <Content
-        data = {data}
-        num = {this.state.num}
-        onChangeNum={function(_num){
-          this.setState({num:_num});
-       }.bind(this)}
-        onChangeMode={function(_mode){
-           this.setState({mode:_mode});
-        }.bind(this)}></Content>
+        <Control
+          mode = {this.state.mode}
+          data = {data}
+        >
+        </Control>
+        <Menu>
+
+        </Menu>
       </div>
     );
   }
