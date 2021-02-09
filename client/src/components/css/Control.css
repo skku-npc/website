@@ -9,15 +9,13 @@
     border-radius: 40px;
     z-index: 1;
 }
-.Control-mark{
+#Control-mark{
     position: absolute;
     width: 167px;
     height: 49px;
     top: 6px;
     border-radius: 15px;
-    transition-property: background-color;
-    transition-duration: 1s;
-    transition: 1s;
+    transition: all 1s;
     z-index: 2;
 }
 .Control-button{
@@ -33,18 +31,6 @@
     text-decoration: none;
     z-index: 3;
 }
-#beginner{
-    left: 45px;
-    background-color: #C5EB5B;
-}
-#intermediate{
-    left: 239px;
-    background-color: #FCF25C;
-}
-#advanced{
-    left: 457px;
-    background-color: #5E9EFC;
-}
 #beginner_button{
     left: 45px;
 }
@@ -54,17 +40,17 @@
 #advanced_button{
     left: 457px;
 }
-#beginner_button:hover ~ .Control-mark{
+#beginner_button:hover ~ #Control-mark{
     left: 0;
     transform:translateX(45px);
     background-color: #C5EB5B;
 }
-#intermediate_button:hover ~ .Control-mark{
+#intermediate_button:hover ~ #Control-mark{
     left: 0;
     transform:translateX(239px);
     background-color: #FCF25C;
 }
-#advanced_button:hover ~ .Control-mark{
+#advanced_button:hover ~ #Control-mark{
     left: 0;
     transform:translateX(457px);
     background-color: #5E9EFC;
@@ -74,7 +60,7 @@
     width: 46px;
     height: 36px;
     opacity: 0;
-    transition: all 0.5s;
+    transition: all 1s;
     z-index: 5;
     background-image: url(Tri.png);
     background-repeat: no-repeat;
@@ -86,7 +72,7 @@
     background: rgba(0, 0, 0, 0);
     z-index: 0;
     opacity: 0;
-    transition: all 0.5s;
+    transition: all 1s;
 }
 #Control-list{
     position:absolute;
@@ -97,7 +83,7 @@
     top: 260px;
     z-index: 5;
     opacity: 0;
-    transition: all 0.5s;
+    transition: all 1s;
     border-radius: 15px;
     background: white;
 }

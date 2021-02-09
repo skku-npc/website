@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Header from './components/Header';
-import Menu from './components/Menu';
 import Footer from './components/Footer';
 import Control from './components/Control';
+import Content from './components/Content';
 
 class Club_learning extends Component{
 
@@ -10,6 +10,7 @@ class Club_learning extends Component{
     super(props);
     this.state = {
       mode:'beginner', /* beginner intermediate advanced*/
+      mark_mode:'beginner',
       num:-1,
       content_beginner: [],
       content_intermediate: [],
@@ -37,31 +38,36 @@ class Club_learning extends Component{
         })
       })
   }
-
+  
   render(){
-    let data = [];
-    if(this.state.mode === 'default'){
-      data = this.state.default;
-    }else if(this.state.mode === 'beginner'){
-      console.log('beginner');
+    console.log("mode :" + this.state.mode);
+    console.log("mark_mode :" + this.state.mark_mode);
+    
+    let data=[];
+    if(this.state.mode === 'beginner'){
       data = this.state.content_beginner;
     }else if(this.state.mode === 'intermediate'){
-      console.log('intermediate');
       data = this.state.content_intermediate;
     }else if(this.state.mode === 'advanced'){
-      console.log('advanced');
       data = this.state.content_advanced;
     }
     return (
       <div>
         <Control
           mode = {this.state.mode}
+          mark_mode = {this.state.mark_mode}
           data = {data}
+          onChangeMark_mode={function(_mark_mode){
+            this.setState({mark_mode:_mark_mode});
+          }.bind(this)}
+          onChangeMode={function(_mode){
+            this.setState({mode:_mode});
+          }.bind(this)}
+          onChangeNum={function(_num){
+            this.setState({num:_num});
+          }.bind(this)}
         >
         </Control>
-        <Menu>
-
-        </Menu>
       </div>
     );
   }
