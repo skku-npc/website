@@ -38,10 +38,10 @@ async function studyNoteList(req, res) {
 
 async function createStudyNote(req, res) {
   try {
-    // TODO: userId 인식
     const note = await prisma.note.create({
       data: {
         ...req.body,
+        userId: req.user.id,
       },
     });
     res.status(201).send(note);
