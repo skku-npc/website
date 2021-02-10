@@ -1,20 +1,19 @@
 const prisma = require('../../lib/prisma');
 
 async function getEvents(req, res) {
-  console.log(req.query.no);
   const year = req.query.year ? parseInt(req.query.year) : null;
   const month = req.query.month ? parseInt(req.query.month) : null;
   try {
     let events;
     if (req.query.year !== undefined) {
       if (year < 1000 || 9999 < year) {
-        res.status(400).send({
+        return res.status(400).send({
           error: "The 'year' parameter must be a four-digit natural number.",
         });
       }
       if (req.query.month !== undefined) {
         if (month < 1 || 12 < month) {
-          res.status(400).send({
+          return res.status(400).send({
             error:
               "The 'month' parameter must be a natural number between 1 and 12.",
           });
@@ -81,7 +80,11 @@ async function removeEventById(req, res) {
     res.status(200).send(eventRemoved);
   } catch (e) {
     console.log(e);
-    res.status(400).send(e);
+    if (e.code === 'P2016') {
+      res.status(404).send(e);
+    } else {
+      res.status(400).send(e);
+    }
   }
 }
 
@@ -96,7 +99,11 @@ async function updateEventById(req, res) {
     });
     res.status(200).send(eventUpdated);
   } catch (e) {
-    res.status(400).send(e);
+    if (e.code === 'P2016') {
+      res.status(404).send(e);
+    } else {
+      res.status(400).send(e);
+    }
   }
 }
 
