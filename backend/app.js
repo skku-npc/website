@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api/user', require('./routes/user/index'));
+app.use('/api/study', require('./routes/study/index'));
 
 app.use(express.static(path.join(path.resolve(), 'build')));
 app.get('*', (req, res) => {
