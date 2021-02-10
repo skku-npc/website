@@ -13,6 +13,8 @@ app.use(cookieParser());
 app.use(cors());
 
 app.use('/api/user', require('./routes/user/index'));
+app.use('/api/calendar', require('./routes/calendar/index'));
+
 app.use(express.static(path.join(path.resolve(), 'build')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(path.resolve(), 'build', 'index.html'));

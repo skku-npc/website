@@ -31,3 +31,11 @@ model Note {
   userId  Int?
   author  User?   @relation(fields: [userId], references: [id])
 }
+
+model Event {
+  id        Int      @id @default(autoincrement())
+  title     String
+  startDate DateTime
+  endDate   DateTime
+  allDay    Boolean? @default(false)
+}
