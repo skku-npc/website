@@ -14,8 +14,8 @@ app.use('/api/user', require('./routes/user/index'));
 app.use('/api/users', require('./routes/users/index'));
 
 app.use(express.static(path.join(path.resolve(), 'build')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(path.resolve(), 'build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(path.resolve(), 'build', 'index.html'));
+// });
 
 module.exports = app;
