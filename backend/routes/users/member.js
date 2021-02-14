@@ -3,7 +3,7 @@ const prisma = require('../../lib/prisma');
 async function getMembers(req, res) {
     try {
         const members = await prisma.$queryRaw(
-            'SELECT id, email, name, bojHandle, codeforcesHandle, YEAR(createdAt) AS year FROM User;'
+            'SELECT id, email, name, handle, bojHandle, codeforcesHandle, YEAR(createdAt) AS year FROM User;'
         );
         if (!members.length) {
             return res.status(404).send("member does not exist");
@@ -20,7 +20,7 @@ async function getMemberProfile(req, res) {
 
     try {
         const member = await prisma.$queryRaw(
-            'SELECT id, email, name, bojHandle, codeforcesHandle, YEAR(createdAt) AS year FROM User WHERE id ='+ memberId +' LIMIT 1;'
+            'SELECT id, email, name, handle, bojHandle, codeforcesHandle, YEAR(createdAt) AS year FROM User WHERE id ='+ memberId +';'
         );
 
         if (!member.length) {
