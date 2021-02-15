@@ -4,7 +4,7 @@
   width: 100vw;
   max-width: 100%;
   height: auto;
-  z-index: 100;
+  z-index: 3;
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   text-align: center;

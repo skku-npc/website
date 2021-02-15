@@ -1,0 +1,136 @@
+.containerLogin {
+  display: none;
+  width: 392px;
+  padding: 20px 55px 30px 55px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+.containerLogin .text {
+  font-size: 35px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.containerLogin .npcicon {
+  width: 40%;
+  margin-left: 30%;
+}
+
+.containerLogin form {
+  margin-top: -20px;
+}
+
+.containerLogin form .data {
+  height: 45px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.login form .data input {
+  height: 100%;
+  width: 100%;
+  padding-left: 20px;
+  font-size: 15px;
+  color: #999999;
+  border: 1px solid silver;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.login input::placeholder {
+  font-size: 15px;
+  color: #999999;
+}
+
+.login form .data input:focus {
+  border-color: #3498db;
+  border-bottom-width: 2px;
+}
+
+.login form .data input[type="submit"] {
+  width: auto;
+}
+
+.login form .data input[required] + label {
+  font-size: 15px;
+  color: #999999;
+  position: relative;
+  top: -33px;
+  padding-left: 21px;
+  cursor: text;
+}
+
+.login form .data input[required] + label:after {
+  content: " *";
+  color: #ed6f6f;
+}
+
+.login form .data input[required]:invalid + label {
+  display: inline-block;
+}
+
+.login form .data input[required]:valid + label {
+  display: none;
+}
+
+.login form .forgot-pass {
+  margin-top: 0px;
+  text-align: end;
+}
+
+.login form .forgot-pass a {
+  color: #999999;
+  text-decoration: none;
+}
+
+.login form .forgot-pass a:hover {
+  text-decoration: underline;
+}
+
+.login form .btn {
+  height: 41px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #8dc63f;
+  margin-top: 40px;
+  transition: all 0.4s;
+}
+
+.login form .btn:hover {
+  background-color: #59861c;
+}
+
+.login form .btn button {
+  height: 100%;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.login form .signup-link {
+  padding-top: 30px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.login form .loginbtn {
+  background: none;
+  border: none;
+  color: #8dc63f;
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+.login form .loginbtn:hover {
+  text-decoration: underline;
+}

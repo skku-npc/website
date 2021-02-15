@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ setLoginOpen }) => {
   return (
     <div className="header container-fluid p-0">
       <div className="row align-items-center p-0 m-0">
@@ -20,12 +21,16 @@ const Header = () => {
         <div className="col-3 col-md-1 p-0 my-3 m-md-0">
           <Link to="/study">스터디</Link>
         </div>
-        <div className="col-3 col-md-1 p-0 my-3 m-md-0">
+        <div className="col-3 col-md-1 p-0 my-3 m-md-0" onClick={() => setLoginOpen(true)}>
           <img className="user" src="/icons/user.png" alt="user"/>
         </div>
       </div>
     </div>
   );
+};
+
+Header.propTypes = {
+  setLoginOpen: PropTypes.func.isRequired
 };
 
 export default Header;
