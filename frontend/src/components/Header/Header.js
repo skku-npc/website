@@ -8,7 +8,7 @@ const Header = () => {
       <div className="row align-items-center p-0 m-0">
         <div className="col-12 col-md-2 mr-md-auto p-0">
           <Link to="/">
-            <img src="/icons/npc.png" alt="logo"/>
+            <img className="logo" src="/icons/npc.png" alt="logo"/>
           </Link>
         </div>
         <div className="col-3 col-md-1 p-0 my-3 m-md-0">
@@ -21,7 +21,7 @@ const Header = () => {
           <Link to="/study">스터디</Link>
         </div>
         <div className="col-3 col-md-1 p-0 my-3 m-md-0">
-          <Link to="/settings">설정</Link>
+          <img className="user" src="/icons/user.png" alt="user"/>
         </div>
       </div>
     </div>

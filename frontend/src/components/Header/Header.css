@@ -10,12 +10,17 @@
   text-align: center;
 }
 
-.header img {
-  height: 8vh;
+.header .logo {
+  height: 85px;
+}
+
+.header .user {
+  height: 30px;
+  transform: translateY(10%);
 }
 
 .header a {
-  font-size: 2vh;
+  font-size: 20px;
   text-decoration: none;
   color: black;
 }

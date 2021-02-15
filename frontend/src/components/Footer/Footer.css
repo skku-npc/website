@@ -3,12 +3,12 @@
   max-width: 100%;
   height: auto;
   background-color: #f2f2f2;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .footer img {
-  height: 1.2rem;
-  transform: translate(0, 20%);
+  height: 1.5rem;
+  transform: translateY(20%);
 }
 
 .footer a {

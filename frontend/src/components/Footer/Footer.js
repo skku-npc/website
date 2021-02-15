@@ -48,7 +48,7 @@ const Footer = () => {
         <div className="col-5 offset-7 col-md-4 offset-md-1 mt-3 mt-md-0 p-0">
           <div className="row">
             <div className="col p-0">
-              <b>회장</b> &nbsp;&nbsp;&nbsp;&nbsp; 손병호 &nbsp;&nbsp;
+              <b>회장</b> &nbsp;&nbsp;&nbsp; 손병호 &nbsp;&nbsp;
               <a href={'mailto:xxx@g.skku.edu'} target="_blank" rel="noopener noreferrer">xxx@g.skku.edu</a>
             </div>
           </div>
