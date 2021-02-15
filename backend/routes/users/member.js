@@ -2,14 +2,30 @@ const prisma = require('../../lib/prisma');
 
 async function getMembers(req, res) {
     try {
-        const members = await prisma.$queryRaw(
-            'SELECT id, email, name, handle, bojHandle, codeforcesHandle, YEAR(createdAt) AS year FROM User;'
-        );
+        const members = await prisma.user.findMany({
+            select: {
+                id: true,
+                email: true,
+                name: true,
+                handle: true,
+                bojHandle: true,
+                codeforcesHandle: true,
+                createdAt: true,
+            },
+        });
+
         if (!members.length) {
             return res.status(404).send("member does not exist");
         }
-        res.status(200).send(members);
 
+        const filteredMembers = members.map(
+            (user) => {
+                user.createdAt = user.createdAt.getFullYear();
+                return user;
+            },
+        );
+
+        res.status(200).send(filteredMembers);
     } catch(e) {
         res.status(400).send(e);
     }
@@ -19,14 +35,28 @@ async function getMemberProfile(req, res) {
     let memberId= Number(req.params.memberId);
 
     try {
-        const member = await prisma.$queryRaw(
-            'SELECT id, email, name, handle, bojHandle, codeforcesHandle, YEAR(createdAt) AS year FROM User WHERE id ='+ memberId +';'
-        );
+        const member = await prisma.user.findUnique({
+            where: {
+                id: memberId
+            },
+            select: {
+                id: true,
+                email: true,
+                name: true,
+                handle: true,
+                bojHandle: true,
+                codeforcesHandle: true,
+                createdAt: true,
+            },
+        });
 
-        if (!member.length) {
+        if (!member) {
             return res.status(404).send('member does not exist');
         }
-        res.status(200).send(member[0]);
+
+        member.createdAt = member.createdAt.getFullYear();
+
+        res.status(200).send(member);
 
     } catch(e) {
         res.status(400).send(e);
