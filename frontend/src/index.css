@@ -3,6 +3,24 @@ body {
   font-family: "Manrope", "KoreanTITGD";
 }
 
+@media (min-width: 320px) and (max-width: 767px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 16px;
+  }
+}
+
 @font-face {
   font-family: "Manrope";
   src: url("./fonts/Manrope/Manrope-ExtraLight.ttf") format("truetype");
