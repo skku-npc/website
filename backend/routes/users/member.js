@@ -15,7 +15,7 @@ async function getMembers(req, res) {
         });
 
         if (!members.length) {
-            return res.status(404).send("member does not exist");
+            return res.status(404).send({error:'member does not exist'});
         }
 
         const filteredMembers = members.map(
@@ -43,6 +43,7 @@ async function getMemberProfile(req, res) {
                 id: true,
                 email: true,
                 name: true,
+                department: true,
                 handle: true,
                 bojHandle: true,
                 codeforcesHandle: true,
@@ -51,7 +52,7 @@ async function getMemberProfile(req, res) {
         });
 
         if (!member) {
-            return res.status(404).send('member does not exist');
+            return res.status(404).send({error:'member does not exist'});
         }
 
         member.createdAt = member.createdAt.getFullYear();
