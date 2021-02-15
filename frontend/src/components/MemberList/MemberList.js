@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 //import axios from 'axios';
 import Member from './Member';
+import ModalWrapper from '../ModalWrapper';
 import Profile from './Profile';
 import Pending from './Pending';
 import './MemberList.css';
@@ -15,6 +16,7 @@ const MemberList = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [pendingOpen, setPendingOpen] = useState(false);
   const [profile, setProfile] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(async () => {
     // const result = await axios.get('/rest/members');
@@ -82,6 +84,17 @@ const MemberList = () => {
       ]
     };
 
+    /*
+    const profile = await axios.get('/api/user/profile', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+    */
+    //if (profile.role === 'Admin') {
+    setIsAdmin(true);
+    //}
+
     setMemberData(result.members);
     setMaxYear(Math.max.apply(null, result.members.map(member=>member.year)));
     setMinYear(Math.min.apply(null, result.members.map(member=>member.year)));
@@ -94,7 +107,7 @@ const MemberList = () => {
 
   return (
     <Fragment>
-      <div className="member-title">
+      <div className="member-title ml-5 mt-5">
         동아리 멤버
       </div>
       <div className="filter-container">
@@ -111,10 +124,15 @@ const MemberList = () => {
               &gt;
           </button>
         </div>
-        <div className="col-2 px-0 py-2" onClick={() => setPendingOpen(true)}>
-          <img src="/icons/triangle-exclamation.png" alt="triangle-exclamation" />
-          <span className="new-member">신규 가입</span>
-        </div>
+        {
+          isAdmin ?
+            <div className="col-2 p-0" onClick={() => setPendingOpen(true)}>
+              <div className="new-member-button px-0 py-2">
+                <img src="/icons/triangle-exclamation.png" alt="triangle-exclamation" />
+                <span className="new-member">신규 가입</span>
+              </div>
+            </div> : null
+        }
       </div>
       <div className="member-container">
         <div className="member-grid animate__animated animate__fadeIn animate__faster"
@@ -131,13 +149,17 @@ const MemberList = () => {
           }
         </div>
       </div>
-      <Profile
-        profileOpen={profileOpen}
-        setProfileOpen={setProfileOpen}
-        user={profile}/>
-      <Pending
-        pendingOpen={pendingOpen}
-        setPendingOpen={setPendingOpen}/>
+      <ModalWrapper
+        modalOpen={profileOpen}
+        setModalOpen={setProfileOpen}
+        content={<Profile user={profile} edit={false} />} />
+      {
+        isAdmin ?
+          <ModalWrapper
+            modalOpen={pendingOpen}
+            setModalOpen={setPendingOpen}
+            content={<Pending />} /> : null
+      }
     </Fragment>
   );
 };

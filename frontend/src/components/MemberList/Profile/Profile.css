@@ -2,12 +2,17 @@
   width: 500px;
   height: 700px;
   padding: 80px 80px;
+  text-align: center;
 }
 
 .profile .profile-img {
   width: 300px;
   height: 250px;
   object-fit: cover;
+}
+
+.profile .col-3 {
+  text-decoration: underline;
 }
 
 .profile .col-4 {

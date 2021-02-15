@@ -34,13 +34,20 @@
 }
 
 .filter-container .col-2 {
-  background: #ffffff;
-  box-shadow: 0px 4px 8px #eab10b;
-  border-radius: 8px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.filter-container .new-member-button {
+  box-shadow: 0px 4px 8px #eab10b;
+  border-radius: 8px;
+  height: 100%;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .filter-container img {
@@ -64,24 +71,4 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, max-content));
   justify-content: center;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  max-width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  text-align: center;
-}
-
-.modal-content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 16px;
 }
