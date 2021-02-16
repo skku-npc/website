@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["nativeTypes"]
 }
 
 datasource db {
@@ -25,11 +26,16 @@ model User {
 }
 
 model Note {
-  id      Int     @id @default(autoincrement())
-  title   String
-  content String?
-  userId  Int?
-  author  User?   @relation(fields: [userId], references: [id])
+  id         Int      @id @default(autoincrement())
+  title      String
+  content    String   @db.Text
+  createTime DateTime @default(now())
+  modifyTime DateTime @default(now())
+  class      Int
+  userId     Int
+  author     User     @relation(fields: [userId], references: [id])
+
+  @@index([userId], name: "userId")
 }
 
 model Event {
