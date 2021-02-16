@@ -37,3 +37,11 @@ model Note {
 
   @@index([userId], name: "userId")
 }
+
+model Event {
+  id        Int      @id @default(autoincrement())
+  title     String
+  startDate DateTime
+  endDate   DateTime
+  allDay    Boolean? @default(false)
+}
