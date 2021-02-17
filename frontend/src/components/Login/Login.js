@@ -5,15 +5,25 @@ import './Login.css';
 const Login = ({ setLoginOpen }) => {
   const signup = useRef(0);
   const login = useRef(0);
+  const find = useRef(0);
+  const findOK = useRef(0);
 
   const signuponClick = () => {
     signup.current.style.display = 'block';
     login.current.style.display = 'none';
+    find.current.style.display = 'none';
   };
 
   const loginonClick = () => {
     signup.current.style.display = 'none';
     login.current.style.display = 'block';
+    find.current.style.display = 'none';
+  };
+
+  const findonClick = () => {
+    signup.current.style.display = 'none';
+    login.current.style.display = 'none';
+    find.current.style.display = 'block';
   };
 
   const loginsubmit = () => {
@@ -24,6 +34,13 @@ const Login = ({ setLoginOpen }) => {
     setLoginOpen(false);
   };
 
+  const findsubmit = () => {
+    find.current.style.display = 'none';
+    findOK.current.style.display = 'block';
+  }
+  const findOKonclick = () => {
+    setLoginOpen(false);
+  }
   return (
     <div className="login">
       <div className="containerLogin" ref={login} style={{display:'block'}}>
@@ -36,7 +53,8 @@ const Login = ({ setLoginOpen }) => {
             <input type="password" placeholder="비밀번호" required />
           </div>
           <div className="forgot-pass">
-            <a href="#">이메일 / 비밀번호 찾기</a></div>
+            <button onClick={findonClick} className="findBtn">이메일 / 비밀번호 찾기</button>
+          </div>
           <div className="btn">
             <div className="inner">
             </div>
@@ -44,7 +62,7 @@ const Login = ({ setLoginOpen }) => {
           </div>
           <div className="signup-link">
                         NPC 계정이 아직 없나요?<br />
-            <button onClick={signuponClick} className="loginbtn">회원가입</button>
+            <button onClick={signuponClick} className="switchBtn">회원가입</button>
           </div>
         </form>
       </div>
@@ -80,7 +98,37 @@ const Login = ({ setLoginOpen }) => {
           </div>
           <div className="signup-link">
                         이미 NPC 계정이 있나요?<br />
-            <button onClick={loginonClick} className="loginbtn">로그인 창으로 돌아가기</button>
+            <button onClick={loginonClick} className="switchBtn">로그인 창으로 돌아가기</button>
+          </div>
+        </form>
+      </div>
+      <div className="containerLogin" ref={find} style={{display:'none'}}>
+        <img src="/icons/npc.png" className="npcicon" alt='npc icon' />
+        <form action="#">
+          <div className="data">
+            <input type="text" placeholder="이메일" required />
+          </div>
+          <div className="btn">
+            <div className="inner">
+            </div>
+            <button type="submit" onClick={findsubmit}>비밀번호 초기화</button>
+          </div>
+          <div className="signup-link">
+                        이미 NPC 계정이 있나요?<br />
+            <button onClick={loginonClick} className="switchBtn">로그인 창으로 돌아가기</button>
+          </div>
+        </form>
+      </div>
+      <div className="containerLogin" ref={findOK} style={{display:'none'}}>
+        <img src="/icons/npc.png" className="npcicon" alt='npc icon' />
+        <form action="#">
+          <div className="loginCenterAlignedText">
+            <br/><br/>이메일로 비밀번호 초기화 링크가<br/> 발송되었습니다.<br/><br/>
+          </div>
+          <div className="btn">
+            <div className="inner">
+            </div>
+            <button type="submit" onClick={findOKonclick}>확인</button>
           </div>
         </form>
       </div>
