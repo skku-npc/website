@@ -9,6 +9,7 @@ import ModalWrapper from './components/ModalWrapper';
 
 const App = () => {
   const [ loginOpen, setLoginOpen ] = useState(false);
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
   return (
     <Router>
@@ -17,8 +18,8 @@ const App = () => {
         <ModalWrapper
           modalOpen={loginOpen}
           setModalOpen={setLoginOpen}
-          content={<Login setLoginOpen={setLoginOpen} />} />
-        <Header setLoginOpen={setLoginOpen} />
+          content={<Login setLoginOpen={setLoginOpen} setIsLoggedIn={setIsLoggedIn} />} />
+        <Header setLoginOpen={setLoginOpen} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Switch>
           <Route exact path="/" component={Main} />
           {/* 기타 페이지 */}
