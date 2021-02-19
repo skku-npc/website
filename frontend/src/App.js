@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
+import Calendar from './components/Calendar';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Header />
         <Switch>
           <Route exact path="/" component={Main} />
+          <Route path="/calendar" component={Calendar} />
           {/* 기타 페이지 */}
           <Route
             render={({ location }) => (
