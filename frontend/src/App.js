@@ -6,6 +6,7 @@ import Main from './components/Main';
 import Intro from './components/Intro';
 import Login from './components/Login';
 import ModalWrapper from './components/ModalWrapper';
+import MemberList from './components/MemberList';
 
 const App = () => {
   const [ loginOpen, setLoginOpen ] = useState(false);
@@ -22,6 +23,7 @@ const App = () => {
         <Header setLoginOpen={setLoginOpen} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         <Switch>
           <Route exact path="/" component={Main} />
+          <Route exact path="/members" component={MemberList} />
           {/* 기타 페이지 */}
           <Route
             render={({ location }) => (

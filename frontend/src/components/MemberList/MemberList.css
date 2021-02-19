@@ -1,0 +1,74 @@
+.member-title {
+  font-size: 50px;
+}
+
+.filter-container {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+}
+
+.filter-container button {
+  font-size: 30px;
+  font-family: inherit;
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+.filter-container button:active {
+  outline: none;
+  border: none;
+}
+
+.filter-container button:focus {
+  outline: 0;
+}
+
+.filter-container .filter-year {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0px 100px;
+}
+
+.filter-container .col-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.filter-container .new-member-button {
+  box-shadow: 0px 4px 8px #eab10b;
+  border-radius: 8px;
+  height: 100%;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-container img {
+  width: 45px;
+  height: 45px;
+}
+
+.filter-container .new-member {
+  color: #eab10b;
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+.member-container {
+  max-width: 85%;
+  height: 600px;
+  margin: 40px auto;
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, max-content));
+  justify-content: center;
+}
