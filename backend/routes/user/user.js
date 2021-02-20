@@ -20,6 +20,19 @@ async function registerUser(req, res) {
       data: {
         ...req.body,
       },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        department: true,
+        handle: true,
+        bojHandle: true,
+        codeforcesHandle: true,
+        githubHandle: true,
+        class: true,
+        role: true,
+        status: true,
+      },
     });
     res.status(201).send(user);
   } catch (e) {
@@ -29,8 +42,11 @@ async function registerUser(req, res) {
 
 async function login(req, res) {
   try {
-    if (!req.body.email || !req.body.password) {
-      return res.status(400).send();
+    if (!req.body.email) {
+      return res.status(400).send({ error: 'There is no email' });
+    }
+    if (!req.body.password) {
+      return res.status(400).send({ error: 'There is no password' });
     }
 
     const user = await prisma.user.findFirst({
@@ -48,6 +64,20 @@ async function login(req, res) {
       const userWithToken = await prisma.user.update({
         where: { email: req.body.email },
         data: { token: token },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          department: true,
+          handle: true,
+          bojHandle: true,
+          codeforcesHandle: true,
+          githubHandle: true,
+          class: true,
+          role: true,
+          status: true,
+          token: true,
+        },
       });
       res.status(200).send(userWithToken);
     } else {
@@ -60,12 +90,12 @@ async function login(req, res) {
 
 async function logout(req, res) {
   try {
-    const user = await prisma.user.update({
+    await prisma.user.update({
       where: { token: req.user.token },
       data: { token: null },
     });
 
-    res.status(200).send(user);
+    res.status(204).send();
   } catch (e) {
     res.status(401).send(e);
   }
@@ -120,32 +150,32 @@ async function patchUserProfile(req, res) {
       req.user['password'] = await bcrypt.hash(req.user['password'], 8);
     }
 
-    await prisma.user.update({
+    const updatedUser = await prisma.user.update({
       where: { token: req.user.token },
       data: {
         ...req.user,
       },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        department: true,
+        handle: true,
+        bojHandle: true,
+        codeforcesHandle: true,
+        githubHandle: true,
+        class: true,
+        role: true,
+        status: true,
+        token: true,
+      },
     });
 
-    res.status(200).send(req.user);
+    res.status(200).send(updatedUser);
   } catch (e) {
     res.status(400).send(e);
   }
 }
-
-// async function putProfile(req, res) {
-//   try {
-//     await prisma.user.update({
-//       where: { token: req.user.token },
-//       data: {
-//         ...req.body,
-//       },
-//     });
-//     res.status(200).send(e);
-//   } catch (e) {
-//     res.status(400).send(e);
-//   }
-// }
 
 async function deleteUser(req, res) {
   try {
@@ -166,6 +196,5 @@ module.exports = {
   logout,
   getUserProfile,
   patchUserProfile,
-  // putProfile,
   deleteUser,
 };
