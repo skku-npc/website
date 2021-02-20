@@ -4,26 +4,27 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
 import Intro from './components/Intro';
-import Login from './components/Login';
+import Settings from './components/Settings';
 import ModalWrapper from './components/ModalWrapper';
 import MemberList from './components/MemberList';
 
 const App = () => {
-  const [ loginOpen, setLoginOpen ] = useState(false);
+  const [ modalOpen, setModalOpen ] = useState(false);
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+  const [ modalContent, setModalContent ] = useState();
 
   return (
     <Router>
       <div className="App">
         <Intro />
-        <ModalWrapper
-          modalOpen={loginOpen}
-          setModalOpen={setLoginOpen}
-          content={<Login setLoginOpen={setLoginOpen} setIsLoggedIn={setIsLoggedIn} />} />
-        <Header setLoginOpen={setLoginOpen} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        <Header setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+        <ModalWrapper modalOpen={modalOpen} setModalOpen={setModalOpen} content={modalContent} />
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route exact path="/members" component={MemberList} />
+          <Route path="/members" render={() =>
+            <MemberList setModalContent={setModalContent} modalOpen={modalOpen} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
+          />
+          <Route path="/settings" component={Settings} />
           {/* 기타 페이지 */}
           <Route
             render={({ location }) => (

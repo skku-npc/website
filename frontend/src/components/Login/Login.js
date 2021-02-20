@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import './Login.css';
 
-const Login = ({ setLoginOpen, setIsLoggedIn }) => {
+const Login = ({ setModalOpen, setIsLoggedIn }) => {
   const signup = useRef();
   const login = useRef();
   const find = useRef();
@@ -79,9 +79,10 @@ const Login = ({ setLoginOpen, setIsLoggedIn }) => {
         password: password
       }).then(response => {
         const { token } = response.data;
+        //sessionStorage.setItem('token', token);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         setIsLoggedIn(true);
-        setLoginOpen(false);
+        setModalOpen(false);
       }).catch(error => {
         window.alert(error);
       });
@@ -104,7 +105,7 @@ const Login = ({ setLoginOpen, setIsLoggedIn }) => {
         handle: handle,
         role: 'Student'
       }).then(() => {
-        setLoginOpen(false);
+        setModalOpen(false);
       }).catch(error => {
         window.alert(error);
       });
@@ -212,7 +213,7 @@ const Login = ({ setLoginOpen, setIsLoggedIn }) => {
           <div className="btn">
             <div className="inner">
             </div>
-            <button type="button" onClick={() => setLoginOpen(false)}>확인</button>
+            <button type="button" onClick={() => setModalOpen(false)}>확인</button>
           </div>
         </form>
       </div>
@@ -221,8 +222,8 @@ const Login = ({ setLoginOpen, setIsLoggedIn }) => {
 };
 
 Login.propTypes = {
-  setLoginOpen: PropTypes.func.isRequired,
-  setIsLoggedIn: PropTypes.func.isRequired
+  setModalOpen: PropTypes.func.isRequired,
+  setIsLoggedIn: PropTypes.func.isRequired,
 };
 
 export default Login;
