@@ -1,0 +1,68 @@
+.settings {
+  margin: 150px 0;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.settings .title {
+  margin: 0 5% 5%;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.settings .semi-title {
+  padding: 50px 0;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.settings .background {
+  width: 80%;
+  margin: 0 10%;
+  padding: 3rem 0;
+  background-color: #d7d7d7;
+  border-radius: 27px;
+}
+
+.settings .card {
+  margin: 1rem;
+  padding: 3rem 0;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.settings hr {
+  margin: 2rem 0;
+}
+
+.settings button {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  color: #8dc63f;
+}
+
+.profile-others input {
+  font-size: 1.2rem;
+  font-family: "Manrope", "KoreanTITGD";
+  width: 100%;
+}
+
+.profile-others {
+  padding: 3rem 0;
+}
+
+.profile-others .row {
+  padding: 0 80px;
+}
+
+.profile-others .normal-input {
+  border-width: 0 0 1px;
+}
+
+.profile-others .pw-input {
+  background: rgba(107, 107, 107, 0.11);
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
