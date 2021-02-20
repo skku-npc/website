@@ -7,12 +7,12 @@ const Main = () => {
       <div className="frame-01">
         <img src="/pics/main_1.png" alt="main_1" />
         <div className="text-box row align-items-center">
-          <div className="col-12 col-md-6 p-0">
+          <div className="col-6 p-0">
             <p className="text-xxl text-bold">NPC</p>
             <p className="text-xl text-bold">NP-Complete</p>
           </div>
-          <div className="col-12 col-md-6 p-0">
-            <p className="text-md text-right mt-3 mt-md-5">
+          <div className="col-6 p-0">
+            <p className="text-md text-right mt-3">
                 성균관대 소프트웨어대학
               <br />
                 알고리즘 문제해결(PS) 동아리
@@ -25,21 +25,21 @@ const Main = () => {
         <div className="row">
           <div className="col">
             <p className="text-xl mb-5">
-              NPC는
+                NPC는
               <br />
-              알고리즘 문제해결(PS) 동아리입니다.
+                알고리즘 문제해결(PS) 동아리입니다.
             </p>
           </div>
         </div>
         <div className="row justify-content-center">
-          <div className="col-12 col-md-6 px-0 pb-3 pr-md-3">
+          <div className="col-6 px-0 pb-3">
             <p className="text-xs text-light">
-              NPC는 2011년에 정보통신대학 소속 알고리즘 연구회로 활동을 시작해, 다양한 알고리즘 관련 활동을 이어오고 있습니다.
+                NPC는 2011년에 정보통신대학 소속 알고리즘 연구회로 활동을 시작해, 다양한 알고리즘 관련 활동을 이어오고 있습니다.
               <br /><br />
-              많은 기업에서 코딩테스트를 도입하는 등 PS의 중요성은 잘 알려져 있습니다. 알고리즘 문제해결은 소프트웨어 엔지니어링의 핵심 능력을 키우기에 가장 좋은 활동 중 하나입니다.
+                많은 기업에서 코딩테스트를 도입하는 등 PS의 중요성은 잘 알려져 있습니다. 알고리즘 문제해결은 소프트웨어 엔지니어링의 핵심 능력을 키우기에 가장 좋은 활동 중 하나입니다.
             </p>
           </div>
-          <div className="col-12 col-md-6 px-0">
+          <div className="col-6 px-0">
             <img src="/pics/main_2.png" alt="main_2" />
           </div>
         </div>
@@ -78,19 +78,19 @@ const Main = () => {
           </div>
         </div>
         <div className="class-boxes row justify-content-around">
-          <div className="class-box basic col-10 col-md-3 p-0 mb-3 m-md-0">
+          <div className="class-box basic col-3 p-0">
             <div className="vertical-center horizontal-center">
               <p className="text-md">초급반</p>
               <br />
               <p className="text-xs">C++, 기초 알고리즘</p>
             </div>
-          </div><div className="class-box intermediate col-10 col-md-3 p-0">
+          </div><div className="class-box intermediate col-3 p-0">
             <div className="vertical-center horizontal-center">
               <p className="text-md">중급반</p>
               <br />
               <p className="text-xs">학부 수준의 알고리즘</p>
             </div>
-          </div><div className="class-box advanced col-10 col-md-3 p-0 mt-3 m-md-0">
+          </div><div className="class-box advanced col-3 p-0">
             <div className="vertical-center horizontal-center">
               <p className="text-md">고급반</p>
               <br />
@@ -116,10 +116,10 @@ const Main = () => {
           </div>
         </div>
         <div className="row justify-content-center align-items-center">
-          <div className="col-10 col-md-6 p-0">
+          <div className="col-6 p-0">
             <img src="/pics/main_4.png" alt="floorInformation" />
           </div>
-          <div className="col-10 col-md-6 p-0">
+          <div className="col-6 p-0">
             <img src="/pics/main_5.png" alt="roomPhoto" />
           </div>
         </div>
