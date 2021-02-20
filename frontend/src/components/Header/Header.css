@@ -15,7 +15,7 @@
   height: 85px;
 }
 
-.header img {
+.header .dropbtn {
   height: 30px;
   transform: translateY(10%);
 }
