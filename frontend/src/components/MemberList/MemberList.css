@@ -1,5 +1,11 @@
+.member-list {
+  margin: 150px 0;
+}
+
 .member-title {
-  font-size: 50px;
+  margin-left: 5%;
+  font-size: 3em;
+  font-weight: 600;
 }
 
 .filter-container {
@@ -63,8 +69,8 @@
 
 .member-container {
   max-width: 85%;
-  height: 600px;
-  margin: 40px auto;
+  height: auto;
+  margin: 4% auto;
 }
 
 .member-grid {

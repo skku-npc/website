@@ -6,6 +6,7 @@
   padding: 10px 27px;
   height: 120px;
   width: 300px;
+  cursor: pointer;
 }
 
 .member .row {
@@ -13,7 +14,7 @@
 }
 
 .member_name,
-.member_id {
+.member_handle {
   font-style: normal;
   font-weight: 540;
   font-size: 25px;

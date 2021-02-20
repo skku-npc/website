@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import Profile from '../Profile';
 import './Member.css';
 
-const Member = ({ setProfileOpen, setProfile, user }) => {
-  const { name, id, email, baekjoon, codeforces } = user;
+const Member = ({ setModalContent, setModalOpen, user }) => {
+  const { name, id, handle, email, bojHandle, codeforcesHandle } = user;
 
-  const openModal = () => {
-    setProfile(user);
-    setProfileOpen(true);
+  const openModal = async () => {
+    const result = await axios.get(`http://localhost:4000/api/users/member/${id}`);
+    setModalContent(<Profile user={result.data} edit={false} />);
+    setModalOpen(true);
   };
 
   return (
@@ -25,38 +28,38 @@ const Member = ({ setProfileOpen, setProfile, user }) => {
               <span className="tooltip_text">{`(메일) ${email}`}</span>
             </li>
           </a>
-          <a href={`https://www.acmicpc.net/user/${baekjoon}`} target="_blank" rel="noopener noreferrer">
+          <a href={bojHandle && `https://www.acmicpc.net/user/${bojHandle}`} target="_blank" rel="noopener noreferrer">
             <li className="tooltip">
               <img
                 className="button-icon"
                 src="/icons/baekjoon.png"
                 alt="baekjoon"
               />
-              <span className="tooltip_text">{`(백준) ${baekjoon}`}</span>
+              <span className="tooltip_text">{`(백준) ${bojHandle || '등록되지 않음'}`}</span>
             </li>
           </a>
-          <a href={`https://codeforces.com/profile/${codeforces}`} target="_blank" rel="noopener noreferrer">
+          <a href={codeforcesHandle && `https://codeforces.com/profile/${codeforcesHandle}`} target="_blank" rel="noopener noreferrer">
             <li className="tooltip">
               <img
                 className="button-icon"
                 src="/icons/codeforces.png"
                 alt="codeforces"
               />
-              <span className="tooltip_text">{`(코포) ${codeforces}`}</span>
+              <span className="tooltip_text">{`(코포) ${codeforcesHandle || '등록되지 않음'}`}</span>
             </li>
           </a>
         </ul>
       </div>
       <div className="row">
-        <span className="member_id col">@{id}</span>
+        <span className="member_handle col">@{handle}</span>
       </div>
     </div>
   );
 };
 
 Member.propTypes = {
-  setProfileOpen: PropTypes.func.isRequired,
-  setProfile: PropTypes.func.isRequired,
+  setModalContent: PropTypes.func.isRequired,
+  setModalOpen: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
 };
 
