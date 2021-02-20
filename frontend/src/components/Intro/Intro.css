@@ -8,7 +8,7 @@
 
 .intro img {
   position: absolute;
-  width: 30%;
+  width: 300px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -16,10 +16,10 @@
 
 .box {
   position: absolute;
-  width: 10%;
-  height: 10%;
+  width: 80px;
+  height: 80px;
   left: 50%;
-  top: 90%;
+  top: 85%;
   transform: translate(-50%, -50%);
 }
 
@@ -28,7 +28,7 @@
   left: 25%;
   border-bottom: 4px solid #535353;
   border-left: 4px solid #535353;
-  width: 5vw;
-  height: 5vw;
+  width: 50px;
+  height: 50px;
   transform: rotate(-45deg);
 }
