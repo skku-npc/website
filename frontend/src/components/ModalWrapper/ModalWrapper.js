@@ -32,7 +32,7 @@ const ModalWrapper = ({ modalOpen, setModalOpen, content }) => {
 ModalWrapper.propTypes = {
   modalOpen: PropTypes.bool.isRequired,
   setModalOpen: PropTypes.func.isRequired,
-  content: PropTypes.object.isRequired
+  content: PropTypes.object
 };
 
 export default ModalWrapper;

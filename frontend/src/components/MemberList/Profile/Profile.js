@@ -6,7 +6,7 @@ const Profile = ({ user, settings }) => {
   const { name, handle, email, bojHandle, codeforcesHandle, createdAt, department } = user;
 
   return (
-    <div className="profile" style={settings && {padding: 0, width: '100%', height: '100%'}}>
+    <div className="profile" style={settings ? {padding: 0, width: '100%', height: '100%'} : {width: '500px', height: '650px', padding: '80px 80px'}}>
       <div className="row mb-3">
         <div className="col p-0">
           <img className="profile-img" src='https://i.stack.imgur.com/34AD2.jpg' alt="Profile Image" />

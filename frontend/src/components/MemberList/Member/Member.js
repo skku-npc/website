@@ -9,7 +9,7 @@ const Member = ({ setModalContent, setModalOpen, user }) => {
 
   const openModal = async () => {
     const result = await axios.get(`http://localhost:4000/api/users/member/${id}`);
-    setModalContent(<Profile user={result.data} edit={false} />);
+    setModalContent(<Profile user={result.data} settings={false} />);
     setModalOpen(true);
   };
 

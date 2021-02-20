@@ -97,44 +97,44 @@ const Settings = () => {
               <hr />
               <div className="row mb-3">
                 <div className="col-4 p-0">BOJ</div>
-                <div className="col-8 p-0">
+                <div className="col-7 offset-1 p-0">
                   <input className="normal-input" type="text" name="bojHandle" value={input.bojHandle} onKeyPress={pressEnter} onChange={onChange} />
                 </div>
               </div>
               <div className="row mb-3">
                 <div className="col-4 p-0">Codeforces</div>
-                <div className="col-8 p-0">
+                <div className="col-7 offset-1 p-0">
                   <input className="normal-input" type="text" name="codeforcesHandle" value={input.codeforcesHandle} onKeyPress={pressEnter} onChange={onChange} />
                 </div>
               </div>
               <div className="row mb-3">
                 <div className="col-4 p-0">Github</div>
-                <div className="col-8 p-0">
+                <div className="col-7 offset-1 p-0">
                   <input className="normal-input" type="text" name="githubHandle" value={input.githubHandle} onKeyPress={pressEnter} onChange={onChange} />
                 </div>
               </div>
               <div className="row mb-3">
                 <div className="col-4 p-0">Class</div>
-                <div className="col-8 p-0">
+                <div className="col-7 offset-1 p-0">
                   <input className="normal-input" type="text" name="class" value={input.class} onKeyPress={pressEnter} onChange={onChange} />
                 </div>
               </div>
               <br /><br />
               <div className="row mb-3">
                 <div className="col-4 p-0">Original PW</div>
-                <div className="col-8 p-0">
+                <div className="col-7 offset-1 p-0">
                   <input className="pw-input" type="password" name="originalPassword" value={input.originalPassword} onKeyPress={pressEnter} onChange={onChange} required />
                 </div>
               </div>
               <div className="row mb-3">
                 <div className="col-4 p-0">New PW</div>
-                <div className="col-8 p-0">
+                <div className="col-7 offset-1 p-0">
                   <input className="pw-input" type="password" name="password" value={input.password} onKeyPress={pressEnter} onChange={onChange} required />
                 </div>
               </div>
               <div className="row mb-3">
                 <div className="col-4 p-0">Confirm PW</div>
-                <div className="col-8 p-0">
+                <div className="col-7 offset-1 p-0">
                   <input className="pw-input" type="password" name="passwordConfirm" value={input.passwordConfirm} onKeyPress={pressEnter} onChange={onChange} required />
                 </div>
               </div>
