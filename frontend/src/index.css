@@ -1,0 +1,37 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+@font-face{
+  font-family: TitleGothic1;
+  src: url("./components/css/fonts/TitleGothic1.ttf");
+}
+@font-face{
+  font-family: TitleGothic2;
+  src: url("./components/css/fonts/TitleGothic2.ttf");
+}
+@font-face{
+  font-family: TitleGothic3;
+  src: url("./components/css/fonts/TitleGothic3.ttf");
+}
+@font-face{
+  font-family: TitleGothic4;
+  src: url("./components/css/fonts/TitleGothic4.ttf");
+}
+@font-face{
+  font-family: TitleGothic5;
+  src: url("./components/css/fonts/TitleGothic5.ttf");
+}
+@font-face{
+  font-family: Manrope;
+  src: url("./components/css/fonts/Manrope.ttf");
+}

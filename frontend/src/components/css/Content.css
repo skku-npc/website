@@ -1,0 +1,19 @@
+.Content-title{
+    position: absolute;
+    text-align: center;
+    top: 370px;
+    width: 100vw;
+    font-size: 48px;
+}
+.Content-author{
+    position: absolute;
+    right: 17vw;
+    top: 475px;
+    font-size: 18px;
+}
+.Content-content{
+    position: absolute;
+    left: 17vw;
+    top: 600px;
+    width: 66vw;
+}

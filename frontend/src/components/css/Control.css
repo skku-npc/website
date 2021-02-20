@@ -1,0 +1,93 @@
+.Control-nav{
+    position: absolute;
+    width: 44vw;
+    height: 63px;
+    left: 50%;
+    margin-left: -324px;
+    top: 168px;
+    background: #F3F3F2;
+    border-radius: 40px;
+    z-index: 1;
+}
+#Control-mark{
+    position: absolute;
+    width: 12vw;
+    height: 49px;
+    top: 7px;
+    border-radius: 15px;
+    transition: all 1s;
+    z-index: 2;
+}
+.Control-button{
+    position: absolute;
+    display: block;
+    width: 12vw;
+    height: 49px;
+    top: 7px;
+    font-size: 30px;
+    font-family: "TitleGothic3";
+    text-align: center;
+    border-radius: 15px;
+    color: #304A10;
+    text-decoration: none;
+    z-index: 3;
+}
+#beginner_button{
+    left: 2vw;
+}
+#intermediate_button{
+    left: 16vw;
+}
+#advanced_button{
+    left: 30vw;
+}
+#beginner_button:hover ~ #Control-mark{
+    left: 0;
+    transform:translateX(45px);
+    background-color: #C5EB5B;
+}
+#intermediate_button:hover ~ #Control-mark{
+    left: 0;
+    transform:translateX(239px);
+    background-color: #FCF25C;
+}
+#advanced_button:hover ~ #Control-mark{
+    left: 0;
+    transform:translateX(457px);
+    background-color: #5E9EFC;
+}
+#Control-Tri{
+    position: absolute;
+    width: 46px;
+    height: 36px;
+    opacity: 0;
+    transition: all 1s;
+    z-index: 5;
+    background-image: url(Tri.png);
+    background-repeat: no-repeat;
+}
+#Control-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: 0;
+    opacity: 0;
+    transition: all 1s;
+}
+#Control-list{
+    position:absolute;
+    width: 600px;
+    height: 400px;
+    left: 50%;
+    margin-left: -300px;
+    top: 260px;
+    font-size: 24px;
+    z-index: 5;
+    opacity: 0;
+    transition: all 1s;
+    border-radius: 15px;
+    background: white;
+}
+#Control-list:lang(ko){font-family: "TitleGothic3";}
+#Control-list:lang(en){font-family: "Marope";}
