@@ -8,6 +8,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Status {
+  REFUSED
+  PENDING
+  ACCEPTED
+}
+
 model User {
   id               Int      @id @default(autoincrement())
   email            String   @unique
@@ -23,6 +29,7 @@ model User {
   role             String
   token            String?  @unique
   notes            Note[]
+  status           Status @default(PENDING)
 }
 
 model Note {
