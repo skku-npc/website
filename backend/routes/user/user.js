@@ -55,6 +55,10 @@ async function login(req, res) {
       },
     });
 
+    if (user.status !== 'ACCEPTED') {
+      return res.status(401).send({ Unauthorized: 'Need administrator confirm' });
+    }
+
     const isMatch = await bcrypt.compare(req.body.password, user.password);
 
     if (isMatch) {
