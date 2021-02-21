@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './components/css/index.css';
 import Study from './Study';
 
 ReactDOM.render(

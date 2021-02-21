@@ -1,0 +1,86 @@
+.Write-createicon{
+    position: absolute;
+    left: 80vw;
+    top: 168px;
+    width: 41px;
+    height: 41px;
+    background-image: url(./image/Circled\ Plus.png);
+    background-repeat: no-repeat;
+    z-index: 2;
+}
+.Write-UDicon{
+    position: absolute;
+    left: 80vw;
+    top: 350px;
+    width: 34px;
+    height: 34px;
+    background-image: url(./image/Pencil.png);
+    background-repeat: no-repeat;
+    z-index: 2;
+}
+#Write-overlay{
+    position: absolute;
+    width: 100vw;
+    height: 150vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 0;
+    opacity: 0;
+    transition: all 1s;
+}
+#Write-allposts{
+    position: absolute;
+    left: 10vw;
+    top: 10vh;
+    overflow: scroll;
+    width: 80vw;
+    height: 80vh;
+    opacity: 0;
+    transition: all 1s;
+    border-radius: 15px;
+    background: white;
+    z-index: 0;
+}
+#Write-beginner{
+    font-size: 48px;
+    color: #C5EB5B;
+}
+#Write-intermediate{
+    font-size: 48px;
+    color: #FCF25C;
+}
+#Write-advanced{
+    font-size: 48px;
+    color: #5E9EFC;
+}
+#Write-create{
+    position: absolute;
+    left: 10vw;
+    top: 10vh;
+    width: 80vw;
+    height: 80vh;
+    opacity: 0;
+    transition: all 1s;
+    border-radius: 15px;
+    background: rgb(231, 222, 222);
+    z-index: 0;
+}
+#Write-inputtitle{
+    position: absolute;
+    left: 5vw;
+    top: 100px;
+    width: 514px;
+    height: 30px;
+    transition: all 1s;
+    background: white;
+    z-index: 0;
+}
+#Write-inputcontent{
+    position: absolute;
+    left: 5vw;
+    top: 220px;
+    width: 800px;
+    height: 400px;
+    transition: all 1s;
+    background: white;
+    z-index: 0;
+}

@@ -15,12 +15,14 @@ class Control extends Component{
         const overlay_active = () => {
             document.getElementById("Control-overlay").style.opacity="1";
             document.getElementById("Control-overlay").style.background="rgba(0, 0, 0, 0.3)";
+            document.getElementById("Control-overlay").style.zIndex="1";
             document.getElementById("Control-Tri").style.opacity="1";
             document.getElementById("Control-list").style.opacity="1";
         }
         const overlay_inactive = () => {
             document.getElementById("Control-overlay").style.opacity="0";
             document.getElementById("Control-overlay").style.background="rgba(0, 0, 0, 0)";
+            document.getElementById("Control-overlay").style.zIndex="0";
             document.getElementById("Control-Tri").style.opacity="0";
             document.getElementById("Control-list").style.opacity="0";
         }

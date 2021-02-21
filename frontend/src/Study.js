@@ -1,76 +1,70 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import Control from './components/Control';
 import Content from './components/Content';
-
+import Write from './components/Write';
 
 class Study extends Component{
-
   constructor(props){
     super(props);
     this.state = {
       mode:'beginner', /* beginner intermediate advanced*/
       mark_mode:'beginner',
-      id:-1,
+      id: 1,
       content_beginner: [],
       content_intermediate: [],
       content_advanced: [],
       content: {}
     };
-    let tmp = [];
+    let tmp=[];
     /*
-    fetch("/api/study/notes")
+    fetch('/api/study/notes', {
+      method:'GET'
+    })
       .then(res => res.json())
       .then(res => {
         this.setState({
           tmp: res
-        })
-      })
-      fetch("/api/study/note/" + this.state.id)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          content: res
-        })
-      })
-    */
-      tmp = [
-        {
-          "id": 1,
-          "title": "C++ STL(1)-vector,list,deque",
-          "writer": "최재민",
-          "class": 1
-        },
-        {
-          "id": 2,
-          "title": "C++ STL(2)-set,map",
-          "writer": "최재민",
-          "class": 1
-        },
-        {
-          "id": 3,
-          "title": "C++ DynamicProgramming",
-          "writer": "최재민",
-          "class": 2
-        },
-        {
-          "id": 4,
-          "title": "C++ Dijkstra",
-          "writer": "최재민",
-          "class": 2
-        },
-        {
-          "id": 5,
-          "title": "C++ SegmentTree",
-          "writer": "최재민",
-          "class": 3
-        },
-        {
-          "id": 6,
-          "title": "C++ MaximumFlow",
-          "writer": "최재민",
-          "class": 3
-        }
-      ]
+        });
+      });
+      */
+    tmp = [
+      {
+        "id": 1,
+        "title": "C++ STL(1)-vector,list,deque",
+        "writer": "최재민",
+        "class": 1
+      },
+      {
+        "id": 2,
+        "title": "C++ STL(2)-set,map",
+        "writer": "최재민",
+        "class": 1
+      },
+      {
+        "id": 3,
+        "title": "C++ DynamicProgramming",
+        "writer": "최재민",
+        "class": 2
+      },
+      {
+        "id": 4,
+        "title": "C++ Dijkstra",
+        "writer": "최재민",
+        "class": 2
+      },
+      {
+        "id": 5,
+        "title": "C++ SegmentTree",
+        "writer": "최재민",
+        "class": 3
+      },
+      {
+        "id": 6,
+        "title": "C++ MaximumFlow",
+        "writer": "최재민",
+        "class": 3
+      }
+    ]
     for(let i = 0; i < tmp.length; i++){
       if(tmp[i].class === 1){
         this.state.content_beginner.push(tmp[i]);
@@ -80,6 +74,7 @@ class Study extends Component{
         this.state.content_advanced.push(tmp[i]);
       }
     }
+    
     this.state.content = 
       {
         "id": "1",
@@ -90,20 +85,19 @@ class Study extends Component{
         "modify_time": "2021-02-08T15:00:00Z",
         "class": 1
       }
-    
 
-  }
-  
+
+    }
   render(){
-    console.log("mode :" + this.state.mode);
-    console.log("mark_mode :" + this.state.mark_mode);
-    
+    console.log(this.state.content_beginner);
+    console.log('mode :' + this.state.mode);
+    console.log('mark_mode :' + this.state.mark_mode);
     let data=[];
-    if(this.state.mark_mode === 'beginner'){
+    if(this.state.mode === 'beginner'){
       data = this.state.content_beginner;
-    }else if(this.state.mark_mode === 'intermediate'){
+    }else if(this.state.mode === 'intermediate'){
       data = this.state.content_intermediate;
-    }else if(this.state.mark_mode === 'advanced'){
+    }else if(this.state.mode === 'advanced'){
       data = this.state.content_advanced;
     }
     return (
@@ -121,10 +115,16 @@ class Study extends Component{
           onChangeNum={function(_num){
             this.setState({num:_num});
           }.bind(this)}
-        ></Control>
+        >
+        </Control>
         <Content
           content = {this.state.content}
         ></Content>
+        <Write
+          content_beginner = {this.state.content_beginner}
+          content_intermediate = {this.state.content_intermediate}
+          content_advanced = {this.state.content_advanced}
+        ></Write>
       </div>
     );
   }
