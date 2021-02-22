@@ -7,7 +7,7 @@ async function main() {
     update: {},
     create: {
       email: 'admin@gmail.com',
-      password: 'master',
+      password: '$2a$08$lK2nuSdilTFHuLpsZRuDnOVe0asYK.K5q/p/04yzQRkTT02M6PUXC',
       name: 'admin',
       department: 'Department of Software',
       handle: 'psMaster',
