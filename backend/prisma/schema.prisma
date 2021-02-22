@@ -30,6 +30,7 @@ model User {
   token            String?  @unique
   notes            Note[]
   status           Status @default(PENDING)
+  image            Bytes? @db.MediumBlob
 }
 
 model Note {

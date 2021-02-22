@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('../../lib/prisma');
+const sharp = require('sharp');
 
 async function registerUser(req, res) {
   try {
@@ -56,7 +57,9 @@ async function login(req, res) {
     });
 
     if (user.status !== 'ACCEPTED') {
-      return res.status(401).send({ Unauthorized: 'Need administrator confirm' });
+      return res
+        .status(401)
+        .send({ Unauthorized: 'Need administrator confirm' });
     }
 
     const isMatch = await bcrypt.compare(req.body.password, user.password);
@@ -194,6 +197,47 @@ async function deleteUser(req, res) {
   }
 }
 
+async function uploadImage(req, res) {
+  try {
+    const buffer = await sharp(req.file.buffer)
+      .resize({ width: 250, height: 250 })
+      .png()
+      .toBuffer();
+
+    const user = await prisma.user.update({
+      where: {
+        id: parseInt(req.user.id),
+      },
+      data: {
+        image: buffer,
+      },
+      select: {
+        image: true,
+      },
+    });
+    res.status(200).send(user);
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
+  }
+}
+
+async function deleteImage(req, res) {
+  try {
+    await prisma.user.update({
+      where: {
+        id: parseInt(req.user.id),
+      },
+      data: {
+        image: null,
+      },
+    });
+    res.status(204).send();
+  } catch (e) {
+    res.status(400).send(e);
+  }
+}
+
 module.exports = {
   registerUser,
   login,
@@ -201,4 +245,6 @@ module.exports = {
   getUserProfile,
   patchUserProfile,
   deleteUser,
+  uploadImage,
+  deleteImage,
 };
