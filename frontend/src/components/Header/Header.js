@@ -25,14 +25,14 @@ const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) =>
 
   const loginonClick = () => {
     if (isLoggedIn) {
-      axios.post('http://localhost:4000/api/user/logout'
-      ).then(() => {
-        delete axios.defaults.headers.common['Authorization'];
-        setIsLoggedIn(false);
-        history.push('/');
-      }).catch(error => {
-        window.alert(error);
-      });
+      axios.post('/api/user/logout')
+        .then(() => {
+          delete axios.defaults.headers.common['Authorization'];
+          setIsLoggedIn(false);
+          history.push('/main');
+        }).catch(error => {
+          window.alert(error);
+        });
     } else {
       setModalContent(<Login setModalOpen={setModalOpen} setIsLoggedIn={setIsLoggedIn} />);
       setModalOpen(true);
@@ -47,7 +47,7 @@ const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) =>
     <div className="header container-fluid p-0">
       <div className="row align-items-center p-0 m-0">
         <div className="col-md-2 mr-md-auto p-0">
-          <Link to="/">
+          <Link to="/main">
             <img className="logo" src="/icons/npc.png" alt="logo"/>
           </Link>
         </div>

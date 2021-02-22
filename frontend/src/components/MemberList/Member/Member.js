@@ -7,10 +7,14 @@ import './Member.css';
 const Member = ({ setModalContent, setModalOpen, user }) => {
   const { name, id, handle, email, bojHandle, codeforcesHandle } = user;
 
-  const openModal = async () => {
-    const result = await axios.get(`http://localhost:4000/api/users/member/${id}`);
-    setModalContent(<Profile user={result.data} settings={false} />);
-    setModalOpen(true);
+  const openModal = () => {
+    axios.get(`/api/users/member/${id}`)
+      .then(response => {
+        setModalContent(<Profile user={response.data} settings={false} />);
+        setModalOpen(true);
+      }).catch(error => {
+        window.alert(error);
+      });
   };
 
   return (

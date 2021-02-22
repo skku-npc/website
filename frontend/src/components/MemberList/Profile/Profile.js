@@ -47,23 +47,23 @@ const Profile = ({ user, settings }) => {
       }
       <div className="row mb-3">
         <div className="col-4 p-0">이름</div>
-        <div className="col-6 offset-2 p-0">{name}</div>
+        <div className="col-7 offset-1 p-0">{name}</div>
       </div>
       <div className="row mb-3">
         <div className="col-4 p-0">닉네임</div>
-        <div className="col-6 offset-2 p-0">{handle}</div>
+        <div className="col-7 offset-1 p-0">{handle}</div>
       </div>
       <div className="row mb-3">
         <div className="col-4 p-0">이메일</div>
-        <div className="col-6 offset-2 p-0">{email}</div>
+        <div className="col-7 offset-1 p-0">{email}</div>
       </div>
       <div className="row mb-3">
         <div className="col-4 p-0">가입연도</div>
-        <div className="col-6 offset-2 p-0">{createdAt && (typeof createdAt === 'number' ? createdAt : createdAt.slice(0, 4))}</div>
+        <div className="col-7 offset-1 p-0">{createdAt && (typeof createdAt === 'number' ? createdAt : createdAt.slice(0, 4))}</div>
       </div>
       <div className="row mb-3">
         <div className="col-4 p-0">학과</div>
-        <div className="col-6 offset-2 p-0">{department}</div>
+        <div className="col-7 offset-1 p-0">{department}</div>
       </div>
     </div>
   );

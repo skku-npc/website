@@ -15,15 +15,13 @@ const MemberList = ({ setModalContent, setModalOpen, isLoggedIn }) => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(async () => {
-    const result = await axios.get('http://localhost:4000/api/users/member');
-
+    const result = await axios.get('/api/users/member');
     if (isLoggedIn) {
-      const profile = await axios.get('http://localhost:4000/api/user/profile');
-      if (profile.role === 'Admin') {
+      const result = await axios.get('/api/user/profile');
+      if (result.data.role === 'Admin') {
         setIsAdmin(true);
       }
     }
-
     setMemberData(result.data);
     setMaxYear(Math.max.apply(null, result.data.map(member=>member.createdAt)));
     setMinYear(Math.min.apply(null, result.data.map(member=>member.createdAt)));
@@ -31,7 +29,7 @@ const MemberList = ({ setModalContent, setModalOpen, isLoggedIn }) => {
   }, []);
 
   useEffect(() => {
-    setDisplayData(memberData.filter(member=>member.createdAt == filterYear));
+    setDisplayData(memberData.filter(member=>(member.createdAt == filterYear)));// && member.status === 'ACCEPTED')));
   }, [filterYear]);
 
   const pendingOpen = () => {

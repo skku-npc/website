@@ -1,44 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import axios from 'axios';
 import './Pending.css';
 
 const Pending = () => {
-  const [pendingUsers, setPendingUsers] = useState([]);
+  const [ pendingUsers, setPendingUsers ] = useState([]);
 
-  const fetchData = async () => {
-    // const result = await axios.get('/rest/members');
-    const result = {
-      status: 200,
-      members: [
-        {
-          name: '홍길동',
-          department: '의상학과',
-          entranceYear: 2021
-        },
-        {
-          name: '홍길동',
-          department: '의상학과',
-          entranceYear: 2021
-        },
-        {
-          name: '홍길동',
-          department: '의상학과',
-          entranceYear: 2021
-        },
-        {
-          name: '홍길동',
-          department: '의상학과',
-          entranceYear: 2021
-        }
-      ]
-    };
-
-    setPendingUsers(result.members);
+  const loadPendingUsers = () => {
+    axios.get('/api/users/member/pending')
+      .then(response => {
+        setPendingUsers(response.data);
+      }).catch(error => {
+        window.alert(error);
+      });
   };
 
-  useEffect(() => {
-    fetchData();
-  });
+  const buttonOnClick = ( mode, id ) => {
+    axios.patch(`/api/users/member/${mode}/${id}`)
+      .then(() => {
+        loadPendingUsers();
+      })
+      .catch(error => {
+        window.alert(error);
+      });
+  };
+
+  useEffect(loadPendingUsers, []);
 
   return (
     <div className="pending">
@@ -51,24 +37,19 @@ const Pending = () => {
             <div className="col-8 p-0">
               <span className="name">{data.name}</span>
               <br/>
-              <span className="details">{data.department}, {data.entranceYear % 100}학번</span>
+              <span className="details">{data.department}학번</span>
             </div>
             <div className="col-2 p-0">
-              <div className="check" />
+              <div className="check" onClick={() => buttonOnClick('accept', data.id)}/>
             </div>
             <div className="col-2 p-0">
-              <div className="close"/>
+              <div className="close" onClick={() => buttonOnClick('refuse', data.id)}/>
             </div>
           </div>
         ))
       }
     </div>
   );
-};
-
-Pending.propTypes ={
-  pendingOpen: PropTypes.bool.isRequired,
-  setPendingOpen: PropTypes.func.isRequired
 };
 
 export default Pending;

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+//import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './Login.css';
@@ -8,6 +9,7 @@ const Login = ({ setModalOpen, setIsLoggedIn }) => {
   const login = useRef();
   const find = useRef();
   const findOK = useRef();
+  //const history = useHistory();
 
   const [input, setInput] = useState({
     email: '',
@@ -40,13 +42,10 @@ const Login = ({ setModalOpen, setIsLoggedIn }) => {
   };
 
   const signuponClick = () => {
-    window.alert('준비 중입니다.');
-    /*
     resetInput();
     signup.current.style.display = 'block';
     login.current.style.display = 'none';
     find.current.style.display = 'none';
-    */
   };
 
   const loginonClick = () => {
@@ -57,13 +56,10 @@ const Login = ({ setModalOpen, setIsLoggedIn }) => {
   };
 
   const findonClick = () => {
-    window.alert('준비 중입니다.');
-    /*
     resetInput();
     signup.current.style.display = 'none';
     login.current.style.display = 'none';
     find.current.style.display = 'block';
-    */
   };
 
   const loginSubmit = () => {
@@ -74,7 +70,7 @@ const Login = ({ setModalOpen, setIsLoggedIn }) => {
       window.alert('비밀번호를 입력해주세요.');
     }
     else {
-      axios.post('http://localhost:4000/api/user/login', {
+      axios.post('/api/user/login', {
         email: email,
         password: password
       }).then(response => {
@@ -83,6 +79,7 @@ const Login = ({ setModalOpen, setIsLoggedIn }) => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         setIsLoggedIn(true);
         setModalOpen(false);
+        //history.go(0);
       }).catch(error => {
         window.alert(error);
       });
@@ -97,7 +94,7 @@ const Login = ({ setModalOpen, setIsLoggedIn }) => {
       window.alert('비밀번호가 일치하지 않습니다.');
     }
     else {
-      axios.post('http://localhost:4000/api/user/register', {
+      axios.post('/api/user/register', {
         email: email,
         password: password,
         name: name,

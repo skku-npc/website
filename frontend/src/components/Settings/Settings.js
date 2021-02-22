@@ -31,15 +31,18 @@ const Settings = () => {
     });
   };
 
-  const loadData = async () => {
-    const result = await axios.get('http://localhost:4000/api/user/profile');
-    setProfile(result.data);
-    setInput({
-      bojHandle: result.data.bojHandle,
-      codeforcesHandle: result.data.codeforcesHandle,
-      githubHandle: result.data.githubHandle,
-      class: result.data.class
-    });
+  const loadData = () => {
+    axios.get('/api/user/profile')
+      .then(response => {
+        const profile = response.data;
+        setProfile(profile);
+        setInput({
+          bojHandle: profile.bojHandle || '',
+          codeforcesHandle: profile.codeforcesHandle || '',
+          githubHandle: profile.githubHandle || '',
+          class: profile.class || ''
+        });
+      });
   };
 
   const profileSubmit = () => {
@@ -58,7 +61,7 @@ const Settings = () => {
         }
       }
       console.log(patch);
-      axios.patch('http://localhost:4000/api/user/profile', patch)
+      axios.patch('/api/user/profile', patch)
         .then(() => {
           window.alert('성공적으로 변경되었습니다!');
           loadData();
