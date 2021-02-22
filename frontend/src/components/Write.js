@@ -1,8 +1,17 @@
 import React, {Component} from 'react';
 import './css/Write.css';
 import Slate_plain_text from './Slate_plain_text';
+import axios from 'axios';
 
 class Write extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            mode: 'dafault',
+            title: '',
+            content: ''
+        }
+    }
     render(){
         let content_beginner = this.props.content_beginner;
         let content_intermediate = this.props.content_intermediate;
@@ -104,8 +113,38 @@ class Write extends Component{
                         fontSize: '24px'
                     }}
                     >작성</div>
-                    <div id='Write-inputtitle'><Slate_plain_text ></Slate_plain_text></div>
-                    <div id='Write-inputcontent'><Slate_plain_text ></Slate_plain_text></div>
+                    <div id='Write-inputtitle'>
+                        <Slate_plain_text
+                          onChangeString={function(_title){
+                            this.setState({title:_title});
+                          }.bind(this)}
+                        ></Slate_plain_text>
+                    </div>
+                    <div id='Write-inputcontent'>
+                        <Slate_plain_text
+                          onChangeString={function(_content){
+                            this.setState({content:_content});
+                          }.bind(this)}
+                        ></Slate_plain_text>
+                    </div>
+                    <div id='Write-postbutton'
+                        onClick={function(e){
+                            e.preventDefault();
+                            console.log(this.state.title);
+                            console.log(this.state.content);
+                            axios.post('/api/study/note/' + this.props.new_id, {
+                                params: {
+                                    title: this.state.title,
+                                    content: this.state.content,
+                                    userId: this.props.new_id,
+                                    class: 1
+                                }
+                            });
+                            overlay_inactive();
+                            document.getElementById("Write-create").style.opacity="0";
+                            document.getElementById("Write-create").style.zIndex="0";
+                        }.bind(this)}
+                    >Post</div>
                     
                 </div>
             </div>

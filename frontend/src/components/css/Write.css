@@ -84,3 +84,13 @@
     background: white;
     z-index: 0;
 }
+#Write-postbutton{
+    position: absolute;
+    left: 70vw;
+    top: 60vh;
+    width: 100px;
+    height: 50px;
+    transition: all 1s;
+    background: white;
+    z-index: 0;
+}

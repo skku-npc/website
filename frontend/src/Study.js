@@ -10,12 +10,12 @@ class Study extends Component{
       mode:'beginner', /* beginner intermediate advanced*/
       mark_mode:'beginner',
       id: 1,
+      tmp: [],
       content_beginner: [],
       content_intermediate: [],
       content_advanced: [],
       content: {}
     };
-    let tmp=[];
     /*
     fetch('/api/study/notes', {
       method:'GET'
@@ -27,7 +27,7 @@ class Study extends Component{
         });
       });
       */
-    tmp = [
+    this.state.tmp = [
       {
         "id": 1,
         "title": "C++ STL(1)-vector,list,deque",
@@ -65,13 +65,13 @@ class Study extends Component{
         "class": 3
       }
     ]
-    for(let i = 0; i < tmp.length; i++){
-      if(tmp[i].class === 1){
-        this.state.content_beginner.push(tmp[i]);
-      }else if(tmp[i].class === 2){
-        this.state.content_intermediate.push(tmp[i]);
-      }else if(tmp[i].class === 3){
-        this.state.content_advanced.push(tmp[i]);
+    for(let i = 0; i < this.state.tmp.length; i++){
+      if(this.state.tmp[i].class === 1){
+        this.state.content_beginner.push(this.state.tmp[i]);
+      }else if(this.state.tmp[i].class === 2){
+        this.state.content_intermediate.push(this.state.tmp[i]);
+      }else if(this.state.tmp[i].class === 3){
+        this.state.content_advanced.push(this.state.tmp[i]);
       }
     }
     
@@ -124,6 +124,7 @@ class Study extends Component{
           content_beginner = {this.state.content_beginner}
           content_intermediate = {this.state.content_intermediate}
           content_advanced = {this.state.content_advanced}
+          new_id = {this.state.tmp[this.state.tmp.length - 1].id + 1}
         ></Write>
       </div>
     );
