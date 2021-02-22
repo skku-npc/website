@@ -10,6 +10,8 @@ const {
   deleteUser,
   uploadImage,
   deleteImage,
+  requestResetPassword,
+  resetPassword
 } = require('./user');
 const { auth, hash, emailValidator } = require('../../middleware/auth');
 
@@ -29,6 +31,8 @@ const upload = multer({
 router.post('/register', [emailValidator, hash], registerUser);
 router.post('/login', emailValidator, login);
 router.post('/logout', auth, logout);
+router.post('/requestResetPassword', emailValidator, requestResetPassword);
+router.post('/resetPassword/:passwordResetToken', resetPassword);
 router.get('/profile', auth, getUserProfile);
 router.patch('/profile', auth, patchUserProfile);
 router.patch('/profile/upload-image', [auth, upload.single('image')], uploadImage);

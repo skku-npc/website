@@ -18,6 +18,22 @@ async function main() {
       status: 'ACCEPTED'
     },
   });
+  const student = await prisma.user.upsert({
+    where: { email: 'npc@gmail.com' },
+    update: {},
+    create: {
+      email: 'npc@gmail.com',
+      password: '$2a$08$lK2nuSdilTFHuLpsZRuDnOVe0asYK.K5q/p/04yzQRkTT02M6PUXC',
+      name: 'npc',
+      department: 'Department of Software',
+      handle: 'psMaster',
+      bojHandle: 'bojMaster',
+      codeforcesHandle: 'codeforcesMaster',
+      class: 'Advanced',
+      role: 'Student',
+      status: 'ACCEPTED'
+    },
+  });
   const post1 = await prisma.note.create({
     data: {
       title: '1. Intro',
@@ -36,7 +52,7 @@ async function main() {
       class: 2,
     },
   });
-  console.log({ admin, post1, post2 });
+  console.log({ admin, student, post1, post2 });
   const event1 = await prisma.event.create({
     data: {
       startDate: new Date(),

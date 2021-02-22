@@ -137,3 +137,4 @@ sketch
 
 # Prisma2
 migrations/
+backend/.env

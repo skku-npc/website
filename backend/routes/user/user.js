@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const prisma = require('../../lib/prisma');
 const sharp = require('sharp');
+const nodemailer = require('../../utils/nodemailer');
 
 async function registerUser(req, res) {
   try {
@@ -55,6 +56,10 @@ async function login(req, res) {
         email: req.body.email,
       },
     });
+
+    if (!user) {
+      return res.status(404).send({ Error: 'User not found' });
+    }
 
     if (user.status !== 'ACCEPTED') {
       return res
@@ -238,6 +243,93 @@ async function deleteImage(req, res) {
   }
 }
 
+async function requestResetPassword(req, res) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: req.body.email,
+      },
+    });
+    if (!user) {
+      return res.status(404).send({ error: 'User not found' });
+    }
+
+    const passwordResetToken = jwt.sign(
+      { email: req.body.email },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: '20m',
+      },
+    );
+    await prisma.user.update({
+      where: {
+        email: req.body.email,
+      },
+      data: {
+        passwordResetToken: passwordResetToken,
+      },
+    });
+
+    await nodemailer.sendMail({
+      from: `"NPC" <npc.skku@gmail.com>`,
+      to: req.body.email,
+      subject: 'NPC 비밀번호 재설정',
+      html: `안녕하세요, ${req.body.email} 님. <br>
+      비밀번호 재설정을 위해 아래의 버튼을 클릭해주세요. <br>
+      <form action="http://localhost:3000/user/resetPassword/${passwordResetToken}">
+      <input type="submit" value="비밀번호 재설정하기" />
+      </form>
+      `,
+    });
+    res.status(200).send();
+  } catch (e) {
+    res.status(400).send(e);
+  }
+}
+
+async function resetPassword(req, res) {
+  try {
+    if (!req.body.newPassword) {
+      return res.status(400).send({ error: 'No new password' });
+    }
+    if (!req.body.confirmPassword) {
+      return res.status(400).send({ error: 'No confirm password' });
+    }
+
+    if (req.body.newPassword !== req.body.confirmPassword) {
+      return res
+        .status(400)
+        .send({ error: 'Confirm password is different from the new password' });
+    }
+
+    const decoded = jwt.verify(
+      req.params.passwordResetToken,
+      process.env.JWT_SECRET,
+    );
+
+    const user = await prisma.user.findFirst({
+      where: {
+        email: decoded.email.toString(),
+      },
+    });
+
+    const newPassword = await bcrypt.hash(req.body.newPassword, 8);
+
+    await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        password: newPassword,
+        passwordResetToken: null,
+      },
+    });
+    res.status(200).send();
+  } catch (e) {
+    res.status(400).send(e);
+  }
+}
+
 module.exports = {
   registerUser,
   login,
@@ -247,4 +339,6 @@ module.exports = {
   deleteUser,
   uploadImage,
   deleteImage,
+  requestResetPassword,
+  resetPassword,
 };

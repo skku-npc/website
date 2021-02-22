@@ -11,6 +11,7 @@ async function getMembers(req, res) {
         bojHandle: true,
         codeforcesHandle: true,
         createdAt: true,
+        status: true,
       },
     });
 
@@ -46,6 +47,7 @@ async function getMemberProfile(req, res) {
         bojHandle: true,
         codeforcesHandle: true,
         createdAt: true,
+        image: true,
       },
     });
 
