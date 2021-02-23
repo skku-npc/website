@@ -29,7 +29,7 @@ const MemberList = ({ setModalContent, setModalOpen, isLoggedIn }) => {
   }, []);
 
   useEffect(() => {
-    setDisplayData(memberData.filter(member=>(member.createdAt == filterYear)));// && member.status === 'ACCEPTED')));
+    setDisplayData(memberData.filter(member=>(member.createdAt == filterYear && member.status === 'ACCEPTED')));
   }, [filterYear]);
 
   const pendingOpen = () => {

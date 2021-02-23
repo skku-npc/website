@@ -56,7 +56,7 @@ const Settings = () => {
       let patch = {...input};
       delete patch.passwordConfirm;
       for (let key in patch) {
-        if (!patch[key]) {
+        if (patch[key] === profile[key]) {
           delete patch[key];
         }
       }
@@ -94,8 +94,10 @@ const Settings = () => {
           </div>
           <div className="col-5 p-0">
             <div className="profile-others card">
-              <div className="row semi-title">
-                    My Profile
+              <div className="row">
+                <div className="col p-0 semi-title">
+                  My Profile
+                </div>
               </div>
               <hr />
               <div className="row mb-3">

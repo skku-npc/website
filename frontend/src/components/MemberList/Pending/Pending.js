@@ -32,21 +32,27 @@ const Pending = () => {
         <div className="title col p-0">신규 가입</div>
       </div>
       {
-        pendingUsers.map((data, index) => (
-          <div className="row mb-3 align-items-center" key={index}>
-            <div className="col-8 p-0">
-              <span className="name">{data.name}</span>
-              <br/>
-              <span className="details">{data.department}학번</span>
+        pendingUsers.length > 0 ?
+          pendingUsers.map((data, index) => (
+            <div className="row mb-3 align-items-center" key={index}>
+              <div className="col-8 p-0">
+                <span className="name">{data.name}</span>
+                <br/>
+                <span className="details">{data.email}, {data.department}</span>
+              </div>
+              <div className="col-2 p-0">
+                <div className="check" onClick={() => buttonOnClick('accept', data.id)}/>
+              </div>
+              <div className="col-2 p-0">
+                <div className="close" onClick={() => buttonOnClick('refuse', data.id)}/>
+              </div>
             </div>
-            <div className="col-2 p-0">
-              <div className="check" onClick={() => buttonOnClick('accept', data.id)}/>
-            </div>
-            <div className="col-2 p-0">
-              <div className="close" onClick={() => buttonOnClick('refuse', data.id)}/>
+          )) :
+          <div className="row">
+            <div className="col p-0">
+              대기 중인 사용자가 없습니다.
             </div>
           </div>
-        ))
       }
     </div>
   );
