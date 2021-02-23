@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Login from '../Login';
+import Login from '../User/Login';
 import './Header.css';
 
 const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) => {
@@ -64,7 +64,7 @@ const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) =>
           <img className="dropbtn" src="/icons/user.png" alt="user" onClick={() => setDropdownOpen(!dropdownOpen)}/>
           <div className="dropdown-content" ref={dropdownEl} style={{display: dropdownOpen ? 'block' : 'none'}}>
             <a onClick={loginonClick}>{isLoggedIn ? '로그아웃' : '로그인'}</a>
-            <Link to="/settings" onClick={(event) => {
+            <Link to="/user/settings" onClick={(event) => {
               if (!isLoggedIn) {
                 event.preventDefault();
                 window.alert('로그인을 먼저 해주세요!');

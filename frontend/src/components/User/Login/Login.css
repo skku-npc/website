@@ -28,7 +28,7 @@
   margin: 20px 0;
 }
 
-.login form .data input {
+.containerLogin form .data input {
   height: 100%;
   width: 100%;
   padding-left: 20px;
@@ -40,21 +40,21 @@
   font-family: "KoreanTITGD";
 }
 
-.login input::placeholder {
+.containerLogin input::placeholder {
   font-size: 15px;
   color: #999999;
 }
 
-.login form .data input:focus {
+.containerLogin form .data input:focus {
   border-color: #3498db;
   border-bottom-width: 2px;
 }
 
-.login form .data input[type="submit"] {
+.containerLogin form .data input[type="submit"] {
   width: auto;
 }
 
-.login form .data input[required] + label {
+.containerLogin form .data input[required] + label {
   font-size: 15px;
   color: #999999;
   position: relative;
@@ -63,34 +63,34 @@
   cursor: text;
 }
 
-.login form .data input[required] + label:after {
+.containerLogin form .data input[required] + label:after {
   content: " *";
   color: #ed6f6f;
 }
 
-.login form .data input[required]:invalid + label {
+.containerLogin form .data input[required]:invalid + label {
   display: inline-block;
 }
 
-.login form .data input[required]:valid + label {
+.containerLogin form .data input[required]:valid + label {
   display: none;
 }
 
-.login form .forgot-pass {
+.containerLogin form .forgot-pass {
   margin-top: 0px;
   text-align: end;
 }
 
-.login form .forgot-pass a {
+.containerLogin form .forgot-pass a {
   color: #999999;
   text-decoration: none;
 }
 
-.login form .forgot-pass a:hover {
+.containerLogin form .forgot-pass a:hover {
   text-decoration: underline;
 }
 
-.login form .btn {
+.containerLogin form .btn {
   height: 41px;
   width: 100%;
   position: relative;
@@ -101,11 +101,11 @@
   transition: all 0.4s;
 }
 
-.login form .btn:hover {
+.containerLogin form .btn:hover {
   background-color: #59861c;
 }
 
-.login form .btn button {
+.containerLogin form .btn button {
   height: 100%;
   width: 100%;
   background: none;
@@ -118,14 +118,14 @@
   font-family: "KoreanTITGD";
 }
 
-.login form .signup-link {
+.containerLogin form .signup-link {
   padding-top: 30px;
   text-align: center;
   font-size: 14px;
   font-family: "Manrope", "KoreanTITGD";
 }
 
-.login form .switchBtn {
+.containerLogin form .switchBtn {
   background: none;
   border: none;
   color: #8dc63f;
@@ -136,11 +136,11 @@
   font-family: "KoreanTITGD";
 }
 
-.login form .switchBtn:hover {
+.containerLogin form .switchBtn:hover {
   text-decoration: underline;
 }
 
-.login form .findBtn {
+.containerLogin form .findBtn {
   background: none;
   border: none;
   color: #999999;
@@ -151,11 +151,11 @@
   font-family: "Manrope", "KoreanTITGD";
 }
 
-.login form .findBtn:hover {
+.containerLogin form .findBtn:hover {
   text-decoration: underline;
 }
 
-.login form .loginCenterAlignedText {
+.containerLogin form .loginCenterAlignedText {
   font-size: 18px;
   text-align: center;
   color: #999999;

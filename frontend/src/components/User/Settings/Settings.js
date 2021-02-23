@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Profile from '../MemberList/Profile';
+import Profile from '../../MemberList/Profile';
 import './Settings.css';
 
 const Settings = () => {

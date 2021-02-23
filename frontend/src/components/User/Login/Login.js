@@ -116,8 +116,18 @@ const Login = ({ setModalOpen, setIsLoggedIn }) => {
   };
 
   const findSubmit = () => {
-    find.current.style.display = 'none';
-    findOK.current.style.display = 'block';
+    if (email === '') {
+      window.alert('빈칸을 모두 입력해주세요.');
+    } else {
+      axios.post('/api/user/requestResetPassword', {
+        email: email
+      }).then(() => {
+        find.current.style.display = 'none';
+        findOK.current.style.display = 'block';
+      }).catch(error => {
+        window.alert(error);
+      });
+    }
   };
 
   return (
@@ -132,7 +142,7 @@ const Login = ({ setModalOpen, setIsLoggedIn }) => {
             <input type="password" name="password" placeholder="비밀번호" value={password} onKeyPress={(e) => pressEnter(e, loginSubmit)} onChange={onChange} required />
           </div>
           <div className="forgot-pass">
-            <button type="button" onClick={findonClick} className="findBtn">이메일 / 비밀번호 찾기</button>
+            <button type="button" onClick={findonClick} className="findBtn">비밀번호 찾기</button>
           </div>
           <div className="btn">
             <div className="inner">

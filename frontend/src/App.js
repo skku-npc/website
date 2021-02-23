@@ -5,8 +5,9 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
 import Intro from './components/Intro';
-import Login from './components/Login';
-import Settings from './components/Settings';
+import Login from './components/User/Login';
+import Settings from './components/User/Settings';
+import ResetPassword from './components/User/ResetPassword';
 import ModalWrapper from './components/ModalWrapper';
 import MemberList from './components/MemberList';
 
@@ -28,12 +29,13 @@ const App = () => {
           <Route path="/members" render={() =>
             <MemberList setModalContent={setModalContent} modalOpen={modalOpen} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
           />
-          <Route path="/settings" component={Settings} />
-          {/* 기타 페이지 */}
+          <Route path="/user/settings" component={Settings} />
+          <Route path="/user/resetPassword/:passwordResetToken" component={ResetPassword} />
           <Route
             render={({ location }) => (
-              <div>
-                <h3>존재하지 않는 페이지 {location.pathname}</h3>
+              <div style={{margin: '150px 0', textAlign: 'center'}}>
+                <h1>존재하지 않는 페이지입니다!</h1>
+                <h2>{location.pathname}</h2>
               </div>
             )}
           />
