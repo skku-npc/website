@@ -15,18 +15,21 @@ const MemberList = ({ setModalContent, setModalOpen, isLoggedIn }) => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(async () => {
-    const result = await axios.get('/api/users/member');
+    const { data } = await axios.get('/api/users/member');
+    setMemberData(data);
+    setMaxYear(Math.max.apply(null, data.map(member=>member.createdAt)));
+    setMinYear(Math.min.apply(null, data.map(member=>member.createdAt)));
+    setFilterYear(new Date().getFullYear());
+  }, []);
+
+  useEffect(async () => {
     if (isLoggedIn) {
-      const result = await axios.get('/api/user/profile');
-      if (result.data.role === 'Admin') {
+      const { data } = await axios.get('/api/user/profile');
+      if (data.role === 'Admin') {
         setIsAdmin(true);
       }
     }
-    setMemberData(result.data);
-    setMaxYear(Math.max.apply(null, result.data.map(member=>member.createdAt)));
-    setMinYear(Math.min.apply(null, result.data.map(member=>member.createdAt)));
-    setFilterYear(new Date().getFullYear());
-  }, []);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     setDisplayData(memberData.filter(member=>(member.createdAt == filterYear && member.status === 'ACCEPTED')));

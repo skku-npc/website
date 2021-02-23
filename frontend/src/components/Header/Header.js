@@ -10,11 +10,70 @@ const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) =>
   const dropdownEl = useRef();
   const history = useHistory();
 
+  const logIn = (token, expiredTime) => {
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('tokenExpiredTime', expiredTime);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    setIsLoggedIn(true);
+    setTimeout(logOut, expiredTime - Date.now());
+  };
+
+  const logOut = () => {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('tokenExpiredTime');
+    delete axios.defaults.headers.common['Authorization'];
+    setIsLoggedIn(false);
+    history.push('/main');
+  };
+
   const clickOutside = ({ target }) => {
     if (dropdownOpen && dropdownEl.current && !dropdownEl.current.contains(target)) {
       setDropdownOpen(false);
     }
   };
+
+  const logoutSubmit = () => {
+    axios.post('/api/user/logout')
+      .then(logOut)
+      .catch(error => {
+        window.alert(error);
+      });
+  };
+
+  const loginonClick = () => {
+    if (isLoggedIn) {
+      logoutSubmit();
+    } else {
+      setModalContent(<Login setModalOpen={setModalOpen} logIn={logIn} />);
+      setModalOpen(true);
+    }
+  };
+
+  const updateExpiredTime = () => {
+    sessionStorage.setItem('expiredTime', Date.now() + 60 * 60 * 1000);
+  };
+
+  const tracker = () => {
+    window.addEventListener('mousemove', updateExpiredTime);
+    window.addEventListener('scroll', updateExpiredTime);
+    window.addEventListener('keydown', updateExpiredTime);
+  };
+
+  const cleanUp = (interval) => {
+    sessionStorage.removeItem('expiredTime');
+    clearInterval(interval);
+    window.removeEventListener('mousemove', updateExpiredTime);
+    window.removeEventListener('scroll', updateExpiredTime);
+    window.removeEventListener('keydown', updateExpiredTime);
+  };
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    const tokenExpiredTime = sessionStorage.getItem('tokenExpiredTime');
+    if (token && Date.now() < tokenExpiredTime) {
+      logIn(token, tokenExpiredTime);
+    }
+  }, []);
 
   useEffect(() => {
     window.addEventListener('click', clickOutside);
@@ -23,24 +82,24 @@ const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) =>
     };
   }, [dropdownOpen]);
 
-  const loginonClick = () => {
-    if (isLoggedIn) {
-      axios.post('/api/user/logout')
-        .then(() => {
-          delete axios.defaults.headers.common['Authorization'];
-          setIsLoggedIn(false);
-          history.push('/main');
-        }).catch(error => {
-          window.alert(error);
-        });
-    } else {
-      setModalContent(<Login setModalOpen={setModalOpen} setIsLoggedIn={setIsLoggedIn} />);
-      setModalOpen(true);
-    }
-  };
-
   useEffect(() => {
     setDropdownOpen(false);
+    if (isLoggedIn) {
+      tracker();
+      updateExpiredTime();
+      const interval = setInterval(() => {
+        const expiredTime = parseInt(sessionStorage.getItem('expiredTime'), 10);
+        if (expiredTime < Date.now()) {
+          logoutSubmit();
+          cleanUp(interval);
+        }
+      }, 1000);
+
+      return () => {
+        logoutSubmit();
+        cleanUp(interval);
+      };
+    }
   }, [isLoggedIn]);
 
   return (

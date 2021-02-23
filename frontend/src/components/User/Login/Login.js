@@ -1,15 +1,15 @@
 import React, { useState, useRef } from 'react';
-//import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './Login.css';
 
-const Login = ({ setModalOpen, setIsLoggedIn }) => {
+const Login = ({ setModalOpen, logIn }) => {
   const signup = useRef();
   const login = useRef();
   const find = useRef();
   const findOK = useRef();
-  //const history = useHistory();
+  const history = useHistory();
 
   const [input, setInput] = useState({
     email: '',
@@ -75,11 +75,8 @@ const Login = ({ setModalOpen, setIsLoggedIn }) => {
         password: password
       }).then(response => {
         const { token } = response.data;
-        //sessionStorage.setItem('token', token);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-        setIsLoggedIn(true);
-        setModalOpen(false);
-        //history.go(0);
+        logIn(token, Date.now() + 12 * 60 * 60 * 1000 - 5 * 60 * 1000);
+        history.go(0);
       }).catch(error => {
         window.alert(error);
       });
@@ -230,7 +227,7 @@ const Login = ({ setModalOpen, setIsLoggedIn }) => {
 
 Login.propTypes = {
   setModalOpen: PropTypes.func.isRequired,
-  setIsLoggedIn: PropTypes.func.isRequired,
+  logIn: PropTypes.func.isRequired
 };
 
 export default Login;
