@@ -9,6 +9,7 @@ import Settings from './components/User/Settings';
 import ResetPassword from './components/User/ResetPassword';
 import ModalWrapper from './components/ModalWrapper';
 import MemberList from './components/MemberList';
+import Calendar from './components/Calendar';
 
 const App = () => {
   const [ modalOpen, setModalOpen ] = useState(false);
@@ -28,8 +29,10 @@ const App = () => {
           <Route path="/members" render={() =>
             <MemberList setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
           />
+          <Route path="/calendar" component={Calendar} />
           <Route path="/user/settings" component={Settings} />
           <Route path="/user/resetPassword/:passwordResetToken" component={ResetPassword} />
+          {/* 기타 페이지 */}
           <Route
             render={({ location }) => (
               <div style={{margin: '150px 0', textAlign: 'center'}}>
