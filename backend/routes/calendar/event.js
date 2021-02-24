@@ -64,7 +64,6 @@ async function createNewEvent(req, res) {
     });
     res.status(201).send(eventCreated);
   } catch (e) {
-    console.log(e);
     res.status(400).send(e);
   }
 }
@@ -79,7 +78,6 @@ async function removeEventById(req, res) {
     });
     res.status(200).send(eventRemoved);
   } catch (e) {
-    console.log(e);
     if (e.code === 'P2016') {
       res.status(404).send(e);
     } else {

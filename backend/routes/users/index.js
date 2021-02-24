@@ -8,6 +8,7 @@ const {
   allowPendingMember,
   refusePendingMember,
 } = require('./member');
+
 const { auth, admin } = require('../../middleware/auth');
 
 router.get('/member', getMembers);
