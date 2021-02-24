@@ -1,4 +1,3 @@
-const { Status } = require('@prisma/client');
 const prisma = require('../lib/prisma');
 
 async function main() {
@@ -15,7 +14,7 @@ async function main() {
       codeforcesHandle: 'codeforcesMaster',
       class: 'Advanced',
       role: 'Admin',
-      status: 'ACCEPTED'
+      status: 'ACCEPTED',
     },
   });
   const student = await prisma.user.upsert({
@@ -31,7 +30,7 @@ async function main() {
       codeforcesHandle: 'codeforcesMaster',
       class: 'Advanced',
       role: 'Student',
-      status: 'ACCEPTED'
+      status: 'ACCEPTED',
     },
   });
   const post1 = await prisma.note.create({
@@ -55,23 +54,23 @@ async function main() {
   console.log({ admin, student, post1, post2 });
   const event1 = await prisma.event.create({
     data: {
-      startDate: new Date(),
-      endDate: new Date(),
+      start: new Date(),
+      end: new Date(),
       title: 'Today',
       allDay: true,
     },
   });
   const event2 = await prisma.event.create({
     data: {
-      startDate: new Date(2021, 0, 22),
-      endDate: new Date(2021, 1, 2),
+      start: new Date(2021, 0, 22),
+      end: new Date(2021, 1, 2),
       title: 'Some Event',
     },
   });
   const event3 = await prisma.event.create({
     data: {
-      startDate: new Date(2021, 1, 15, 9),
-      endDate: new Date(2021, 1, 16, 9),
+      start: new Date(2021, 1, 15, 9),
+      end: new Date(2021, 1, 16, 9),
       title: 'Another Event',
     },
   });
