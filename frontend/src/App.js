@@ -29,7 +29,9 @@ const App = () => {
           <Route path="/members" render={() =>
             <MemberList setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
           />
-          <Route path="/calendar" component={Calendar} />
+          <Route path="/calendar" render={() =>
+            <Calendar setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
+          />
           <Route path="/user/settings" component={Settings} />
           <Route path="/user/resetPassword/:passwordResetToken" component={ResetPassword} />
           {/* 기타 페이지 */}

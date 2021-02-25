@@ -9,6 +9,7 @@ const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) =>
   const [ dropdownOpen, setDropdownOpen ] = useState(false);
   const dropdownEl = useRef();
   const history = useHistory();
+  const currentDate = new Date();
 
   const logIn = (token, expiredTime) => {
     sessionStorage.setItem('token', token);
