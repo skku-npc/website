@@ -1,0 +1,8 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/skku-npc/website.git",
+  "author": "WillKiss <st42597@gmail.com>",
+  "license": "MIT"
+}

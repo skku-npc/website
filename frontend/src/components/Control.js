@@ -63,7 +63,7 @@ class Control extends Component{
                         overlay_active();
                         document.getElementById("Control-mark").style.left=markb.left;
                         document.getElementById("Control-mark").style.background=markb.background;
-                        document.getElementById("Control-Tri").style.left="505px";
+                        document.getElementById("Control-Tri").style.left="34vw";
                         document.getElementById("Control-Tri").style.top="240px";
                         this.props.onChangeMark_mode('beginner');
                     }.bind(this)}
@@ -74,7 +74,7 @@ class Control extends Component{
                         overlay_active();
                         document.getElementById("Control-mark").style.left=marki.left;
                         document.getElementById("Control-mark").style.background=marki.background;
-                        document.getElementById("Control-Tri").style.left="700px";
+                        document.getElementById("Control-Tri").style.left="48vw";
                         document.getElementById("Control-Tri").style.top="240px";
                         this.props.onChangeMark_mode("intermediate");
                     }.bind(this)}
@@ -85,7 +85,7 @@ class Control extends Component{
                         overlay_active();
                         document.getElementById("Control-mark").style.left=marka.left;
                         document.getElementById("Control-mark").style.background=marka.background;
-                        document.getElementById("Control-Tri").style.left="920px";
+                        document.getElementById("Control-Tri").style.left="62vw";
                         document.getElementById("Control-Tri").style.top="240px";
                         this.props.onChangeMark_mode('advanced');
                     }.bind(this)}

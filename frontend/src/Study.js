@@ -2,6 +2,7 @@ import React, {Component, useEffect} from 'react';
 import Control from './components/Control';
 import Content from './components/Content';
 import Write from './components/Write';
+import axios from 'axios';
 
 class Study extends Component{
   constructor(props){
@@ -16,17 +17,13 @@ class Study extends Component{
       content_advanced: [],
       content: {}
     };
-    /*
-    fetch('/api/study/notes', {
-      method:'GET'
-    })
-      .then(res => res.json())
-      .then(res => {
+    axios.get('http://localhost//api/study/notes')
+      .then(function(response){
         this.setState({
-          tmp: res
+          tmp: response
         });
-      });
-      */
+    })
+     console.log(this.state.tmp);
     this.state.tmp = [
       {
         "id": 1,
@@ -89,7 +86,6 @@ class Study extends Component{
 
     }
   render(){
-    console.log(this.state.content_beginner);
     console.log('mode :' + this.state.mode);
     console.log('mark_mode :' + this.state.mark_mode);
     let data=[];
