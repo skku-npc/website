@@ -29,10 +29,10 @@
 }
 #Write-allposts{
     position: absolute;
-    left: 10vw;
+    left: 15vw;
     top: 10vh;
     overflow: scroll;
-    width: 80vw;
+    width: 70vw;
     height: 80vh;
     opacity: 0;
     transition: all 1s;
@@ -96,5 +96,5 @@
 }
 #Write-selectbox{
     position: absolute;
-    
+
 }

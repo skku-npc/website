@@ -15,8 +15,9 @@ class Study extends Component{
       content_beginner: [],
       content_intermediate: [],
       content_advanced: [],
-      content: {}
+      content: []
     };
+    /*this.state.tmp에 노트리스트를 this.state.id를 파라미터로 하여 this.state.content에 스터디 마크다운을 가져옵니다.*/
     axios.get('http://localhost//api/study/notes')
       .then(function(response){
         this.setState({
@@ -71,8 +72,7 @@ class Study extends Component{
         this.state.content_advanced.push(this.state.tmp[i]);
       }
     }
-    
-    this.state.content = 
+    this.state.content = [
       {
         "id": "1",
         "title": "1. Brute Force & Divide and Conquer",
@@ -81,7 +81,7 @@ class Study extends Component{
         "create_time": "2021-02-08T15:00:00Z",
         "modify_time": "2021-02-08T15:00:00Z",
         "class": 1
-      }
+      }]
 
 
     }
@@ -89,11 +89,11 @@ class Study extends Component{
     console.log('mode :' + this.state.mode);
     console.log('mark_mode :' + this.state.mark_mode);
     let data=[];
-    if(this.state.mode === 'beginner'){
+    if(this.state.mark_mode === 'beginner'){
       data = this.state.content_beginner;
-    }else if(this.state.mode === 'intermediate'){
+    }else if(this.state.mark_mode === 'intermediate'){
       data = this.state.content_intermediate;
-    }else if(this.state.mode === 'advanced'){
+    }else if(this.state.mark_mode === 'advanced'){
       data = this.state.content_advanced;
     }
     return (

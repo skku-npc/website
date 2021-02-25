@@ -6,10 +6,10 @@ const Slate_plain_text = (props) => {
     const editor = useMemo(() => withReact(createEditor()), [])
     const [value, setValue] = useState([
       {
-        type: 'paragraph',
-        children: [{ text: 'A line of text in a paragraph.' }],
+        children: [{ text: props.default_text }],
       },
     ])
+    console.log('slate : ' + props.default_text);
     return (
       <Slate
         editor={editor}
