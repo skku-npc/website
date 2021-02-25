@@ -31,7 +31,7 @@ async function getMembers(req, res) {
 }
 
 async function getMemberProfile(req, res) {
-  let memberId = Number(req.params.memberId);
+  const memberId = Number(req.params.memberId);
 
   try {
     const member = await prisma.user.findUnique({
@@ -64,7 +64,7 @@ async function getMemberProfile(req, res) {
 }
 
 async function deleteMember(req, res) {
-  let memberId = Number(req.params.memberId);
+  const memberId = Number(req.params.memberId);
 
   try {
     await prisma.user.delete({

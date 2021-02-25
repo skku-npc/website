@@ -11,7 +11,7 @@ const {
   uploadImage,
   deleteImage,
   requestResetPassword,
-  resetPassword
+  resetPassword,
 } = require('./user');
 const { auth, hash, emailValidator } = require('../../middleware/auth');
 
@@ -35,7 +35,11 @@ router.post('/requestResetPassword', emailValidator, requestResetPassword);
 router.post('/resetPassword/:passwordResetToken', resetPassword);
 router.get('/profile', auth, getUserProfile);
 router.patch('/profile', auth, patchUserProfile);
-router.patch('/profile/upload-image', [auth, upload.single('image')], uploadImage);
+router.patch(
+  '/profile/upload-image',
+  [auth, upload.single('image')],
+  uploadImage,
+);
 router.patch('/profile/remove-image', auth, deleteImage);
 router.delete('/profile', auth, deleteUser);
 module.exports = router;

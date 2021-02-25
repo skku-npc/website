@@ -1,6 +1,5 @@
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["nativeTypes"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -48,9 +47,9 @@ model Note {
 }
 
 model Event {
-  id        Int      @id @default(autoincrement())
-  title     String
-  startDate DateTime
-  endDate   DateTime
-  allDay    Boolean? @default(false)
+  id     Int      @id @default(autoincrement())
+  title  String
+  start  DateTime
+  end    DateTime
+  allDay Boolean? @default(false)
 }
