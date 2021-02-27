@@ -22,10 +22,10 @@ async function getEvents(req, res) {
         const lastDay = new Date(year, month);
         events = await prisma.event.findMany({
           where: {
-            startDate: {
+            start: {
               lt: lastDay,
             },
-            endDate: {
+            end: {
               gte: firstDay,
             },
           },
@@ -35,10 +35,10 @@ async function getEvents(req, res) {
         const lastDay = new Date(year + 1, 0);
         events = await prisma.event.findMany({
           where: {
-            startDate: {
+            start: {
               lt: lastDay,
             },
-            endDate: {
+            end: {
               gte: firstDay,
             },
           },
@@ -58,8 +58,8 @@ async function createNewEvent(req, res) {
     const eventCreated = await prisma.event.create({
       data: {
         ...req.body,
-        startDate: new Date(req.body.startDate),
-        endDate: new Date(req.body.endDate),
+        start: new Date(req.body.start),
+        end: new Date(req.body.end),
       },
     });
     res.status(201).send(eventCreated);
@@ -78,11 +78,7 @@ async function removeEventById(req, res) {
     });
     res.status(200).send(eventRemoved);
   } catch (e) {
-    if (e.code === 'P2016') {
-      res.status(404).send(e);
-    } else {
-      res.status(400).send(e);
-    }
+    res.status(400).send(e);
   }
 }
 
@@ -97,11 +93,7 @@ async function updateEventById(req, res) {
     });
     res.status(200).send(eventUpdated);
   } catch (e) {
-    if (e.code === 'P2016') {
-      res.status(404).send(e);
-    } else {
-      res.status(400).send(e);
-    }
+    res.status(400).send(e);
   }
 }
 
