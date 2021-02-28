@@ -143,23 +143,23 @@
   margin-top: 150px;
 }
 
-.class-box {
+.frame-03 .class-box {
   max-width: 300px;
   height: 300px;
   border-radius: 2rem;
 }
 
-.class-box.basic {
+.frame-03 .class-box.basic {
   background: linear-gradient(180deg, #feff83 0%, #f5e12e 100%);
   box-shadow: 0px 0px 64px 16px rgba(226, 209, 54, 0.5);
 }
 
-.class-box.intermediate {
+.frame-03 .class-box.intermediate {
   background: linear-gradient(180deg, #b6f170 0%, #8fbf56 100%);
   box-shadow: 0px 0px 64px 16px rgba(143, 191, 86, 0.5);
 }
 
-.class-box.advanced {
+.frame-03 .class-box.advanced {
   background: linear-gradient(180deg, #79acf9 0%, #4d7dc5 100%);
   box-shadow: 0px 0px 64px 16px rgba(121, 172, 249, 0.5);
 }

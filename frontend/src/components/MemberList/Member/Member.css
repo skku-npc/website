@@ -39,12 +39,12 @@
   height: 20px;
 }
 
-.tooltip {
+.member .tooltip {
   position: relative;
   display: inline-block;
 }
 
-.tooltip .tooltip_text {
+.member .tooltip .tooltip_text {
   visibility: hidden;
   width: 220px;
   background-color: rgba(0, 0, 0, 0.75);
@@ -59,7 +59,7 @@
   margin-left: -110px;
 }
 
-.tooltip .tooltip_text::after {
+.member .tooltip .tooltip_text::after {
   content: "";
   position: absolute;
   bottom: 100%;
@@ -70,6 +70,6 @@
   border-color: transparent transparent black transparent;
 }
 
-.tooltip:hover .tooltip_text {
+.member .tooltip:hover .tooltip_text {
   visibility: visible;
 }
