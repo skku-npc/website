@@ -4,7 +4,7 @@ import moment from 'moment';
 import axios from 'axios';
 import './FixEvent.css';
 
-const FixEvent = ({ setModalOpen, events, mode }) => {
+const FixEvent = ({ setModalOpen, events, loadData, mode }) => {
   const [ Title, setTitle ] = useState();
   const [ input, setInput ] = useState({
     id: 0,
@@ -50,33 +50,38 @@ const FixEvent = ({ setModalOpen, events, mode }) => {
   };
 
   const filloutPost = () => {
+    let req = {
+      title: title,
+      start: allDay ? start.slice(0, 10) + 'T00:00' : start,
+      end: allDay ? start.slice(0, 10) + 'T23:59' : end,
+      allDay: allDay
+    };
+    req['start'] = new Date(req['start']);
+    req['end'] = new Date(req['end']);
     if (mode === 'add') {
-      axios.post('/api/calendar/event', {
-        title: title,
-        start: start,
-        end: end
-      }).then(() => {
-        setModalOpen(false);
-      }).catch(error => {
-        window.alert(error);
-      });
+      axios.post('/api/calendar/event', req)
+        .then(() => {
+          setModalOpen(false);
+          loadData();
+        }).catch(error => {
+          window.alert(error);
+        });
     } else {
-      axios.patch(`/api/calendar/event/${id}`, {
-        title: title,
-        start: start,
-        end: end
-      }).then(() => {
-        setModalOpen(false);
-      }).catch(error => {
-        window.alert(error);
-      });
+      axios.patch(`/api/calendar/event/${id}`, req)
+        .then(() => {
+          setModalOpen(false);
+          loadData();
+        }).catch(error => {
+          window.alert(error);
+        });
     }
   };
 
   const deletePost = (data) => {
-    axios.post(`/api/calendar/event/${data.id}`)
+    axios.delete(`/api/calendar/event/${data.id}`)
       .then(() => {
         setModalOpen(false);
+        loadData();
       }).catch(error => {
         window.alert(error);
       });
@@ -130,7 +135,7 @@ const FixEvent = ({ setModalOpen, events, mode }) => {
             시작
           </div>
           <div className="col-8 offset-1 p-0">
-            <input type={allDay ? 'date' : 'datetime-local'} name="end" value={end} onKeyPress={pressEnter} onChange={onChange} required />
+            <input type={allDay ? 'date' : 'datetime-local'} name="start" value={start} onKeyPress={pressEnter} onChange={onChange} required />
           </div>
         </div>
         <div className="row horizontal-center mb-4">
@@ -158,7 +163,7 @@ const FixEvent = ({ setModalOpen, events, mode }) => {
                 <div className="col-10 p-0">
                   <span className="name">{data.title}</span>
                   <br/>
-                  <span className="details">{`${moment(data.start).format('YYYY-MM-DD HH:mm')} - ${moment(data.end).format('YYYY-MM-DD HH:mm')}`}</span>
+                  <span className="details">{data.allDay ? `${moment(data.start).format('YYYY-MM-DD')}` : `${moment(data.start).format('YYYY-MM-DD HH:mm')} - ${moment(data.end).format('YYYY-MM-DD HH:mm')}`}</span>
                 </div>
                 <div className="col-1 p-0">
                   <img src="/icons/pencil.png" alt="edit" onClick={() => fillOutOnClick(data)} />
@@ -182,6 +187,7 @@ const FixEvent = ({ setModalOpen, events, mode }) => {
 FixEvent.propTypes = {
   setModalOpen: PropTypes.func.isRequired,
   events: PropTypes.array.isRequired,
+  loadData: PropTypes.func.isRequired,
   mode: PropTypes.string.isRequired
 };
 

@@ -25,44 +25,29 @@ const Calendar = ({ setModalContent, setModalOpen, isLoggedIn }) => {
     }
   }, [isLoggedIn]);
 
-  useEffect(async () => {
-    /*
-    const result = await axios.get('/api/calendar/events', {
+  const loadData = async () => {
+    const { data } = await axios.get('/api/calendar/events', {
       params: {
         year: selectedDate.getFullYear(),
         month: selectedDate.getMonth() + 1,
       }
     }
-    );*/
-    const result = {
-      status: 200,
-      data: [
-        {
-          id: 0,
-          start: new Date(2021,1,1,19),
-          end: new Date(2021,1,1,20),
-          title: 'NPC -website -front Meeting'
-        },
-        {
-          id: 1,
-          start: new Date(2021,1,2,19),
-          end: new Date(2021,1,2,20),
-          title: 'NPC -website -Design Meeting'
-        },
-        {
-          id: 2,
-          start: new Date(2021,1,21),
-          end: new Date(2021,1,21,23,59),
-          allDay: true,
-          title: '겨울방학 종료'
-        }
-      ]
-    };
-    setEventData(result.data);
-  }, [selectedDate]);
+    );
+    setEventData(data.map((data) => {
+      let result = {...data};
+      if (!result['allDay']) {
+        delete result['allDay'];
+      }
+      result['start'] = new Date(result['start']);
+      result['end'] = new Date(result['end']);
+      return result;
+    }));
+  };
+
+  useEffect(loadData, [selectedDate]);
 
   const editOpen = (mode) => {
-    setModalContent(<FixEvent setModalOpen={setModalOpen} events={eventData} mode={mode} />);
+    setModalContent(<FixEvent setModalOpen={setModalOpen} events={eventData} loadData={loadData} mode={mode} />);
     setModalOpen(true);
   };
 
