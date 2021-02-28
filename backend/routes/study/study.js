@@ -28,6 +28,7 @@ async function studyNoteList(req, res) {
         id: true,
         title: true,
         author: true,
+        class: true,
       },
     });
     res.status(200).send(notes);
