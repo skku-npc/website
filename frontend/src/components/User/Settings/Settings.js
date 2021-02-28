@@ -83,7 +83,7 @@ const Settings = () => {
   return (
     <div className="container-fluid settings p-0">
       <div className="row title">
-        Account Settings
+        계정 설정
       </div>
       <div className="background">
         <div className="row justify-content-center">
@@ -96,49 +96,49 @@ const Settings = () => {
             <div className="profile-others card">
               <div className="row">
                 <div className="col p-0 semi-title">
-                  My Profile
+                  내 프로필
                 </div>
               </div>
               <hr />
               <div className="row mb-3">
-                <div className="col-4 p-0">BOJ</div>
+                <div className="col-4 p-0">백준</div>
                 <div className="col-7 offset-1 p-0">
                   <input className="normal-input" type="text" name="bojHandle" value={input.bojHandle} onKeyPress={pressEnter} onChange={onChange} />
                 </div>
               </div>
               <div className="row mb-3">
-                <div className="col-4 p-0">Codeforces</div>
+                <div className="col-4 p-0">코드포스</div>
                 <div className="col-7 offset-1 p-0">
                   <input className="normal-input" type="text" name="codeforcesHandle" value={input.codeforcesHandle} onKeyPress={pressEnter} onChange={onChange} />
                 </div>
               </div>
               <div className="row mb-3">
-                <div className="col-4 p-0">Github</div>
+                <div className="col-4 p-0">깃헙</div>
                 <div className="col-7 offset-1 p-0">
                   <input className="normal-input" type="text" name="githubHandle" value={input.githubHandle} onKeyPress={pressEnter} onChange={onChange} />
                 </div>
               </div>
               <div className="row mb-3">
-                <div className="col-4 p-0">Class</div>
+                <div className="col-4 p-0">반</div>
                 <div className="col-7 offset-1 p-0">
                   <input className="normal-input" type="text" name="class" value={input.class} onKeyPress={pressEnter} onChange={onChange} />
                 </div>
               </div>
               <br /><br />
               <div className="row mb-3">
-                <div className="col-4 p-0">Original PW</div>
+                <div className="col-4 p-0">기존 비밀번호</div>
                 <div className="col-7 offset-1 p-0">
                   <input className="pw-input" type="password" name="originalPassword" value={input.originalPassword} onKeyPress={pressEnter} onChange={onChange} required />
                 </div>
               </div>
               <div className="row mb-3">
-                <div className="col-4 p-0">New PW</div>
+                <div className="col-4 p-0">새 비밀번호</div>
                 <div className="col-7 offset-1 p-0">
                   <input className="pw-input" type="password" name="password" value={input.password} onKeyPress={pressEnter} onChange={onChange} required />
                 </div>
               </div>
               <div className="row mb-3">
-                <div className="col-4 p-0">Confirm PW</div>
+                <div className="col-4 p-0">비밀번호 확인</div>
                 <div className="col-7 offset-1 p-0">
                   <input className="pw-input" type="password" name="passwordConfirm" value={input.passwordConfirm} onKeyPress={pressEnter} onChange={onChange} required />
                 </div>

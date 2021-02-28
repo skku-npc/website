@@ -65,11 +65,11 @@ const Profile = ({ user, settings }) => {
       { settings ?
         (
           <div className="row mb-5">
-            <div className="setting-button col-2 offset-7 p-0">
+            <div className="setting-button col-3 offset-6 p-0">
               <input type="file" id="file" name="file" onChange={uploadImage} style={{display: 'none'}} />
-              <label htmlFor="file">upload</label>
+              <label htmlFor="file">추가 / 수정</label>
             </div>
-            <div className="setting-button col-2 p-0" onClick={removeImage}>remove</div>
+            <div className="setting-button col-2 p-0" onClick={removeImage}>삭제</div>
           </div>
         ) : (
           <div className="row mb-5">
