@@ -11,25 +11,16 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 moment.locale('ko');
 const localizer = momentLocalizer(moment);
 
-const Calendar = ({ setModalContent, setModalOpen, isLoggedIn }) => {
+const Calendar = ({ match, history, setModalContent, setModalOpen, isLoggedIn }) => {
   const [ eventData, setEventData ] = useState([]);
-  const [ selectedDate, setSelectedDate ] = useState(moment().toDate());
+  const [ params, setParams ] = useState({});
   const [ isAdmin, setIsAdmin ] = useState(false);
-
-  useEffect(async () => {
-    if (isLoggedIn) {
-      const { data } = await axios.get('/api/user/profile');
-      if (data.role === 'Admin') {
-        setIsAdmin(true);
-      }
-    }
-  }, [isLoggedIn]);
 
   const loadData = async () => {
     const { data } = await axios.get('/api/calendar/events', {
       params: {
-        year: selectedDate.getFullYear(),
-        month: selectedDate.getMonth() + 1,
+        year: params.date.getFullYear(),
+        month: params.date.getMonth() + 1,
       }
     }
     );
@@ -44,7 +35,28 @@ const Calendar = ({ setModalContent, setModalOpen, isLoggedIn }) => {
     }));
   };
 
-  useEffect(loadData, [selectedDate]);
+  useEffect(() => {
+    setParams({
+      date: moment(match.params.date, 'YYYY-MM-DD').toDate(),
+      view: match.params.view
+    });
+  }, []);
+
+  useEffect(() => {
+    if (params.date && params.view) {
+      loadData();
+      history.push(`/calendar/${params.view}/${moment(params.date).format('YYYY-MM-DD')}`);
+    }
+  }, [params]);
+
+  useEffect(async () => {
+    if (isLoggedIn) {
+      const { data } = await axios.get('/api/user/profile');
+      if (data.role === 'Admin') {
+        setIsAdmin(true);
+      }
+    }
+  }, [isLoggedIn]);
 
   const editOpen = (mode) => {
     setModalContent(<FixEvent setModalOpen={setModalOpen} events={eventData} loadData={loadData} mode={mode} />);
@@ -70,19 +82,28 @@ const Calendar = ({ setModalContent, setModalOpen, isLoggedIn }) => {
           step={15}
           timeslots={8}
           localizer={localizer}
-          defaultDate={selectedDate}
-          defaultView="month"
           events={eventData}
           views={['month','week','day']}
-          style={{ height: '70vh', width: '80%', margin: '0 10%'}}
-          onNavigate={date => {
-            setSelectedDate(date);
+          date={params.date}
+          view={params.view}
+          onView={(view) => {
+            setParams({
+              ...params,
+              view: view
+            });
+          }}
+          onNavigate={(newDate, view) => {
+            setParams({
+              date: newDate,
+              view: view
+            });
           }}
           eventPropGetter={() => ({
             style: {
               backgroundColor: '#59861C',
             },
           })}
+          style={{ height: '70vh', width: '80%', margin: '0 10%'}}
         />
       </center>
     </div>
@@ -90,6 +111,8 @@ const Calendar = ({ setModalContent, setModalOpen, isLoggedIn }) => {
 };
 
 Calendar.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   setModalContent: PropTypes.func.isRequired,
   setModalOpen: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired

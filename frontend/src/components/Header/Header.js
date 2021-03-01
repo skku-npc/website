@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import moment from 'moment';
 import Login from '../User/Login';
 import './Header.css';
 
@@ -113,7 +114,7 @@ const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) =>
           <Link to={`/members/${new Date().getFullYear()}`}>멤버</Link>
         </div>
         <div className="col-md-1 p-0 my-3 m-md-0">
-          <Link to="/calendar">일정</Link>
+          <Link to={`/calendar/month/${moment().format('YYYY-MM-DD')}`}>일정</Link>
         </div>
         <div className="col-md-1 p-0 my-3 m-md-0">
           <Link to="/study">스터디</Link>

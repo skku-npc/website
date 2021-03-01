@@ -30,8 +30,8 @@ const App = () => {
           <Route path="/members/:year" render={({ match, history }) =>
             <MemberList match={match} history={history} setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
           />
-          <Route path="/calendar" render={({ location }) =>
-            <Calendar location={location} setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
+          <Route path="/calendar/:view/:date" render={({ match, history }) =>
+            <Calendar match={match} history={history} setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
           />
           <Route path="/study" render={() =>
             <Study isLoggedIn={isLoggedIn} />}
