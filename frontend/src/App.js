@@ -27,18 +27,17 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Intro} />
           <Route path="/main" component={Main} />
-          <Route path="/members" render={() =>
-            <MemberList setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
+          <Route path="/members/:year" render={({ match, history }) =>
+            <MemberList match={match} history={history} setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
           />
-          <Route path="/calendar" render={() =>
-            <Calendar setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
+          <Route path="/calendar" render={({ location }) =>
+            <Calendar location={location} setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
           />
           <Route path="/study" render={() =>
             <Study isLoggedIn={isLoggedIn} />}
           />
           <Route path="/user/settings" component={Settings} />
           <Route path="/user/resetPassword/:passwordResetToken" component={ResetPassword} />
-          {/* 기타 페이지 */}
           <Route
             render={({ location }) => (
               <div style={{margin: '150px 0', textAlign: 'center'}}>

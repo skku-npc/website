@@ -112,7 +112,7 @@ const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) =>
           </Link>
         </div>
         <div className="col-md-1 p-0 my-3 m-md-0">
-          <Link to="/members">멤버</Link>
+          <Link to={`/members/${new Date().getFullYear()}`}>멤버</Link>
         </div>
         <div className="col-md-1 p-0 my-3 m-md-0">
           <Link to="/calendar">일정</Link>

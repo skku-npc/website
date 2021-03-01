@@ -6,7 +6,7 @@ import Pending from './Pending';
 import './MemberList.css';
 import 'animate.css';
 
-const MemberList = ({ setModalContent, setModalOpen, isLoggedIn }) => {
+const MemberList = ({ match, history, setModalContent, setModalOpen, isLoggedIn }) => {
   const [memberData, setMemberData] = useState([]);
   const [displayData, setDisplayData] = useState([]);
   const [filterYear, setFilterYear] = useState();
@@ -19,8 +19,15 @@ const MemberList = ({ setModalContent, setModalOpen, isLoggedIn }) => {
     setMemberData(data);
     setMaxYear(Math.max.apply(null, data.map(member=>member.createdAt)));
     setMinYear(Math.min.apply(null, data.map(member=>member.createdAt)));
-    setFilterYear(new Date().getFullYear());
   }, []);
+
+  useEffect(() => {
+    setFilterYear(parseInt(match.params.year));
+  });
+
+  useEffect(() => {
+    setDisplayData(memberData.filter(member=>(member.createdAt == filterYear && member.status === 'ACCEPTED')));
+  }, [memberData, filterYear]);
 
   useEffect(async () => {
     if (isLoggedIn) {
@@ -30,10 +37,6 @@ const MemberList = ({ setModalContent, setModalOpen, isLoggedIn }) => {
       }
     }
   }, [isLoggedIn]);
-
-  useEffect(() => {
-    setDisplayData(memberData.filter(member=>(member.createdAt == filterYear && member.status === 'ACCEPTED')));
-  }, [filterYear]);
 
   const pendingOpen = () => {
     setModalContent(<Pending />);
@@ -48,15 +51,15 @@ const MemberList = ({ setModalContent, setModalOpen, isLoggedIn }) => {
       <div className="filter-container">
         <div className="col-6 offset-3 p-0">
           <button
-            onClick={()=>setFilterYear(filterYear-1)}
+            onClick={()=>history.push(`/members/${filterYear - 1}`)}
             disabled={filterYear == minYear}>
-              &lt;
+            &lt;
           </button>
           <span className="filter-year">{filterYear}</span>
           <button
-            onClick={()=>setFilterYear(filterYear+1)}
+            onClick={()=>history.push(`/members/${filterYear + 1}`)}
             disabled={filterYear == maxYear}>
-              &gt;
+            &gt;
           </button>
         </div>
         {
@@ -89,6 +92,8 @@ const MemberList = ({ setModalContent, setModalOpen, isLoggedIn }) => {
 };
 
 MemberList.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   setModalContent: PropTypes.func.isRequired,
   setModalOpen: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
