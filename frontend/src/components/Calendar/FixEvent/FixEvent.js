@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import axios from 'axios';
 import './FixEvent.css';
 
-const FixEvent = ({ setModalOpen, events, loadData, mode }) => {
+const FixEvent = ({ setModalOpen, mode, event, loadData }) => {
   const [ Title, setTitle ] = useState();
   const [ input, setInput ] = useState({
     id: 0,
@@ -14,10 +14,8 @@ const FixEvent = ({ setModalOpen, events, loadData, mode }) => {
     allDay: false
   });
   const { id, title, start, end, allDay } = input;
-  const fillOutEl = useRef();
-  const selectEl = useRef();
 
-  const fillOutOnClick = (data) => {
+  const fillInput = (data) => {
     setInput({
       id: data.id,
       title: data.title,
@@ -25,20 +23,13 @@ const FixEvent = ({ setModalOpen, events, loadData, mode }) => {
       end: moment(data.end).format('YYYY-MM-DD' + (data.allDay ? '' : 'THH:mm')),
       allDay: data.allDay || false
     });
-    fillOutEl.current.style.display = 'block';
-    selectEl.current.style.display = 'none';
-  };
-
-  const selectOnClick = () => {
-    fillOutEl.current.style.display = 'none';
-    selectEl.current.style.display = 'block';
   };
 
   const allDayOnClick = (e) => {
     const { checked } = e.target;
     let changed = {...input};
     changed['allDay'] = checked;
-    fillOutOnClick(changed);
+    fillInput(changed);
   };
 
   const onChange = (e) => {
@@ -49,7 +40,7 @@ const FixEvent = ({ setModalOpen, events, loadData, mode }) => {
     });
   };
 
-  const filloutPost = () => {
+  const postInput = () => {
     let req = {
       title: title,
       start: allDay ? start.slice(0, 10) + 'T00:00' : start,
@@ -77,8 +68,8 @@ const FixEvent = ({ setModalOpen, events, loadData, mode }) => {
     }
   };
 
-  const deletePost = (data) => {
-    axios.delete(`/api/calendar/event/${data.id}`)
+  const deletePost = () => {
+    axios.delete(`/api/calendar/event/${id}`)
       .then(() => {
         setModalOpen(false);
         loadData();
@@ -89,23 +80,13 @@ const FixEvent = ({ setModalOpen, events, loadData, mode }) => {
 
   const pressEnter = (e) => {
     if (e.key === 'Enter') {
-      filloutPost();
+      postInput();
     }
   };
 
   useEffect(() => {
-    if (mode === 'add') {
-      setTitle('일정 추가');
-      fillOutOnClick({
-        title: '',
-        start: moment().format('YYYY-MM-DDTHH:mm'),
-        end: moment().format('YYYY-MM-DDTHH:mm'),
-        allDay: false
-      });
-    } else {
-      setTitle('일정 수정 / 삭제');
-      selectOnClick();
-    }
+    setTitle(mode === 'add' ? '일정 추가' : '일정 수정 / 삭제');
+    fillInput(event);
   }, []);
 
   return (
@@ -113,7 +94,7 @@ const FixEvent = ({ setModalOpen, events, loadData, mode }) => {
       <div className="row mb-5">
         <div className="title col p-0">{Title}</div>
       </div>
-      <div className="containerFixEvent" ref={fillOutEl} style={{display: 'none'}}>
+      <div className="containerFixEvent">
         <div className="row horizontal-center mb-4">
           <div className="name col-2 p-0">
             제목
@@ -148,37 +129,12 @@ const FixEvent = ({ setModalOpen, events, loadData, mode }) => {
         </div>
         <br /><br />
         <div className="row justify-content-center horizontal-center">
-          <button className="col-2 p-0" onClick={filloutPost}>저장</button>
+          <button className="col-2 p-0" onClick={postInput}>저장</button>
           {
             mode === 'edit' ?
-              <button className="col-2 p-0" onClick={selectOnClick}>돌아가기</button> : null
+              <button className="col-2 p-0" onClick={deletePost} style={{color: '#e70e0e'}}>삭제</button> : null
           }
         </div>
-      </div>
-      <div className="containerFixEvent" ref={selectEl} style={{display: 'none'}}>
-        {
-          events.length > 0 ?
-            events.map((data, index) => (
-              <div className="row mb-3 align-items-center" key={index}>
-                <div className="col-10 p-0">
-                  <span className="name">{data.title}</span>
-                  <br/>
-                  <span className="details">{data.allDay ? `${moment(data.start).format('YYYY-MM-DD')}` : `${moment(data.start).format('YYYY-MM-DD HH:mm')} - ${moment(data.end).format('YYYY-MM-DD HH:mm')}`}</span>
-                </div>
-                <div className="col-1 p-0">
-                  <img src="/icons/pencil.png" alt="edit" onClick={() => fillOutOnClick(data)} />
-                </div>
-                <div className="col-1 p-0">
-                  <div className="close" onClick={() => deletePost(data)}/>
-                </div>
-              </div>
-            )) :
-            <div className="row">
-              <div className="col p-0">
-                수정 / 삭제 가능한 일정이 없습니다.
-              </div>
-            </div>
-        }
       </div>
     </div>
   );
@@ -186,9 +142,9 @@ const FixEvent = ({ setModalOpen, events, loadData, mode }) => {
 
 FixEvent.propTypes = {
   setModalOpen: PropTypes.func.isRequired,
-  events: PropTypes.array.isRequired,
-  loadData: PropTypes.func.isRequired,
-  mode: PropTypes.string.isRequired
+  event: PropTypes.object.isRequired,
+  mode: PropTypes.string.isRequired,
+  loadData: PropTypes.func.isRequired
 };
 
 export default FixEvent;

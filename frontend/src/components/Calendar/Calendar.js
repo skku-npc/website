@@ -56,9 +56,11 @@ const Calendar = ({ match, history, setModalContent, setModalOpen, isLoggedIn })
     }
   }, [isLoggedIn]);
 
-  const editOpen = (mode) => {
-    setModalContent(<FixEvent setModalOpen={setModalOpen} events={eventData} loadData={loadData} mode={mode} />);
-    setModalOpen(true);
+  const openModal = (mode, event) => {
+    if (isAdmin) {
+      setModalContent(<FixEvent setModalOpen={setModalOpen} mode={mode} event={event} loadData={loadData} />);
+      setModalOpen(true);
+    }
   };
 
   return (
@@ -68,13 +70,6 @@ const Calendar = ({ match, history, setModalContent, setModalOpen, isLoggedIn })
           동아리 일정
         </div>
       </div>
-      {
-        isAdmin ?
-          <div className="row">
-            <div className="button col-1 offset-9 p-0" onClick={() => editOpen('add')}>추가</div>
-            <div className="button col-2 p-0" onClick={() => editOpen('edit')}>수정 / 삭제</div>
-          </div> : null
-      }
       <center>
         <BigCalendar
           step={15}
@@ -90,6 +85,14 @@ const Calendar = ({ match, history, setModalContent, setModalOpen, isLoggedIn })
           onNavigate={(newDate, view) => {
             history.push(`/calendar/${view}/${moment(newDate).format('YYYY-MM-DD')}`);
           }}
+          selectable={isAdmin}
+          onSelectEvent={(event) => openModal('edit', event)}
+          onSelectSlot={(slotInfo) => openModal('add', {
+            title: '',
+            start: slotInfo.start,
+            end: slotInfo.end,
+            allDay: false
+          })}
           eventPropGetter={() => ({
             style: {
               backgroundColor: '#59861C',
