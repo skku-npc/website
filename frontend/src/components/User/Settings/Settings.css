@@ -65,3 +65,7 @@
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
 }
+
+.profile-others .save-button {
+  font-weight: 600;
+}

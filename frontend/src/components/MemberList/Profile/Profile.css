@@ -11,6 +11,7 @@
 
 .profile .setting-button {
   text-decoration: underline;
+  font-weight: 600;
   cursor: default;
 }
 

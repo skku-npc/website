@@ -145,7 +145,7 @@ const Settings = () => {
               </div>
               <br /><br />
               <div className="row mb-3 justify-content-center horizontal-center">
-                <button className="col-2 p-0" onClick={profileSubmit}>Save</button>
+                <button className="save-button col-2 p-0" onClick={profileSubmit}>저장</button>
               </div>
             </div>
           </div>
