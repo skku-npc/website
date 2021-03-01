@@ -22,8 +22,7 @@ const Calendar = ({ match, history, setModalContent, setModalOpen, isLoggedIn })
         year: params.date.getFullYear(),
         month: params.date.getMonth() + 1,
       }
-    }
-    );
+    });
     setEventData(data.map((data) => {
       let result = {...data};
       if (!result['allDay']) {
@@ -36,18 +35,17 @@ const Calendar = ({ match, history, setModalContent, setModalOpen, isLoggedIn })
   };
 
   useEffect(() => {
+    if (params.date) {
+      loadData();
+    }
+  }, [params]);
+
+  useEffect(() => {
     setParams({
       date: moment(match.params.date, 'YYYY-MM-DD').toDate(),
       view: match.params.view
     });
-  }, []);
-
-  useEffect(() => {
-    if (params.date && params.view) {
-      loadData();
-      history.push(`/calendar/${params.view}/${moment(params.date).format('YYYY-MM-DD')}`);
-    }
-  }, [params]);
+  }, [match.params]);
 
   useEffect(async () => {
     if (isLoggedIn) {
@@ -87,16 +85,10 @@ const Calendar = ({ match, history, setModalContent, setModalOpen, isLoggedIn })
           date={params.date}
           view={params.view}
           onView={(view) => {
-            setParams({
-              ...params,
-              view: view
-            });
+            history.push(`/calendar/${view}/${moment(params.date).format('YYYY-MM-DD')}`);
           }}
           onNavigate={(newDate, view) => {
-            setParams({
-              date: newDate,
-              view: view
-            });
+            history.push(`/calendar/${view}/${moment(newDate).format('YYYY-MM-DD')}`);
           }}
           eventPropGetter={() => ({
             style: {
