@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './ResetPassword.css';
 
-const ResetPassword = ({ match }) => {
-  const history = useHistory();
+const ResetPassword = ({ match, history }) => {
   const { passwordResetToken } = match.params;
   const [input, setInput] = useState({
     newPassword: '',
@@ -72,7 +70,8 @@ const ResetPassword = ({ match }) => {
 };
 
 ResetPassword.propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object,
+  history: PropTypes.object
 };
 
 export default ResetPassword;
