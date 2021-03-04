@@ -11,6 +11,7 @@
 
 .filter-container {
   height: 4rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -71,7 +72,7 @@
 .member-container {
   max-width: 100%;
   height: auto;
-  margin: 5% auto;
+  margin: 2rem auto;
 }
 
 .member-grid {

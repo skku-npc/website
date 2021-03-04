@@ -4,7 +4,7 @@ import axios from 'axios';
 import './Profile.css';
 
 const Profile = ({ user, settings }) => {
-  const { name, handle, email, bojHandle, codeforcesHandle, createdAt, department, image } = user;
+  const { name, handle, email, bojHandle, codeforcesHandle, githubHandle, createdAt, department, image } = user;
   const profileImage = useRef();
 
   const imageFromArray = (array) => {
@@ -73,7 +73,7 @@ const Profile = ({ user, settings }) => {
           </div>
         ) : (
           <div className="row mb-5">
-            <a className="col-2 offset-7 p-0" href={bojHandle && `https://www.acmicpc.net/user/${bojHandle}`} target="_blank" rel="noopener noreferrer">
+            <a className="col-2 offset-5 p-0" href={bojHandle && `https://www.acmicpc.net/user/${bojHandle}`} target="_blank" rel="noopener noreferrer">
               <li className="tooltip">
                 <img
                   className="button-icon"
@@ -91,6 +91,16 @@ const Profile = ({ user, settings }) => {
                   alt="codeforces"
                 />
                 <span className="tooltip_text">{`(코포) ${codeforcesHandle || '등록되지 않음'}`}</span>
+              </li>
+            </a>
+            <a className="col-2 p-0" href={githubHandle && `https://github.com/${githubHandle}`} target="_blank" rel="noopener noreferrer">
+              <li className="tooltip">
+                <img
+                  className="button-icon"
+                  src="/icons/github.png"
+                  alt="github"
+                />
+                <span className="tooltip_text">{`(깃) ${githubHandle || '등록되지 않음'}`}</span>
               </li>
             </a>
           </div>

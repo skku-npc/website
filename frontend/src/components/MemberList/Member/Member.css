@@ -10,12 +10,20 @@
   margin-bottom: 0.4rem;
 }
 
+.member .col-2 {
+  text-align: center;
+}
+
+.member img {
+  height: 1.2rem;
+}
+
 .member_name,
 .member_handle {
   font-style: normal;
   font-weight: 600;
   font-size: 1.5rem;
-  line-height: 2rem;
+  line-height: 1.5rem;
   color: #4e4e4e;
 }
 
@@ -50,7 +58,7 @@
   z-index: 3;
   top: 150%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-54%);
 }
 
 .member .tooltip .tooltip_text::after {

@@ -5,7 +5,7 @@ import Profile from '../Profile';
 import './Member.css';
 
 const Member = ({ setModalContent, setModalOpen, user }) => {
-  const { name, id, handle, email, bojHandle, codeforcesHandle } = user;
+  const { name, id, handle, email, bojHandle, codeforcesHandle, githubHandle } = user;
 
   const openModal = () => {
     axios.get(`/api/users/member/${id}`)
@@ -19,8 +19,8 @@ const Member = ({ setModalContent, setModalOpen, user }) => {
 
   return (
     <div className="member" onClick={openModal}>
-      <div className="row align-items-center">
-        <span className="member_name col-5 offset-1 p-0">{name}</span>
+      <div className="row justify-content-center align-items-center">
+        <span className="member_name col-4 offset-1 p-0">{name}</span>
         <ul className="member_button col-6 p-0">
           <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
             <li className="tooltip">
@@ -52,10 +52,20 @@ const Member = ({ setModalContent, setModalOpen, user }) => {
               <span className="tooltip_text">{`(코포) ${codeforcesHandle || '등록되지 않음'}`}</span>
             </li>
           </a>
+          <a href={githubHandle && `https://github.com/${githubHandle}`} target="_blank" rel="noopener noreferrer">
+            <li className="tooltip">
+              <img
+                className="button-icon"
+                src="/icons/github.png"
+                alt="github"
+              />
+              <span className="tooltip_text">{`(깃) ${githubHandle || '등록되지 않음'}`}</span>
+            </li>
+          </a>
         </ul>
       </div>
-      <div className="row">
-        <span className="member_handle col-11 offset-1 p-0">@{handle}</span>
+      <div className="row justify-content-center align-items-center">
+        <span className="member_handle col-10 p-0">@{handle}</span>
       </div>
     </div>
   );

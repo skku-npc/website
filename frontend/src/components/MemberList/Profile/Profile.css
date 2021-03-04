@@ -41,7 +41,7 @@
   z-index: 3;
   top: 150%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-54%);
 }
 
 .profile .tooltip .tooltip_text::after {
