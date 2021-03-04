@@ -139,7 +139,7 @@ const Main = () => {
           </div>
           <div className="col-12 pt-5">
             <span className="green">
-                NPC <span className="white">지원하기 &gt;</span>
+                NPC <a href={'http://bit.ly/npc-2021-1'} target="_blank" rel="noopener noreferrer" className="white" style={{textDecoration: 'none'}}>지원하기 &gt;</a>
             </span>
           </div>
         </div>
