@@ -117,7 +117,7 @@ const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) =>
           <Link to={`/calendar/month/${moment().format('YYYY-MM-DD')}`}>일정</Link>
         </div>
         <div className="col-md-1 p-0 my-3 m-md-0">
-          <Link to="/study">스터디</Link>
+          <Link to="/study/basic">스터디</Link>
         </div>
         <div className="dropdown col-md-1 p-0 my-3 m-md-0">
           <img className="dropbtn" src="/icons/user.png" alt="user" onClick={() => setDropdownOpen(!dropdownOpen)}/>

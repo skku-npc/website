@@ -8,6 +8,7 @@
 
 .study img {
   height: 30px;
+  transform: translateY(10%);
 }
 
 .post {
@@ -16,7 +17,6 @@
 
 .post .title {
   font-size: 2.5rem;
-  margin: 3rem 0;
   font-weight: 600;
 }
 
@@ -36,47 +36,6 @@
 .all-posts .post-title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-}
-
-.write {
-  margin: 0 10%;
-  padding: 5%;
-  border-radius: 0.5rem;
-  background-color: #d7d7d7;
-}
-
-.write .card {
-  background-color: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  padding: 1rem 2rem;
-}
-
-.write .title {
-  font-size: 1.5rem;
-}
-
-.write select {
-  font-family: "KoreanTITGD";
-  height: 2.5rem;
-  width: 100%;
-}
-
-.write button {
-  font-size: 1.3rem;
-  border-radius: 0.5rem;
-  background: #cab0a8;
-  font-family: "KoreanTITGD";
-}
-
-.write .content {
-  margin-top: 3rem;
-}
-
-.write .input-box {
-  border: 1px solid;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
 }
 
 .show .tooltip_arrow {
@@ -150,4 +109,53 @@
 
 .show .class-boxes .col-2:hover .tooltip_arrow {
   visibility: visible;
+}
+
+.editor {
+  width: 80%;
+  margin: 0 10%;
+  padding: 50px 50px;
+  border-radius: 0.5rem;
+  background-color: #d7d7d7;
+}
+
+.editor .card {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  padding: 1rem 2rem;
+}
+
+.editor .title {
+  font-size: 1.5rem;
+}
+
+.editor select {
+  font-family: "KoreanTITGD";
+  height: 2.5rem;
+  width: 100%;
+}
+
+.editor button {
+  font-size: 1.3rem;
+  border-radius: 0.5rem;
+  background: #cab0a8;
+  font-family: "KoreanTITGD";
+}
+
+.editor .content {
+  margin-top: 3rem;
+}
+
+.editor .input-box {
+  border: 1px solid;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.editor input {
+  border: none;
+  height: 100%;
+  width: 100%;
+  font-family: "KoreanTITGD", "Manrope";
 }

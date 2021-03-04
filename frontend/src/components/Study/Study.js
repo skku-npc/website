@@ -1,130 +1,103 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { createEditor } from 'slate';
-import { Slate, Editable, withReact } from 'slate-react';
-import { withHistory } from 'slate-history';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import RichText from './RichText';
 import axios from 'axios';
+import MDEditor, { commands } from '@uiw/react-md-editor';
+import ReactMarkdown from 'react-markdown';
 import './Study.css';
 
-const Study = ({ isLoggedIn }) => {
-  const [ postData, setPostData ] = useState([]);
-  const [ mode, setMode ] = useState('create');
+const Study = ({ match, history, isLoggedIn }) => {
+  const [ studyData, setStudyData ] = useState([]);
+  const [ selectedPost, setSelectedPost ] = useState({});
   const [ isAdmin, setIsAdmin ] = useState(true);
-  const [ selectedClass, setSelectedClass ] = useState(1);
-  const [ selectedHoverClass, setSelectedHoverClass ] = useState(1);
-  const [ selectedID, setSelectedID ] = useState(1);
-  const [ post, setPost ] = useState({});
-  const [ userID, setUserID ] = useState(1);
+  const [ userId, setUserId ] = useState();
+  const [ classId, setClassId ] = useState();
+  const [ hoverId, setHoverId ] = useState(0);
+  const [ params, setParams ] = useState({});
+  const [ input, setInput ] = useState({});
   const show = useRef();
-  const write = useRef();
   const showPost = useRef();
   const allPosts = useRef();
+  const editor = useRef();
   const basic = useRef();
   const intermediate = useRef();
   const advanced = useRef();
-  const [ input, setInput ] = useState({
-    id: -1,
-    title: [{
-      children: [
-        { text: '제목을 입력하세요...' }
-      ]
-    }],
-    content: [{
-      type: 'paragraph',
-      children: [
-        { text: '본문을 입력하세요...' },
-      ],
-    }],
-    author: '',
-    class: 1
-  });
-  const titleEditor = useMemo(() => withHistory(withReact(createEditor())), []);
 
   const loadData =  async () => {
-    //const { data } = await axios.get('/api/study/notes');
-    const data = [
-      {
-        'id': 1,
-        'title': 'C++ STL(1)-vector,list,deque',
-        'writer': '최재민',
-        'class': 1
-      },
-      {
-        'id': 2,
-        'title': 'C++ STL(2)-set,map',
-        'writer': '최재민',
-        'class': 1
-      },
-      {
-        'id': 3,
-        'title': 'C++ DynamicProgramming',
-        'writer': '최재민',
-        'class': 2
-      },
-      {
-        'id': 4,
-        'title': 'C++ Dijkstra',
-        'writer': '최재민',
-        'class': 2
-      },
-      {
-        'id': 5,
-        'title': 'C++ SegmentTree',
-        'writer': '최재민',
-        'class': 3
-      },
-      {
-        'id': 6,
-        'title': 'C++ MaximumFlow',
-        'writer': '최재민',
-        'class': 3
-      }
-    ];
-    console.log(data);
-    setPostData(data);
-    setSelectedID(data[0].id);
-    setInput({
-      ...input,
-      id: data[data.length - 1].id + 1
-    });
+    const { data } = await axios.get('/api/study/notes');
+    setStudyData(data);
   };
 
   useEffect(loadData, []);
 
-  const showAllPosts = (classID) => {
-    setSelectedClass(classID);
+  useEffect(() => {
+    setParams({
+      ...match.params
+    });
+  }, [match.params]);
+
+  const displayShow = () => {
     show.current.style.display = 'block';
-    write.current.style.display = 'none';
-    showPost.current.style.display = 'none';
-    allPosts.current.style.display = 'block';
+    editor.current.style.display = 'none';
   };
 
-  const showSelectedPost = (id) => {
-    setSelectedID(id);
-    show.current.style.display = 'block';
-    write.current.style.display = 'none';
-    showPost.current.style.display = 'block';
-    allPosts.current.style.display = 'none';
-  };
-
-  const showWrite = (mode_, id) => {
-    if (mode_ === 'edit') {
-      setSelectedID(id);
-      setInput({
-        ...input,
-        id: post.id,
-      });
-    }
+  const displayEditor = () => {
     show.current.style.display = 'none';
-    write.current.style.display = 'block';
-    setMode(mode_);
+    editor.current.style.display = 'block';
   };
 
   useEffect(async () => {
-    const { data } = await axios.get(`/api/study/note/${selectedID}`);
-    setPost(data[0]);
-  }, [selectedID]);
+    if (params.index) {
+      const { data } = await axios.get(`/api/study/note/${params.index}`);
+      if (params.class === 'update') {
+        setInput({
+          id: data.id,
+          author: data.author,
+          title: data.title,
+          content: data.content,
+          class: data.class
+        });
+        displayEditor();
+      } else {
+        setSelectedPost({
+          title: data.title,
+          content: data.content,
+          author: data.author.name
+        });
+        displayShow();
+        allPosts.current.style.display = 'none';
+        showPost.current.style.display = 'block';
+      }
+    } else {
+      if (params.class === 'write') {
+        setInput({
+          title: '',
+          content: '',
+          class: classId
+        });
+        displayEditor();
+      } else {
+        setClassId(params.class === 'basic' ? 1 : (params.class === 'advanced' ? 3 : 2));
+        params.class === 'basic' ? highlightBasic() : (params.class === 'advanced' ? highlightAdvanced() : highlightIntermediate());
+        displayShow();
+        allPosts.current.style.display = 'block';
+        showPost.current.style.display = 'none';
+      }
+    }
+  }, [params]);
+
+  useEffect(() => {
+    const id = hoverId === 0 ? classId : hoverId;
+    switch (id) {
+    case 1:
+      highlightBasic();
+      break;
+    case 2:
+      highlightIntermediate();
+      break;
+    case 3:
+      highlightAdvanced();
+    }
+  }, [hoverId]);
 
   useEffect(async () => {
     if (isLoggedIn) {
@@ -132,50 +105,24 @@ const Study = ({ isLoggedIn }) => {
       if (data.role === 'Admin') {
         setIsAdmin(true);
       }
-      setUserID(data.id);
+      setUserId(data.id);
     }
   }, [isLoggedIn]);
 
-  useEffect(() => {
-    console.log(input);
-  }, [input]);
-
-  const uploadNote = () => {
-    if (mode === 'create') {
-      axios.post('/api/study/note/', {
-        userId: userID,
-        title: JSON.stringify(input.title),
-        content: JSON.stringify(input.content),
-        class: input.class
-      }).then(() => {
-        loadData();
-      }).catch(error => {
-        window.alert(error);
-      });
-    }
-  };
-
-  const deleteNote = (id) => {
-    axios.delete(`/api/study/note/${id}`)
-      .then(() => {
-        loadData();
-      }).catch(error => {
-        window.alert(error);
-      });
-  };
-
-  const getFilteredData = (hover) => {
-    const classID = hover ? selectedHoverClass : selectedClass;
-    return postData.filter(post=>(post.class === classID)).length > 0 ?
-      postData.filter(post=>(post.class === classID)).map((data, index) => (
+  const getFilteredData = (id, hover) => {
+    const displayData = studyData.filter(post=>(post.class === id));
+    return displayData.length > 0 ?
+      displayData.map((data, index) => (
         <div className="post-title row" key={index}>
-          <div className="col-10" onClick={() => showSelectedPost(data.id)}>
+          <div className="col-10"
+            onClick={() => history.push(`/study/view/${data.id}`)}>
             {(hover ? '' : '- ') + data.title}
           </div>
           {
             !hover && isAdmin ?
               <div className="col-1 p-0">
-                <img src="/icons/pencil.png" alt="edit" onClick={() => showWrite('edit', data.id)}/>
+                <img src="/icons/pencil.png" alt="edit"
+                  onClick={() => history.push(`/study/update/${data.id}`)} />
               </div> : null
           }
           {
@@ -194,53 +141,94 @@ const Study = ({ isLoggedIn }) => {
       );
   };
 
+  const uploadNote = () => {
+    if (params.class === 'write') {
+      axios.post('/api/study/note', {
+        userId: userId,
+        title: input.title,
+        content: input.content,
+        class: input.class
+      }).then(() => {
+        loadData();
+        history.go(-1);
+      }).catch(error => {
+        window.alert(error);
+      });
+    } else if (params.class === 'update') {
+      axios.put(`/api/study/note/${input.id}`, {
+        userId: userId,
+        title: input.title,
+        content: input.content,
+        class: input.class
+      }).then(() => {
+        loadData();
+        history.go(-1);
+      }).catch(error => {
+        window.alert(error);
+      });
+    }
+  };
+
+  const deleteNote = (id) => {
+    axios.delete(`/api/study/note/${id}`)
+      .then(() => {
+        loadData();
+      }).catch(error => {
+        window.alert(error);
+      });
+  };
+
+  const eraseHighlight = () => {
+    basic.current.style.color = 'black';
+    basic.current.style.backgroundColor = 'white';
+    intermediate.current.style.color = 'black';
+    intermediate.current.style.backgroundColor = 'white';
+    advanced.current.style.color = 'black';
+    advanced.current.style.backgroundColor = 'white';
+  };
+
+  const highlightBasic = () => {
+    eraseHighlight();
+    basic.current.style.backgroundColor = '#c5eb5b';
+    intermediate.current.style.color = '#827e7e';
+    advanced.current.style.color = '#827e7e';
+  };
+
+  const highlightIntermediate = () => {
+    eraseHighlight();
+    intermediate.current.style.backgroundColor = '#fcf25c';
+    basic.current.style.color = '#827e7e';
+    advanced.current.style.color = '#827e7e';
+  };
+
+  const highlightAdvanced = () => {
+    eraseHighlight();
+    advanced.current.style.backgroundColor = '#5e9efc';
+    basic.current.style.color = '#827e7e';
+    intermediate.current.style.color = '#827e7e';
+  };
+
   return (
     <div className="container-fluid study p-0">
-      <div className="show" ref={show} style={{display: 'block'}}>
+      <div className="show" ref={show} style={{display: 'block'}}
+        onMouseOut={() => setHoverId(0)}>
         <div className="row class-boxes justify-content-center horizontal-center m-0">
-          <div className="col-2 p-0" ref={basic} onClick={() => showAllPosts(1)}
-            onMouseOver={() => {
-              setSelectedHoverClass(1);
-              basic.current.style.backgroundColor = '#c5eb5b';
-              intermediate.current.style.color = '#827e7e';
-              advanced.current.style.color = '#827e7e';
-            }}
-            onMouseOut={() => {
-              basic.current.style.backgroundColor = 'white';
-              intermediate.current.style.color = 'black';
-              advanced.current.style.color = 'black';
-            }}>
+          <div className="col-2 p-0" ref={basic}
+            onClick={() => history.push('/study/basic')}
+            onMouseOver={() => setHoverId(1)}>
             <div className="class-box">초급반</div>
             <div className="tooltip_arrow"/>
           </div>
-          <div className="col-2 p-0" ref={intermediate} onClick={() => showAllPosts(2)}
-            onMouseOver={() => {
-              setSelectedHoverClass(2);
-              intermediate.current.style.backgroundColor = '#fcf25c';
-              basic.current.style.color = '#827e7e';
-              advanced.current.style.color = '#827e7e';
-            }}
-            onMouseOut={() => {
-              intermediate.current.style.backgroundColor = 'white';
-              basic.current.style.color = 'black';
-              advanced.current.style.color = 'black';
-            }}>
+          <div className="col-2 p-0" ref={intermediate}
+            onClick={() => history.push('/study/intermediate')}
+            onMouseOver={() => setHoverId(2)}>
             <div className="class-box">중급반</div>
             <div className="tooltip_arrow"/>
-            <span className="tooltip_text" style={{textAlign: 'start', width: '450px', marginLeft: '-225px'}}>{getFilteredData(true)}</span>
+            <span className="tooltip_text" style={{textAlign: 'start', width: '50vw', marginLeft: '-25vw'}}>{getFilteredData(hoverId, true)}</span>
           </div>
-          <div className="col-2 p-0" ref={advanced} onClick={() => showAllPosts(3)}
-            onMouseOver={() => {
-              setSelectedHoverClass(3);
-              advanced.current.style.backgroundColor = '#5e9efc';
-              basic.current.style.color = '#827e7e';
-              intermediate.current.style.color = '#827e7e';
-            }}
-            onMouseOut={() => {
-              advanced.current.style.backgroundColor = 'white';
-              basic.current.style.color = 'black';
-              intermediate.current.style.color = 'black';
-            }}>
+          <div className="col-2 p-0" ref={advanced}
+            onClick={() => history.push('/study/advanced')}
+            onMouseOver={() => setHoverId(3)}>
             <div className="class-box">고급반</div>
             <div className="tooltip_arrow"/>
           </div>
@@ -249,28 +237,33 @@ const Study = ({ isLoggedIn }) => {
           isAdmin ?
             <div className="row my-4">
               <div className="col-1 offset-10 horizontal-center">
-                <img src="/icons/circled-plus.png" alt="add" onClick={() => showWrite('create')}/>
+                <img src="/icons/circled-plus.png" alt="add"
+                  onClick={() => history.push('/study/write')} />
               </div>
             </div> : null
         }
         <div className="show-post" ref={showPost} style={{display: 'none'}}>
           <div className="post">
             <div className="title horizontal-center">
-              {/*{post.title}*/}
+              {selectedPost.title}
             </div>
+            <br />
             <div className="writer text-right">
-                작성: {/*{post.author}*/}
+                작성: {selectedPost.author}
             </div>
-            {/*{post.content}*/}
+            <br />
+            <ReactMarkdown>
+              {selectedPost.content}
+            </ReactMarkdown>
           </div>
         </div>
         <div className="all-posts" ref={allPosts} style={{display: 'block'}}>
           <div className="m-0">
-            {getFilteredData(false)}
+            {getFilteredData(classId, false)}
           </div>
         </div>
       </div>
-      <div className="write" ref={write} style={{display: 'none'}}>
+      <div className="editor" ref={editor} style={{display: 'none'}}>
         <div className="row justify-content-center">
           <div className="col-7 p-0">
             <div className="card">
@@ -279,12 +272,7 @@ const Study = ({ isLoggedIn }) => {
               </div>
               <div className="row mt-2 input-box">
                 <div className="col p-0">
-                  <Slate editor={titleEditor} value={input.title} onChange={newTitle => setInput({
-                    ...input,
-                    title: newTitle
-                  })}>
-                    <Editable />
-                  </Slate>
+                  <input type="text" name="" placeholder="제목을 입력하세요..." value={input.title} onChange={(e) => setInput({...input, title: e.target.value})} required />
                 </div>
               </div>
             </div>
@@ -295,13 +283,14 @@ const Study = ({ isLoggedIn }) => {
                 <div className="col title p-0">반 선택</div>
               </div>
               <div className="row mt-2">
-                <select onChange={(e) => setInput({
-                  ...input,
-                  class: e.target.options.selectedIndex + 1
-                })}>
-                  <option value='1'>초급반</option>
-                  <option value='2'>중급반</option>
-                  <option value='3'>고급반</option>
+                <select
+                  onChange={(e) => setInput({
+                    ...input,
+                    class: e.target.options.selectedIndex + 1
+                  })}>
+                  <option value={1} selected={classId === 1}>초급반</option>
+                  <option value={2} selected={classId === 2}>중급반</option>
+                  <option value={3} selected={classId === 3}>고급반</option>
                 </select>
               </div>
             </div>
@@ -315,7 +304,29 @@ const Study = ({ isLoggedIn }) => {
               </div>
               <div className="row mt-2 input-box">
                 <div className="col px-3">
-                  <RichText input={input} setInput={setInput} />
+                  <MDEditor
+                    value={input.content}
+                    onChange={(value) => setInput({
+                      ...input,
+                      content: value
+                    })}
+                    commands={[
+                      commands.bold, commands.italic, commands.strikethrough, commands.hr, commands.group(
+                        [commands.title1, commands.title2, commands.title3, commands.title4, commands.title5, commands.title6], {
+                          name: 'title',
+                          groupName: 'title',
+                          buttonProps: { 'aria-label': 'Insert title'}
+                        }),
+                      commands.divider,
+                      commands.link, commands.quote, commands.code, //commands.image,
+                      commands.divider,
+                      commands.unorderedListCommand, commands.orderedListCommand, commands.checkedListCommand,
+                      commands.divider,
+                      commands.codeEdit, commands.codeLive, commands.codePreview,
+                      commands.divider,
+                      commands.fullscreen
+                    ]}
+                  />
                 </div>
               </div>
             </div>
@@ -326,7 +337,7 @@ const Study = ({ isLoggedIn }) => {
             <button className="col-2 offset-7" onClick={uploadNote}>저장</button>
             <button className="col-2 offset-1" onClick={() => {
               if (window.confirm('정말 돌아가겠습니까?')) {
-                showAllPosts(selectedClass);
+                history.go(-1);
               }
             }}>돌아가기</button>
           </div>
@@ -337,6 +348,8 @@ const Study = ({ isLoggedIn }) => {
 };
 
 Study.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 };
 

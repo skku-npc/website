@@ -33,8 +33,8 @@ const App = () => {
           <Route path="/calendar/:view/:date" render={({ match, history }) =>
             <Calendar match={match} history={history} setModalContent={setModalContent} setModalOpen={setModalOpen} isLoggedIn={isLoggedIn} />}
           />
-          <Route path="/study" render={() =>
-            <Study isLoggedIn={isLoggedIn} />}
+          <Route path="/study/:class/:index?" render={({ match, history }) =>
+            <Study match={match} history={history} isLoggedIn={isLoggedIn} />}
           />
           <Route path="/user/settings" component={Settings} />
           <Route path="/user/resetPassword/:passwordResetToken" component={ResetPassword} />
