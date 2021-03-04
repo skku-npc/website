@@ -8,7 +8,7 @@
 
 .intro img {
   position: absolute;
-  width: 300px;
+  width: 20vw;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -16,8 +16,8 @@
 
 .box {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 5rem;
+  height: 5rem;
   left: 50%;
   top: 85%;
   transform: translate(-50%, -50%);
@@ -27,9 +27,9 @@
 .arrow {
   position: relative;
   left: 25%;
-  border-bottom: 4px solid #535353;
-  border-left: 4px solid #535353;
-  width: 50px;
-  height: 50px;
+  border-bottom: 0.25rem solid #535353;
+  border-left: 0.25rem solid #535353;
+  width: 3rem;
+  height: 3rem;
   transform: rotate(-45deg);
 }

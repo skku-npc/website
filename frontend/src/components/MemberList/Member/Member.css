@@ -1,41 +1,35 @@
 .member {
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-  margin: 20px 15px;
-  padding: 10px 27px;
-  height: 120px;
-  width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+  padding: 0.8rem 0.8rem;
+  margin: 1.2rem 1.2rem;
 }
 
 .member .row {
-  margin: 12px 0px;
+  margin-bottom: 0.4rem;
 }
 
 .member_name,
 .member_handle {
   font-style: normal;
-  font-weight: 540;
-  font-size: 25px;
-  line-height: 30px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 2rem;
   color: #4e4e4e;
-  margin: 0px;
-  padding: 0px;
 }
 
 .member_button {
   list-style: none;
   display: flex;
-  margin: 5px;
-  padding: 0px;
 }
 
 .member_button li {
-  margin: 0px 5px;
+  margin: 0 0.4rem;
 }
 
 .button-icon {
-  height: 20px;
+  height: 1.5rem;
 }
 
 .member .tooltip {
@@ -45,17 +39,18 @@
 
 .member .tooltip .tooltip_text {
   visibility: hidden;
-  width: 220px;
+  width: auto;
   background-color: rgba(0, 0, 0, 0.75);
   color: #fff;
+  white-space: nowrap;
   text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
+  border-radius: 0.5rem;
+  padding: 0.25rem 1rem;
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   top: 150%;
   left: 50%;
-  margin-left: -110px;
+  transform: translateX(-50%);
 }
 
 .member .tooltip .tooltip_text::after {
@@ -63,8 +58,7 @@
   position: absolute;
   bottom: 100%;
   left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
+  border-width: 0.5rem;
   border-style: solid;
   border-color: transparent transparent black transparent;
 }

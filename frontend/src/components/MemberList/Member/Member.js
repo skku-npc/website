@@ -20,8 +20,8 @@ const Member = ({ setModalContent, setModalOpen, user }) => {
   return (
     <div className="member" onClick={openModal}>
       <div className="row align-items-center">
-        <span className="member_name col-6 m-0">{name}</span>
-        <ul className="member_button col-6 m-0">
+        <span className="member_name col-5 offset-1 p-0">{name}</span>
+        <ul className="member_button col-6 p-0">
           <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer">
             <li className="tooltip">
               <img
@@ -55,7 +55,7 @@ const Member = ({ setModalContent, setModalOpen, user }) => {
         </ul>
       </div>
       <div className="row">
-        <span className="member_handle col">@{handle}</span>
+        <span className="member_handle col-11 offset-1 p-0">@{handle}</span>
       </div>
     </div>
   );

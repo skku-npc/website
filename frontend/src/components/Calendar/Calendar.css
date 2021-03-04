@@ -1,5 +1,6 @@
 .calendar {
-  margin: 150px 0;
+  width: 125vh;
+  margin: 15vh calc((100vw - 125vh) / 2);
 }
 
 .calendar-title {
@@ -9,11 +10,7 @@
 }
 
 .calendar .row {
-  margin: 2% 0;
-}
-
-.calendar img {
-  height: 35px;
+  margin: 4rem 0;
 }
 
 .calendar .button {

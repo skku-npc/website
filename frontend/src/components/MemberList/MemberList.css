@@ -1,15 +1,16 @@
 .member-list {
-  margin: 150px 0;
+  width: 125vh;
+  margin: 15vh calc((100vw - 125vh) / 2);
 }
 
 .member-title {
   margin-left: 5%;
-  font-size: 3em;
+  font-size: 3rem;
   font-weight: 600;
 }
 
 .filter-container {
-  height: 60px;
+  height: 4rem;
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -17,7 +18,7 @@
 }
 
 .filter-container button {
-  font-size: 30px;
+  font-size: 2rem;
   font-family: inherit;
   border: 0;
   padding: 0;
@@ -34,7 +35,7 @@
 }
 
 .filter-container .filter-year {
-  font-size: 30px;
+  font-size: 2rem;
   font-weight: bold;
   margin: 0px 100px;
 }
@@ -46,10 +47,10 @@
 }
 
 .filter-container .new-member-button {
-  box-shadow: 0px 4px 8px #eab10b;
-  border-radius: 8px;
+  box-shadow: 0 0.25rem 0.5rem #eab10b;
+  border-radius: 0.5rem;
   height: 100%;
-  width: 200px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -57,20 +58,20 @@
 }
 
 .filter-container img {
-  width: 45px;
-  height: 45px;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .filter-container .new-member {
   color: #eab10b;
-  font-size: 24px;
-  margin-left: 10px;
+  font-size: 1.5rem;
+  margin-left: 1rem;
 }
 
 .member-container {
-  max-width: 85%;
+  max-width: 100%;
   height: auto;
-  margin: 4% auto;
+  margin: 5% auto;
 }
 
 .member-grid {

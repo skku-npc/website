@@ -177,7 +177,7 @@ const Login = ({ setModalOpen, logIn }) => {
           </div>
           <div className="data">
             <input type="text" id="handle" name="handle" value={handle} onKeyPress={(e) => pressEnter(e, signupSubmit)} onChange={onChange} required />
-            <label htmlFor="department">Handle (별명)</label>
+            <label htmlFor="department">닉네임</label>
           </div>
           <div className="btn">
             <div className="inner">

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import Profile from '../../MemberList/Profile';
 import './Settings.css';
 
-const Settings = () => {
+const Settings = ({ history, setIsLoggedIn }) => {
   const [ profile, setProfile ] = useState({});
   const [ input, setInput ] = useState({
     bojHandle: '',
@@ -66,6 +67,22 @@ const Settings = () => {
           window.alert('성공적으로 변경되었습니다!');
           loadData();
           resetPassword();
+        }).catch(error => {
+          window.alert(error);
+        });
+    }
+  };
+
+  const deleteSubmit = () => {
+    if (window.confirm('정말 탈퇴하시겠습니까? 돌이킬 수 없습니다!')) {
+      axios.delete('/api/user/profile')
+        .then(() => {
+          window.alert('성공적으로 탈퇴되었습니다!');
+          sessionStorage.removeItem('token');
+          sessionStorage.removeItem('tokenExpiredTime');
+          delete axios.defaults.headers.common['Authorization'];
+          setIsLoggedIn(false);
+          history.push('/main');
         }).catch(error => {
           window.alert(error);
         });
@@ -145,7 +162,8 @@ const Settings = () => {
               </div>
               <br /><br />
               <div className="row mb-3 justify-content-center horizontal-center">
-                <button className="save-button col-2 p-0" onClick={profileSubmit}>저장</button>
+                <button className="button col-4 p-0" onClick={profileSubmit} style={{color: '#8dc63f'}}>저장</button>
+                <button className="button col-4 offset-2 p-0" onClick={deleteSubmit} style={{color: '#e70e0e'}}>회원 탈퇴</button>
               </div>
             </div>
           </div>
@@ -153,6 +171,11 @@ const Settings = () => {
       </div>
     </div>
   );
+};
+
+Settings.propTypes = {
+  history: PropTypes.object.isRequired,
+  setIsLoggedIn: PropTypes.func.isRequired
 };
 
 export default Settings;

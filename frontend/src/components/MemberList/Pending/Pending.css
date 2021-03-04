@@ -1,20 +1,20 @@
 .pending {
-  width: 500px;
+  width: 30vw;
   height: auto;
-  padding: 50px;
+  padding: 10%;
   text-align: left;
 }
 
 .pending .title {
-  font-size: 36px;
+  font-size: 2.5rem;
 }
 
 .pending .name {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .pending .details {
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .pending .col-2 {
@@ -24,33 +24,33 @@
 .check {
   display: inline-block;
   transform: rotate(45deg);
-  height: 24px;
-  width: 12px;
-  border-bottom: 3px solid #33d019;
-  border-right: 3px solid #33d019;
+  height: 1.5rem;
+  width: 0.75rem;
+  border-bottom: 0.25rem solid #33d019;
+  border-right: 0.25rem solid #33d019;
 }
 
 .close {
   display: inline-block;
-  width: 24px;
-  height: 18px;
+  width: 1.5rem;
+  height: 1rem;
   position: relative;
 }
 
 .close:after {
   content: "";
-  height: 24px;
-  border-left: 3px solid #e70e0e;
+  height: 1.5rem;
+  border-left: 0.25rem solid #e70e0e;
   position: absolute;
   transform: rotate(45deg);
-  left: 12px;
+  left: 0.75rem;
 }
 
 .close:before {
   content: "";
-  height: 24px;
-  border-left: 3px solid #e70e0e;
+  height: 1.5rem;
+  border-left: 0.25rem solid #e70e0e;
   position: absolute;
   transform: rotate(-45deg);
-  left: 12px;
+  left: 0.75rem;
 }

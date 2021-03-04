@@ -56,7 +56,7 @@ const Profile = ({ user, settings }) => {
   }, []);
 
   return (
-    <div className="profile" style={settings ? {padding: 0, width: '100%', height: '100%'} : {width: '500px', height: '650px', padding: '80px 80px'}}>
+    <div className="profile" style={settings ? {padding: 0, width: '100%', height: '100%'} : {width: '50vh', height: '65vh', padding: '15% 10%'}}>
       <div className="row mb-3">
         <div className="col p-0">
           <img className="profile-img" ref={profileImage} alt="Profile Image" />
@@ -73,7 +73,7 @@ const Profile = ({ user, settings }) => {
           </div>
         ) : (
           <div className="row mb-5">
-            <a className="col-2 offset-8 p-0" href={bojHandle && `https://www.acmicpc.net/user/${bojHandle}`} target="_blank" rel="noopener noreferrer">
+            <a className="col-2 offset-7 p-0" href={bojHandle && `https://www.acmicpc.net/user/${bojHandle}`} target="_blank" rel="noopener noreferrer">
               <li className="tooltip">
                 <img
                   className="button-icon"

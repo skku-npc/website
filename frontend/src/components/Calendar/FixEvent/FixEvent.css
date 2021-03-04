@@ -1,21 +1,21 @@
 .fix-event {
-  width: 650px;
+  width: 30vw;
   height: auto;
-  padding: 50px;
+  padding: 10%;
 }
 
 .fix-event .title {
-  font-size: 36px;
+  font-size: 2.5rem;
 }
 
 .fix-event .name {
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 .fix-event input {
   font-size: 1.2rem;
   font-family: "Manrope", "KoreanTITGD";
-  border-width: 0 0 1px;
+  border-width: 0 0 0.1rem;
   width: 100%;
   height: 100%;
 }

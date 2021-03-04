@@ -1,6 +1,6 @@
 .settings {
-  margin: 150px 0;
-  width: 100%;
+  width: 125vh;
+  margin: 15vh calc((100vw - 125vh) / 2);
   font-size: 1.2rem;
 }
 
@@ -16,19 +16,18 @@
 }
 
 .settings .background {
-  width: 80%;
-  margin: 0 10%;
+  width: 100%;
   padding: 3rem 0;
   background-color: #d7d7d7;
-  border-radius: 27px;
+  border-radius: 1.5rem;
 }
 
 .settings .card {
   margin: 1rem;
   padding: 3rem 0;
   background-color: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
 }
 
 .settings hr {
@@ -39,7 +38,6 @@
   background: none;
   border: none;
   font-size: 1.3rem;
-  color: #8dc63f;
 }
 
 .profile-others input {
@@ -53,19 +51,19 @@
 }
 
 .profile-others .row {
-  padding: 0 80px;
+  padding: 0 5rem;
 }
 
 .profile-others .normal-input {
-  border-width: 0 0 1px;
+  border-width: 0 0 0.1rem;
 }
 
 .profile-others .pw-input {
   background: rgba(107, 107, 107, 0.11);
-  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
+  box-shadow: inset 0px 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
 }
 
-.profile-others .save-button {
+.profile-others .button {
   font-weight: 600;
 }

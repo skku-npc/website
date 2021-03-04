@@ -14,12 +14,14 @@ const MemberList = ({ match, history, setModalContent, setModalOpen, isLoggedIn 
   const [minYear, setMinYear] = useState();
   const [isAdmin, setIsAdmin] = useState(false);
 
-  useEffect(async () => {
+  const loadData = async () => {
     const { data } = await axios.get('/api/users/member');
     setMemberData(data);
     setMaxYear(Math.max.apply(null, data.map(member=>member.createdAt)));
     setMinYear(Math.min.apply(null, data.map(member=>member.createdAt)));
-  }, []);
+  };
+
+  useEffect(loadData, []);
 
   useEffect(() => {
     setFilterYear(parseInt(match.params.year));
@@ -39,7 +41,7 @@ const MemberList = ({ match, history, setModalContent, setModalOpen, isLoggedIn 
   }, [isLoggedIn]);
 
   const pendingOpen = () => {
-    setModalContent(<Pending />);
+    setModalContent(<Pending loadData={loadData} />);
     setModalOpen(true);
   };
 
@@ -81,6 +83,7 @@ const MemberList = ({ match, history, setModalContent, setModalOpen, isLoggedIn 
                 <Member
                   setModalOpen={setModalOpen}
                   setModalContent={setModalContent}
+                  loadData={loadData}
                   user={data} />
               </Fragment>
             ))

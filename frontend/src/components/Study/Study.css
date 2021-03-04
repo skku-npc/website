@@ -1,14 +1,11 @@
 .study {
-  margin: 150px 0;
-}
-
-.study .row {
-  width: 100%;
+  width: 125vh;
+  margin: 15vh calc((100vw - 125vh) / 2);
 }
 
 .study img {
-  height: 30px;
-  transform: translateY(10%);
+  height: 2rem;
+  transform: translateY(20%);
 }
 
 .post {
@@ -40,7 +37,7 @@
 
 .show .tooltip_arrow {
   visibility: hidden;
-  width: 0px;
+  width: 0;
   background-color: rgba(0, 0, 0, 0.75);
   color: #fff;
   text-align: center;
@@ -55,28 +52,29 @@
 
 .show .tooltip_text {
   visibility: hidden;
-  width: 0px;
+  width: 30vw;
   background-color: rgba(0, 0, 0, 0.75);
   color: #fff;
+  white-space: nowrap;
   text-align: center;
-  border-radius: 6px;
-  padding: 5px 20px;
+  border-radius: 0.5rem;
+  padding: 0.25rem 1rem;
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   top: 150%;
   left: 50%;
-  margin-left: 0px;
+  transform: translateX(-50%);
 }
 
 .show .tooltip_text .row {
-  margin: 8px 0;
+  margin: 0.5rem 0;
 }
 
 .show .tooltip_arrow {
   visibility: hidden;
   background-color: rgba(0, 0, 0, 0.75);
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   top: 150%;
   left: 50%;
 }
@@ -86,8 +84,7 @@
   position: absolute;
   bottom: 100%;
   left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
+  border-width: 0.5rem;
   border-style: solid;
   border-color: transparent transparent black transparent;
 }
@@ -104,7 +101,7 @@
 }
 
 .show .class-boxes .col-2 {
-  border-radius: 20px;
+  border-radius: 1.2rem;
 }
 
 .show .class-boxes .col-2:hover .tooltip_arrow {
@@ -112,17 +109,16 @@
 }
 
 .editor {
-  width: 80%;
   margin: 0 10%;
-  padding: 50px 50px;
+  padding: 4rem 4rem;
   border-radius: 0.5rem;
   background-color: #d7d7d7;
 }
 
 .editor .card {
   background-color: #ffffff;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
   padding: 1rem 2rem;
 }
 
@@ -148,7 +144,7 @@
 }
 
 .editor .input-box {
-  border: 1px solid;
+  border: 0.05rem solid;
   border-radius: 0.5rem;
   padding: 0.5rem;
 }

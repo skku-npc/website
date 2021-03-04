@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import './Pending.css';
 
-const Pending = () => {
+const Pending = ({ loadData }) => {
   const [ pendingUsers, setPendingUsers ] = useState([]);
 
   const loadPendingUsers = () => {
@@ -18,6 +19,7 @@ const Pending = () => {
     axios.patch(`/api/users/member/${mode}/${id}`)
       .then(() => {
         loadPendingUsers();
+        loadData();
       })
       .catch(error => {
         window.alert(error);
@@ -56,6 +58,10 @@ const Pending = () => {
       }
     </div>
   );
+};
+
+Pending.propTypes = {
+  loadData: PropTypes.func.isRequired
 };
 
 export default Pending;

@@ -3,7 +3,7 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <div className="footer container-fluid px-0 py-3">
+    <div className="footer container-fluid">
       <div className="row align-items-center m-0">
         <div className="col-10 col-md-6 offset-1 p-0">
           <div className="row mb-3 mx-0 align-items-center">
@@ -21,7 +21,7 @@ const Footer = () => {
               <img src="/icons/Footer/github.png" alt="githubIcon"/>
             </div>
             <div className="col-10 p-0">
-              <a href={'https://github.com'} target="_blank" rel="noopener noreferrer">
+              <a href={'https://github.com/skku-npc'} target="_blank" rel="noopener noreferrer">
 								Github
               </a>
             </div>
@@ -31,7 +31,7 @@ const Footer = () => {
               <img src="/icons/Footer/baekjoon.png" alt="BJIcon"/>
             </div>
             <div className="col-10 p-0">
-              <a href={'https://www.acmicpc.net'} target="_blank" rel="noopener noreferrer">
+              <a href={'https://www.acmicpc.net/group/469'} target="_blank" rel="noopener noreferrer">
 								Baekjoon OJ
               </a>
             </div>

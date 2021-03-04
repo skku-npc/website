@@ -36,7 +36,9 @@ const App = () => {
           <Route path="/study/:class/:index?" render={({ match, history }) =>
             <Study match={match} history={history} isLoggedIn={isLoggedIn} />}
           />
-          <Route path="/user/settings" component={Settings} />
+          <Route path="/user/settings" render={({ history }) =>
+            <Settings history={history} setIsLoggedIn={setIsLoggedIn} />}
+          />
           <Route path="/user/resetPassword/:passwordResetToken" component={ResetPassword} />
           <Route
             render={({ location }) => (

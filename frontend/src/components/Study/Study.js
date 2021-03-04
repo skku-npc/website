@@ -113,8 +113,8 @@ const Study = ({ match, history, isLoggedIn }) => {
     const displayData = studyData.filter(post=>(post.class === id));
     return displayData.length > 0 ?
       displayData.map((data, index) => (
-        <div className="post-title row" key={index}>
-          <div className="col-10"
+        <div className="post-title row justify-content-center" key={index}>
+          <div className={hover ? 'col-12' : 'col-6'}
             onClick={() => history.push(`/study/view/${data.id}`)}>
             {(hover ? '' : '- ') + data.title}
           </div>
@@ -224,7 +224,7 @@ const Study = ({ match, history, isLoggedIn }) => {
             onMouseOver={() => setHoverId(2)}>
             <div className="class-box">중급반</div>
             <div className="tooltip_arrow"/>
-            <span className="tooltip_text" style={{textAlign: 'start', width: '50vw', marginLeft: '-25vw'}}>{getFilteredData(hoverId, true)}</span>
+            <span className="tooltip_text" style={{textAlign: 'start'}}>{getFilteredData(hoverId, true)}</span>
           </div>
           <div className="col-2 p-0" ref={advanced}
             onClick={() => history.push('/study/advanced')}
@@ -236,7 +236,7 @@ const Study = ({ match, history, isLoggedIn }) => {
         {
           isAdmin ?
             <div className="row my-4">
-              <div className="col-1 offset-10 horizontal-center">
+              <div className="col-1 offset-9 horizontal-center">
                 <img src="/icons/circled-plus.png" alt="add"
                   onClick={() => history.push('/study/write')} />
               </div>
