@@ -155,3 +155,11 @@
   width: 100%;
   font-family: "KoreanTITGD", "Manrope";
 }
+
+@media (max-aspect-ratio: 5/4) {
+  .study {
+    width: 100%;
+    margin: 15vh 0;
+    padding: 0 5%;
+  }
+}

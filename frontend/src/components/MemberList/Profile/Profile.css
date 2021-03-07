@@ -2,11 +2,30 @@
   text-align: center;
 }
 
-.profile .profile-img {
-  width: 30vh;
-  height: 25vh;
+.profile-setting {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.profile-modal {
+  width: 50vh;
+  height: auto;
+  padding: 5vh;
+}
+
+.profile-img {
   object-fit: cover;
   border-radius: 1rem;
+}
+
+.profile-modal .profile-img {
+  width: 30vh;
+  height: 25vh;
+}
+
+.profile-setting .profile-img {
+  width: 70%;
 }
 
 .profile .setting-button {
@@ -56,4 +75,16 @@
 
 .profile .tooltip:hover .tooltip_text {
   visibility: visible;
+}
+
+@media (max-aspect-ratio: 5/4) {
+  .profile-modal {
+    width: 50vw;
+    padding: 5vw;
+  }
+
+  .profile-modal .profile-img {
+    width: 30vw;
+    height: 25vw;
+  }
 }

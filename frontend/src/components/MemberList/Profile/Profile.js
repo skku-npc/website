@@ -56,75 +56,77 @@ const Profile = ({ user, settings }) => {
   }, []);
 
   return (
-    <div className="profile" style={settings ? {padding: 0, width: '100%', height: '100%'} : {width: '50vh', height: '65vh', padding: '15% 10%'}}>
-      <div className="row mb-3">
-        <div className="col p-0">
-          <img className="profile-img" ref={profileImage} alt="Profile Image" />
+    <div className="profile">
+      <div className={`${settings ? 'profile-setting' : 'profile-modal'}`}>
+        <div className="row mb-3">
+          <div className="col p-0">
+            <img className="profile-img" ref={profileImage} alt="Profile Image" />
+          </div>
         </div>
-      </div>
-      { settings ?
-        (
-          <div className="row mb-5">
-            <div className="setting-button col-3 offset-6 p-0">
-              <input type="file" id="file" name="file" onChange={uploadImage} style={{display: 'none'}} />
-              <label htmlFor="file">추가 / 수정</label>
+        { settings ?
+          (
+            <div className="row mb-5">
+              <div className="setting-button col-3 offset-6 p-0">
+                <input type="file" id="file" name="file" onChange={uploadImage} style={{display: 'none'}} />
+                <label htmlFor="file">추가 / 수정</label>
+              </div>
+              <div className="setting-button col-2 p-0" onClick={removeImage}>삭제</div>
             </div>
-            <div className="setting-button col-2 p-0" onClick={removeImage}>삭제</div>
-          </div>
-        ) : (
-          <div className="row mb-5">
-            <a className="col-2 offset-5 p-0" href={bojHandle && `https://www.acmicpc.net/user/${bojHandle}`} target="_blank" rel="noopener noreferrer">
-              <li className="tooltip">
-                <img
-                  className="button-icon"
-                  src="/icons/baekjoon.png"
-                  alt="baekjoon"
-                />
-                <span className="tooltip_text">{`(백준) ${bojHandle || '등록되지 않음'}`}</span>
-              </li>
-            </a>
-            <a className="col-2 p-0" href={codeforcesHandle && `https://codeforces.com/profile/${codeforcesHandle}`} target="_blank" rel="noopener noreferrer">
-              <li className="tooltip">
-                <img
-                  className="button-icon"
-                  src="/icons/codeforces.png"
-                  alt="codeforces"
-                />
-                <span className="tooltip_text">{`(코포) ${codeforcesHandle || '등록되지 않음'}`}</span>
-              </li>
-            </a>
-            <a className="col-2 p-0" href={githubHandle && `https://github.com/${githubHandle}`} target="_blank" rel="noopener noreferrer">
-              <li className="tooltip">
-                <img
-                  className="button-icon"
-                  src="/icons/github.png"
-                  alt="github"
-                />
-                <span className="tooltip_text">{`(깃) ${githubHandle || '등록되지 않음'}`}</span>
-              </li>
-            </a>
-          </div>
-        )
-      }
-      <div className="row mb-3">
-        <div className="col-4 p-0">이름</div>
-        <div className="col-7 offset-1 p-0">{name}</div>
-      </div>
-      <div className="row mb-3">
-        <div className="col-4 p-0">닉네임</div>
-        <div className="col-7 offset-1 p-0">{handle}</div>
-      </div>
-      <div className="row mb-3">
-        <div className="col-4 p-0">이메일</div>
-        <div className="col-7 offset-1 p-0">{email}</div>
-      </div>
-      <div className="row mb-3">
-        <div className="col-4 p-0">가입연도</div>
-        <div className="col-7 offset-1 p-0">{createdAt && (typeof createdAt === 'number' ? createdAt : createdAt.slice(0, 4))}</div>
-      </div>
-      <div className="row mb-3">
-        <div className="col-4 p-0">학과</div>
-        <div className="col-7 offset-1 p-0">{department}</div>
+          ) : (
+            <div className="row mb-5">
+              <a className="col-2 offset-5 p-0" href={bojHandle && `https://www.acmicpc.net/user/${bojHandle}`} target="_blank" rel="noopener noreferrer">
+                <li className="tooltip">
+                  <img
+                    className="button-icon"
+                    src="/icons/baekjoon.png"
+                    alt="baekjoon"
+                  />
+                  <span className="tooltip_text">{`(백준) ${bojHandle || '등록되지 않음'}`}</span>
+                </li>
+              </a>
+              <a className="col-2 p-0" href={codeforcesHandle && `https://codeforces.com/profile/${codeforcesHandle}`} target="_blank" rel="noopener noreferrer">
+                <li className="tooltip">
+                  <img
+                    className="button-icon"
+                    src="/icons/codeforces.png"
+                    alt="codeforces"
+                  />
+                  <span className="tooltip_text">{`(코포) ${codeforcesHandle || '등록되지 않음'}`}</span>
+                </li>
+              </a>
+              <a className="col-2 p-0" href={githubHandle && `https://github.com/${githubHandle}`} target="_blank" rel="noopener noreferrer">
+                <li className="tooltip">
+                  <img
+                    className="button-icon"
+                    src="/icons/github.png"
+                    alt="github"
+                  />
+                  <span className="tooltip_text">{`(깃) ${githubHandle || '등록되지 않음'}`}</span>
+                </li>
+              </a>
+            </div>
+          )
+        }
+        <div className="row mb-3">
+          <div className="col-4 p-0">이름</div>
+          <div className="col-7 offset-1 p-0">{name}</div>
+        </div>
+        <div className="row mb-3">
+          <div className="col-4 p-0">닉네임</div>
+          <div className="col-7 offset-1 p-0">{handle}</div>
+        </div>
+        <div className="row mb-3">
+          <div className="col-4 p-0">이메일</div>
+          <div className="col-7 offset-1 p-0">{email}</div>
+        </div>
+        <div className="row mb-3">
+          <div className="col-4 p-0">가입연도</div>
+          <div className="col-7 offset-1 p-0">{createdAt && (typeof createdAt === 'number' ? createdAt : createdAt.slice(0, 4))}</div>
+        </div>
+        <div className="row mb-3">
+          <div className="col-4 p-0">학과</div>
+          <div className="col-7 offset-1 p-0">{department}</div>
+        </div>
       </div>
     </div>
   );

@@ -27,6 +27,7 @@
 
 .main {
   font-weight: 600;
+  word-break: keep-all;
 }
 
 .main img {
@@ -103,13 +104,9 @@
   padding: 0 calc((100vw - 125vh) / 2);
 }
 
-.frame-02 {
-  width: 125vh;
-  height: auto;
-  margin: 10% calc((100vw - 125vh) / 2) 0;
-}
-
-.frame-03 {
+.frame-02,
+.frame-03,
+.frame-04 {
   width: 125vh;
   height: auto;
   margin: 10% calc((100vw - 125vh) / 2) 0;
@@ -155,12 +152,6 @@
   box-shadow: 0 0 4rem 1rem rgba(121, 172, 249, 0.5);
 }
 
-.frame-04 {
-  width: 125vh;
-  height: auto;
-  margin: 10% calc((100vw - 125vh) / 2) 0;
-}
-
 .frame-05 {
   width: 100vw;
   max-width: 100%;
@@ -172,14 +163,23 @@
 @media (max-aspect-ratio: 5/4) {
   .frame-01 .text-box {
     height: 30%;
-    padding: 0;
+    padding: 0 5%;
   }
 
   .frame-02,
   .frame-03,
-  .frame-04,
+  .frame-04 {
+    width: 100%;
+    margin: 10% 0;
+    padding: 0 5%;
+  }
+
+  .frame-03 .background {
+    height: 40vh;
+  }
+
   .frame-05 {
     width: 100%;
-    margin: 0;
+    margin: 10% 0 0;
   }
 }

@@ -18,3 +18,11 @@
   text-decoration: underline;
   cursor: default;
 }
+
+@media (max-aspect-ratio: 5/4) {
+  .calendar {
+    width: 100%;
+    margin: 15vh 0;
+    padding: 0 5%;
+  }
+}

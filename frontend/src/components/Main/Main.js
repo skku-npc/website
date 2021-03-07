@@ -7,12 +7,12 @@ const Main = () => {
       <div className="frame-01">
         <img src="/pics/main_1.png" alt="main_1" />
         <div className="text-box row align-items-center">
-          <div className="col-6 p-0">
+          <div className="col-md-6 col-12 p-0">
             <p className="text-xxl text-bold">NPC</p>
             <p className="text-xl text-bold">NP-Complete</p>
           </div>
-          <div className="col-6 p-0">
-            <p className="text-md text-right mt-3">
+          <div className="col-md-6 col-12 p-0">
+            <p className="text-md text-right mb-5 mb-md-0 mt-md-5">
                 성균관대 소프트웨어대학
               <br />
                 알고리즘 문제해결(PS) 동아리
@@ -32,14 +32,14 @@ const Main = () => {
           </div>
         </div>
         <div className="row justify-content-center">
-          <div className="col-6 p-0 pr-5">
+          <div className="col-md-6 col-12 p-0 pr-md-5">
             <p className="text-xs text-light">
                   NPC는 2011년에 정보통신대학 소속 알고리즘 연구회로 활동을 시작해, 다양한 알고리즘 관련 활동을 이어오고 있습니다.
               <br /><br />
                   많은 기업에서 코딩테스트를 도입하는 등 PS의 중요성은 잘 알려져 있습니다. 알고리즘 문제해결은 소프트웨어 엔지니어링의 핵심 능력을 키우기에 가장 좋은 활동 중 하나입니다.
             </p>
           </div>
-          <div className="col-6 p-0">
+          <div className="col-md-6 p-0">
             <img src="/pics/main_2.png" alt="main_2" />
           </div>
         </div>
@@ -57,7 +57,7 @@ const Main = () => {
           <div className="col background" style={{ backgroundImage: 'url(/pics/main_3.png)' }}>
             <div className="text-box">
               <div className="vertical-center white">
-                <p className="text-lg horizontal-center py-5">
+                <p className="text-lg horizontal-center mb-5">
                     1. 다양한 프로그래밍 경시대회 참가
                 </p>
                 <br />
@@ -118,7 +118,7 @@ const Main = () => {
           </div>
         </div>
         <div className="row justify-content-center align-items-center">
-          <div className="col-10 p-0">
+          <div className="col-md-10 col-12 p-0">
             <img src="/pics/main_4.png" alt="room" />
           </div>
         </div>

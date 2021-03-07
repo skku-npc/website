@@ -67,3 +67,15 @@
 .profile-others .button {
   font-weight: 600;
 }
+
+@media (max-aspect-ratio: 5/4) {
+  .settings {
+    width: 100%;
+    margin: 15vh 0;
+  }
+
+  .settings .background {
+    margin: 0 5%;
+    width: 90%;
+  }
+}
