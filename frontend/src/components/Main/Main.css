@@ -183,3 +183,25 @@
     margin: 10% 0 0;
   }
 }
+
+@media (max-width: 575.98px) {
+  .frame-02,
+  .frame-03,
+  .frame-04 {
+    margin: 25% 0;
+    padding: 0 5%;
+  }
+
+  .frame-02 img {
+    display: none;
+  }
+
+  .frame-03 .background {
+    height: 100vw;
+    margin-bottom: 20%;
+  }
+
+  .frame-03 .class-box {
+    height: 35vw;
+  }
+}
