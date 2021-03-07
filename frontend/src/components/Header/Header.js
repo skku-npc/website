@@ -105,21 +105,22 @@ const Header = ({ setModalContent, setModalOpen, isLoggedIn, setIsLoggedIn }) =>
   return (
     <div className="header container-fluid p-0">
       <div className="row align-items-center p-0 m-0">
-        <div className="col-md-2 mr-md-auto p-0">
+        <div className="col-3 offset-2 p-0" />
+        <div className="col-2 p-0">
           <Link to="/main">
             <img className="logo" src="/icons/npc.png" alt="logo"/>
           </Link>
         </div>
-        <div className="col-md-1 p-0 my-3 m-md-0">
+        <div className="col-1 offset-6 p-0">
           <Link to={`/members/${new Date().getFullYear()}`}>멤버</Link>
         </div>
-        <div className="col-md-1 p-0 my-3 m-md-0">
+        <div className="col-1 p-0">
           <Link to={`/calendar/month/${moment().format('YYYY-MM-DD')}`}>일정</Link>
         </div>
-        <div className="col-md-1 p-0 my-3 m-md-0">
+        <div className="col-1 p-0">
           <Link to="/study/basic">스터디</Link>
         </div>
-        <div className="dropdown col-md-1 p-0 my-3 m-md-0">
+        <div className="dropdown col-1 p-0">
           <img className="dropbtn" src="/icons/user.png" alt="user" onClick={() => setDropdownOpen(!dropdownOpen)}/>
           <div className="dropdown-content" ref={dropdownEl} style={{display: dropdownOpen ? 'block' : 'none'}}>
             <a onClick={loginonClick}>{isLoggedIn ? '로그아웃' : '로그인'}</a>

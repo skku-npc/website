@@ -54,3 +54,21 @@
   display: block;
   margin: 1rem 0;
 }
+
+.header .col-3 {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    position: absolute;
+  }
+
+  .header .col-1 {
+    visibility: hidden;
+  }
+
+  .header .col-3 {
+    display: block;
+  }
+}
