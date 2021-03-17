@@ -1,0 +1,81 @@
+.settings {
+  width: 125vh;
+  margin: 15vh calc((100vw - 125vh) / 2);
+  font-size: 1.2rem;
+}
+
+.settings .title {
+  margin: 0 5% 5%;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.settings .semi-title {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.settings .background {
+  width: 100%;
+  padding: 3rem 0;
+  background-color: #d7d7d7;
+  border-radius: 1.5rem;
+}
+
+.settings .card {
+  margin: 1rem;
+  padding: 3rem 0;
+  background-color: #ffffff;
+  box-shadow: 0px 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+}
+
+.settings hr {
+  margin: 2rem 0;
+}
+
+.settings button {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+}
+
+.profile-others input {
+  font-size: 1.2rem;
+  font-family: "Manrope", "KoreanTITGD";
+  width: 100%;
+}
+
+.profile-others {
+  padding: 3rem 0;
+}
+
+.profile-others .row {
+  padding: 0 5rem;
+}
+
+.profile-others .normal-input {
+  border-width: 0 0 0.1rem;
+}
+
+.profile-others .pw-input {
+  background: rgba(107, 107, 107, 0.11);
+  box-shadow: inset 0px 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+}
+
+.profile-others .button {
+  font-weight: 600;
+}
+
+@media (max-aspect-ratio: 5/4) {
+  .settings {
+    width: 100%;
+    margin: 15vh 0;
+  }
+
+  .settings .background {
+    margin: 0 5%;
+    width: 90%;
+  }
+}

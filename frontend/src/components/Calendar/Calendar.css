@@ -1,0 +1,28 @@
+.calendar {
+  width: 125vh;
+  margin: 15vh calc((100vw - 125vh) / 2);
+}
+
+.calendar-title {
+  margin-left: 5%;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.calendar .row {
+  margin: 4rem 0;
+}
+
+.calendar .button {
+  font-size: 1.5rem;
+  text-decoration: underline;
+  cursor: default;
+}
+
+@media (max-aspect-ratio: 5/4) {
+  .calendar {
+    width: 100%;
+    margin: 15vh 0;
+    padding: 0 5%;
+  }
+}

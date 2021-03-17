@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
+import 'animate.css/animate.css';
+import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

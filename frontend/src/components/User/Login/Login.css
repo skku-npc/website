@@ -1,0 +1,162 @@
+.containerLogin {
+  display: none;
+  width: 25vw;
+  padding: 10% 10%;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+  border-radius: 1.25rem;
+}
+
+.containerLogin .text {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  font-family: "Manrope", "KoreanTITGD";
+}
+
+.containerLogin .npcicon {
+  width: 40%;
+  margin-left: 30%;
+}
+
+.containerLogin form {
+  margin-top: -1.25rem;
+}
+
+.containerLogin form .data {
+  height: 3rem;
+  width: 100%;
+  margin: 1.25rem 0;
+}
+
+.containerLogin form .data input {
+  height: 100%;
+  width: 100%;
+  padding-left: 1.25rem;
+  font-size: 1rem;
+  color: #999999;
+  border: 0.01rem solid silver;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+  font-family: "KoreanTITGD";
+}
+
+.containerLogin input::placeholder {
+  font-size: 1rem;
+  color: #999999;
+}
+
+.containerLogin form .data input:focus {
+  border-color: #3498db;
+  border-bottom-width: 0.125rem;
+}
+
+.containerLogin form .data input[type="submit"] {
+  width: auto;
+}
+
+.containerLogin form .data input[required] + label {
+  font-size: 1rem;
+  color: #999999;
+  position: relative;
+  top: -2rem;
+  padding-left: 1.25rem;
+  cursor: text;
+}
+
+.containerLogin form .data input[required] + label:after {
+  content: " *";
+  color: #ed6f6f;
+}
+
+.containerLogin form .data input[required]:invalid + label {
+  display: inline-block;
+}
+
+.containerLogin form .data input[required]:valid + label {
+  display: none;
+}
+
+.containerLogin form .forgot-pass {
+  margin-top: 0;
+  text-align: end;
+}
+
+.containerLogin form .forgot-pass a {
+  color: #999999;
+  text-decoration: none;
+}
+
+.containerLogin form .forgot-pass a:hover {
+  text-decoration: underline;
+}
+
+.containerLogin form .btn {
+  height: 3rem;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: #8dc63f;
+  margin-top: 2.5rem;
+  transition: all 0.4s;
+}
+
+.containerLogin form .btn:hover {
+  background-color: #59861c;
+}
+
+.containerLogin form .btn button {
+  height: 100%;
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-family: "KoreanTITGD";
+}
+
+.containerLogin form .signup-link {
+  padding-top: 2rem;
+  text-align: center;
+  font-size: 1rem;
+  font-family: "Manrope", "KoreanTITGD";
+}
+
+.containerLogin form .switchBtn {
+  background: none;
+  border: none;
+  color: #8dc63f;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  transition: all 0.4s;
+  font-family: "KoreanTITGD";
+}
+
+.containerLogin form .switchBtn:hover {
+  text-decoration: underline;
+}
+
+.containerLogin form .findBtn {
+  background: none;
+  border: none;
+  color: #999999;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  transition: all 0.4s;
+  font-family: "Manrope", "KoreanTITGD";
+}
+
+.containerLogin form .findBtn:hover {
+  text-decoration: underline;
+}
+
+.containerLogin form .loginCenterAlignedText {
+  font-size: 1rem;
+  text-align: center;
+  color: #999999;
+}

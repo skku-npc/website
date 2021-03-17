@@ -1,0 +1,27 @@
+.footer {
+  width: 100%;
+  padding: 2rem calc((100vw - 125vh) / 2);
+  background-color: #f2f2f2;
+  font-size: 1.2rem;
+}
+
+.footer img {
+  height: 1.5rem;
+  transform: translateY(20%);
+}
+
+.footer a {
+  color: black;
+}
+
+.footer .row {
+  width: 100%;
+}
+
+.horizontal-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}

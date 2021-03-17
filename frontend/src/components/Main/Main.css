@@ -1,0 +1,207 @@
+.white {
+  color: white;
+}
+
+.yellow {
+  color: #f5e435;
+}
+
+.green {
+  color: #b2ed70;
+}
+
+.blue {
+  color: #4f7fc7;
+}
+
+.vertical-center {
+  position: absolute;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.horizontal-center {
+  text-align: center;
+}
+
+.main {
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.main img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.main p {
+  margin: 0;
+}
+
+.main .row,
+.main .col {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.main .text-xs {
+  font-size: 1.5rem;
+  line-height: 130%;
+}
+
+.main .text-sm {
+  font-size: 1.875rem;
+  line-height: 130%;
+}
+
+.main .text-md {
+  font-size: 2.5rem;
+  line-height: 130%;
+}
+
+.main .text-lg {
+  font-size: 2.75rem;
+  line-height: 130%;
+}
+
+.main .text-xl {
+  font-size: 3.125rem;
+  line-height: 130%;
+}
+
+.main .text-xxl {
+  font-size: 7.5rem;
+  line-height: 90%;
+}
+
+.main .text-right {
+  text-align: right;
+}
+
+.main .text-light {
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.main .text-bold {
+  font-weight: 700;
+}
+
+.frame-01 {
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+}
+
+.frame-01 img {
+  height: 70%;
+}
+
+.frame-01 .text-box {
+  height: 30%;
+  padding: 0 calc((100vw - 125vh) / 2);
+}
+
+.frame-02,
+.frame-03,
+.frame-04 {
+  width: 125vh;
+  height: auto;
+  margin: 10% calc((100vw - 125vh) / 2) 0;
+}
+
+.frame-03 .background {
+  width: 100%;
+  height: 40vw;
+  margin-bottom: 10%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.frame-03 .text-box {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.frame-03 .class-boxes {
+  margin-top: 10%;
+}
+
+.frame-03 .class-box {
+  width: 15vw;
+  height: 15vw;
+  border-radius: 2rem;
+}
+
+.frame-03 .class-box.basic {
+  background: linear-gradient(180deg, #feff83 0%, #f5e12e 100%);
+  box-shadow: 0 0 4rem 1rem rgba(226, 209, 54, 0.5);
+}
+
+.frame-03 .class-box.intermediate {
+  background: linear-gradient(180deg, #b6f170 0%, #8fbf56 100%);
+  box-shadow: 0 0 4rem 1rem rgba(143, 191, 86, 0.5);
+}
+
+.frame-03 .class-box.advanced {
+  background: linear-gradient(180deg, #79acf9 0%, #4d7dc5 100%);
+  box-shadow: 0 0 4rem 1rem rgba(121, 172, 249, 0.5);
+}
+
+.frame-05 {
+  width: 100vw;
+  max-width: 100%;
+  height: auto;
+  margin: 10% 0 0;
+  background-color: #24292e;
+}
+
+@media (max-aspect-ratio: 5/4) {
+  .frame-01 .text-box {
+    height: 30%;
+    padding: 0 5%;
+  }
+
+  .frame-02,
+  .frame-03,
+  .frame-04 {
+    width: 100%;
+    margin: 10% 0;
+    padding: 0 5%;
+  }
+
+  .frame-03 .background {
+    height: 40vh;
+  }
+
+  .frame-05 {
+    width: 100%;
+    margin: 10% 0 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .frame-02,
+  .frame-03,
+  .frame-04 {
+    margin: 25% 0;
+    padding: 0 5%;
+  }
+
+  .frame-02 img {
+    display: none;
+  }
+
+  .frame-03 .background {
+    height: 100vw;
+    margin-bottom: 20%;
+  }
+
+  .frame-03 .class-box {
+    height: 35vw;
+  }
+}

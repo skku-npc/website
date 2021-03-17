@@ -1,0 +1,35 @@
+.intro {
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+}
+
+.intro img {
+  position: absolute;
+  width: 20vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.box {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  left: 50%;
+  top: 85%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.arrow {
+  position: relative;
+  left: 25%;
+  border-bottom: 0.25rem solid #535353;
+  border-left: 0.25rem solid #535353;
+  width: 3rem;
+  height: 3rem;
+  transform: rotate(-45deg);
+}

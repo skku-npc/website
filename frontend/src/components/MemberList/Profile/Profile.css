@@ -1,0 +1,90 @@
+.profile {
+  text-align: center;
+}
+
+.profile-setting {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.profile-modal {
+  width: 50vh;
+  height: auto;
+  padding: 5vh;
+}
+
+.profile-img {
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.profile-modal .profile-img {
+  width: 30vh;
+  height: 25vh;
+}
+
+.profile-setting .profile-img {
+  width: 70%;
+}
+
+.profile .setting-button {
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: default;
+}
+
+.profile .col-4 {
+  text-align: right;
+}
+
+.profile .col-7 {
+  text-align: left;
+}
+
+.profile .tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.profile .tooltip .tooltip_text {
+  visibility: hidden;
+  width: auto;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: 0.25rem 1rem;
+  position: absolute;
+  z-index: 3;
+  top: 150%;
+  left: 50%;
+  transform: translateX(-54%);
+}
+
+.profile .tooltip .tooltip_text::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  border-width: 0.5rem;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.profile .tooltip:hover .tooltip_text {
+  visibility: visible;
+}
+
+@media (max-aspect-ratio: 5/4) {
+  .profile-modal {
+    width: 50vw;
+    padding: 5vw;
+  }
+
+  .profile-modal .profile-img {
+    width: 30vw;
+    height: 25vw;
+  }
+}

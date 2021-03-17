@@ -1,0 +1,56 @@
+.pending {
+  width: 30vw;
+  height: auto;
+  padding: 10%;
+  text-align: left;
+}
+
+.pending .title {
+  font-size: 2.5rem;
+}
+
+.pending .name {
+  font-size: 1.5rem;
+}
+
+.pending .details {
+  font-size: 1rem;
+}
+
+.pending .col-2 {
+  text-align: center;
+}
+
+.check {
+  display: inline-block;
+  transform: rotate(45deg);
+  height: 1.5rem;
+  width: 0.75rem;
+  border-bottom: 0.25rem solid #33d019;
+  border-right: 0.25rem solid #33d019;
+}
+
+.close {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1rem;
+  position: relative;
+}
+
+.close:after {
+  content: "";
+  height: 1.5rem;
+  border-left: 0.25rem solid #e70e0e;
+  position: absolute;
+  transform: rotate(45deg);
+  left: 0.75rem;
+}
+
+.close:before {
+  content: "";
+  height: 1.5rem;
+  border-left: 0.25rem solid #e70e0e;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 0.75rem;
+}
